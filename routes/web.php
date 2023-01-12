@@ -3,6 +3,7 @@
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\KanbanController;
 use App\Http\Controllers\MpayController;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,13 +17,25 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', function () {
+    return view('welcome');
+});
 
-Route::GET('/', [Controller::class, 'index'])->name('dashboard');
-Route::GET('/kanban-board', [KanbanController::class, 'index'])->name('kanban');
+// Route::get('/dashboard', function () {
+//     // return view('dashboard');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 
-/** M-Pay */
-Route::GET('/mpay/rekening', [MpayController::class, 'indexRekening'])->name('rekening');
-Route::GET('/mpay/mutasi', [MpayController::class, 'indexMutasi'])->name('mutasi');
+Route::middleware('auth')->group(function () {
+    
+    Route::GET('/dashboard', [Controller::class, 'index'])->name('dashboard');
+    Route::GET('/kanban-board', [KanbanController::class, 'index'])->name('kanban');
+
+    /** M-Pay */
+    Route::GET('/mpay/rekening', [MpayController::class, 'indexRekening'])->name('rekening');
+    Route::GET('/mpay/mutasi', [MpayController::class, 'indexMutasi'])->name('mutasi');
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+require __DIR__ . '/auth.php';
