@@ -1,4 +1,4 @@
-@extends('layout.app')
+@extends('layout-stisla.app')
 @section('content')
 
 <!-- Main Content -->
@@ -480,5 +480,5 @@
       </div>
     </section>
   </div>
-  
+
 @endsection

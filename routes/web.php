@@ -26,9 +26,10 @@ Route::get('/', function () {
 // })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
-    
+    Route::GET('/lalala', [Controller::class, 'stisla'])->name('s');
+
     Route::GET('/dashboard', [Controller::class, 'index'])->name('dashboard');
-    Route::GET('/kanban-board', [KanbanController::class, 'index'])->name('kanban');
+    // Route::GET('/kanban-board', [KanbanController::class, 'index'])->name('kanban');
 
     /** M-Pay */
     Route::GET('/mpay/rekening', [MpayController::class, 'indexRekening'])->name('rekening');
@@ -36,6 +37,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    /** Kanban Board */
+    // Route::resources('kanban', KanbanController::class);
+    Route::GET('/kanban-board', [KanbanController::class, 'index'])->name('kanban');
+    Route::GET('/getId-kanban', [KanbanController::class, 'indexKanban'])->name('kanbanIndex');
+    Route::POST('/kanban-board/store', [KanbanController::class, 'store'])->name('kanban.store');
 });
 
 require __DIR__ . '/auth.php';

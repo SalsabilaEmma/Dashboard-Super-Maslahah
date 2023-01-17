@@ -13,7 +13,12 @@ class Controller extends BaseController
 
     public function index()
     {
+        // return view('dashboard');
+        return view('index');
+    }
+    public function stisla()
+    {
         return view('dashboard');
-        // return view('vuexy-index');
+        // return view('index');
     }
 }
