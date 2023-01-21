@@ -26,29 +26,13 @@
                         <div class="card-header">
                             <h5>Kanban Board</h5>
                         </div>
-                        @if ($errors->any())
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @endif
                         <div class="card-body">
                             <div>
-                                <button class="btn btn-success" type="button" data-bs-toggle="modal"
+                                <button class="btn btn-success" type="button" data-bs-toggle="modal" id="btn-tambahdata"
                                     data-bs-target="#tambahdata" data-whatever="@getbootstrap">Add Issues</button>
-                                <br>
                             </div>
+                            <br>
                             <div id="demo1"></div>
-                            {{-- @forelse ($task as $task2)
-                                <p>{{ $task2->status }} | {{ $task2->judul }}</p>
-
-                            @empty
-                                <p class="text-center">No Task</p>
-                            @endforelse --}}
-
                         </div>
                     </div>
                 </div>
@@ -160,10 +144,11 @@
                     <h5 class="modal-title">Add Issues</h5>
                     <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="{{ route('kanban.store') }}" method="POST" id="todo-form" enctype="multipart/form-data">
+                <form action="{{ route('kanban.store') }}" method="POST" id="edit-form" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <div class="modal-body">
                         <div class="row g3">
+                            <input type="hidden" hidden="" name="id" id="id"></input>
                             <div class="col-md-8">
                                 <label class="col-form-label" for="recipient-name">Judul:</label>
                                 <input name="judul" id="judul"
@@ -214,15 +199,74 @@
             </div>
         </div>
     </div>
+
+    {{-- cancel --}}
+    <div class="modal fade" id="canceldata" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenter"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Cancel Issues</h5>
+                    <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="{{ route('kanban.cancel') }}" method="POST" id="cancel-form"
+                    enctype="multipart/form-data">
+                    {{ csrf_field() }}
+                    <input type="hidden" hidden="" name="id" id="id"></input>
+                    <div class="modal-body">
+                        <p class="text-center">Yakin Akan Dibatalkan?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Close</button>
+                        <button class="btn btn-primary" type="submit">Batalkan</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 @endsection
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <script>
-    // $(document).ready(function() {
+    //Create Data
+    $(document).ready(function() {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $("#todo-form").on("submit", function(e) {
+            e.preventDefault();
+            $.ajax({
+                type: "POST",
+                url: "{{ route('kanban.store') }}",
+                data: $("#todo-form").serialize(),
+                dataType: "JSON",
+                success: function(response) {
+                    Swal.fire({
+                        type: 'success',
+                        icon: 'success',
+                        title: `${response.message}`,
+                        showConfirmButton: false,
+                        timer: 3000
+                    });
+
+                    $("#demo1").children().remove();
+                    fun_kanban();
+                    //close modal
+                    $('#tambahdata').modal('hide');
+                },
+                // error: function(error) {
+                //     //...
+                // }
+            });
+        });
+    });
+
+    //  Edit Data Modal
     function edit() {
         $(document).on('click', '.edit_data', function(e) {
             $('#editdata').modal('show');
-            //console.log();
             $("#editdata").find("#id").attr("value", $(this).data('id'));
             $("#editdata").find("#status").attr("value", $(this).data('status'));
             $("#editdata").find("#due_date").attr("value", $(this).data('due_date'));
@@ -230,6 +274,90 @@
             $("#editdata").find("#judul").attr("value", $(this).data('judul'));
             $("#editdata").find("#issues").attr("value", $(this).data('issues'));
         });
+
     }
-    // });
+    $(document).ready(function() {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $("#edit-form").on("submit", function(e) {
+            e.preventDefault();
+            $.ajax({
+                type: "POST",
+                url: "{{ route('kanban.update') }}",
+                data: $("#edit-form").serialize(),
+                dataType: "JSON",
+                success: function(response) {
+
+                    $("#demo1").children().remove();
+                    fun_kanban();
+                    // console.log('dah lewat proses update');
+
+                    //close modal
+                    $('#editdata').modal('hide');
+
+                    Swal.fire({
+                        type: 'success',
+                        icon: 'success',
+                        title: `${response.message}`,
+                        showConfirmButton: false,
+                        timer: 3000
+                    });
+                },
+                // error: function(error) {
+                //     //...
+                // }
+            });
+        });
+    });
+
+    // Cancel Data
+    function cancel() {
+        $(document).on('click', '.cancel_data', function(e) {
+            $('#canceldata').modal('show');
+            $("#canceldata").find("#id").attr("value", $(this).data('id'));
+            $("#canceldata").find("#status").attr("value", $(this).data('status'));
+            $("#canceldata").find("#due_date").attr("value", $(this).data('due_date'));
+            $("#canceldata").find("#priority").attr("value", $(this).data('priority'));
+            $("#canceldata").find("#judul").attr("value", $(this).data('judul'));
+            $("#canceldata").find("#issues").attr("value", $(this).data('issues'));
+        });
+    }
+    $(document).ready(function() {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        $("#cancel-form").on("submit", function(e) {
+            e.preventDefault();
+            $.ajax({
+                type: "POST",
+                url: "{{ route('kanban.cancel') }}",
+                data: $("#cancel-form").serialize(),
+                dataType: "JSON",
+                success: function(response) {
+                    // console.log('halo');
+                    $("#demo1").children().remove();
+                    fun_kanban();
+
+                    //close modal
+                    $('#canceldata').modal('hide');
+
+                    Swal.fire({
+                        type: 'success',
+                        icon: 'success',
+                        title: `${response.message}`,
+                        showConfirmButton: false,
+                        timer: 3000
+                    });
+                },
+                // error: function(error) {
+                //     //...
+                // }
+            });
+        });
+    });
 </script>

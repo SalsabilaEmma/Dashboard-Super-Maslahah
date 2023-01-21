@@ -41,8 +41,11 @@ Route::middleware('auth')->group(function () {
     /** Kanban Board */
     // Route::resources('kanban', KanbanController::class);
     Route::GET('/kanban-board', [KanbanController::class, 'index'])->name('kanban');
-    Route::GET('/getId-kanban', [KanbanController::class, 'indexKanban'])->name('kanbanIndex');
+    Route::GET('/get-kanban', [KanbanController::class, 'indexKanban'])->name('kanbanIndex');
     Route::POST('/kanban-board/store', [KanbanController::class, 'store'])->name('kanban.store');
+    Route::POST('/kanban-board/show', [KanbanController::class, 'show'])->name('kanban.show');
+    Route::POST('/kanban-board/update{id?}', [KanbanController::class, 'update'])->name('kanban.update');
+    Route::POST('/kanban-board/cancel{id?}', [KanbanController::class, 'cancel'])->name('kanban.cancel');
 });
 
 require __DIR__ . '/auth.php';

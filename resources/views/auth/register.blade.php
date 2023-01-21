@@ -1,127 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
-  <title>Register &mdash; Super Maslahah</title>
-
-  <!-- General CSS Files -->
-  <link rel="stylesheet" href="{{ url('stisla/dist') }}/assets/modules/bootstrap/css/bootstrap.min.css">
-  <link rel="stylesheet" href="{{ url('stisla/dist') }}/assets/modules/fontawesome/css/all.min.css">
-
-  <!-- CSS Libraries -->
-  <link rel="stylesheet" href="{{ url('stisla/dist') }}/assets/modules/jquery-selectric/selectric.css">
-
-  <!-- Template CSS -->
-  <link rel="stylesheet" href="{{ url('stisla/dist') }}/assets/css/style.css">
-  <link rel="stylesheet" href="{{ url('stisla/dist') }}/assets/css/components.css">
-<!-- Start GA -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-94034622-3"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-94034622-3');
-</script>
-<!-- /END GA --></head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Cuba admin is super flexible, powerful, clean &amp; modern responsive bootstrap 5 admin template with unlimited possibilities.">
+    <meta name="keywords"
+        content="admin template, Cuba admin template, dashboard template, flat admin template, responsive admin template, web app">
+    <meta name="author" content="pixelstrap">
+    <link rel="icon" href="{{ url('cuba') }}/assets/images/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ url('cuba') }}/assets/images/favicon.png" type="image/x-icon">
+    <title>Login &mdash; Dashboard Maslahah</title>
+    <!-- Google font-->
+    <link href="https://fonts.googleapis.com/css?family=Rubik:400,400i,500,500i,700,700i&amp;display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900&amp;display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{ url('cuba') }}/assets/css/font-awesome.css">
+    <!-- ico-font-->
+    <link rel="stylesheet" type="text/css" href="{{ url('cuba') }}/assets/css/vendors/icofont.css">
+    <!-- Themify icon-->
+    <link rel="stylesheet" type="text/css" href="{{ url('cuba') }}/assets/css/vendors/themify.css">
+    <!-- Flag icon-->
+    <link rel="stylesheet" type="text/css" href="{{ url('cuba') }}/assets/css/vendors/flag-icon.css">
+    <!-- Feather icon-->
+    <link rel="stylesheet" type="text/css" href="{{ url('cuba') }}/assets/css/vendors/feather-icon.css">
+    <!-- Plugins css start-->
+    <!-- Plugins css Ends-->
+    <!-- Bootstrap css-->
+    <link rel="stylesheet" type="text/css" href="{{ url('cuba') }}/assets/css/vendors/bootstrap.css">
+    <!-- App css-->
+    <link rel="stylesheet" type="text/css" href="{{ url('cuba') }}/assets/css/style.css">
+    <link id="color" rel="stylesheet" href="{{ url('cuba') }}/assets/css/color-1.css" media="screen">
+    <!-- Responsive css-->
+    <link rel="stylesheet" type="text/css" href="{{ url('cuba') }}/assets/css/responsive.css">
+</head>
 
 <body>
-  <div id="app">
-    <section class="section">
-      <div class="container mt-5">
-        <div class="row">
-          <div class="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-8 offset-lg-2 col-xl-8 offset-xl-2">
-            <div class="login-brand">
-              <img src="{{ url('stisla/dist') }}/assets/img/stisla-fill.svg" alt="logo" width="100" class="shadow-light rounded-circle">
-            </div>
-
-            <div class="card card-primary">
-              <div class="card-header"><h4>Register</h4></div>
-
-              <div class="card-body">
-                <form method="POST" action="{{ route('register') }}">
-                    @csrf
-
-                    <!-- Name -->
+    <!-- login page start-->
+    <div class="container-fluid p-0">
+        <div class="row m-0">
+            <div class="col-12 p-0">
+                <div class="login-card">
                     <div>
-                        <x-input-label for="name" :value="__('Name')" />
-                        <x-text-input id="name" class="form-control block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
-                        <x-input-error :messages="$errors->get('name')" class="mt-2" />
-                    </div>
+                        <div><a class="logo" href="index.html"><img class="img-fluid for-light"
+                                    src="{{ url('cuba') }}/assets/images/logo/login.png" alt="looginpage"><img
+                                    class="img-fluid for-dark"
+                                    src="{{ url('cuba') }}/assets/images/logo/logo_dark.png" alt="looginpage"></a>
+                        </div>
+                        <div class="login-main">
+                            <form class="theme-form" method="POST" action="{{ route('register') }}">
+                                @csrf
 
-                    <!-- Email Address -->
-                    <div class="mt-4">
-                        <x-input-label for="email" :value="__('Email')" />
-                        <x-text-input id="email" class="form-control block mt-1 w-full" type="email" name="email" :value="old('email')" required />
-                        <x-input-error :messages="$errors->get('email')" class="mt-2" />
-                    </div>
+                                <h4>Create your account</h4>
+                                <p>Enter your personal details to create account</p>
+                                <!-- Name -->
+                                <div class="form-group">
+                                    <x-input-label for="name" :value="__('Name')" />
+                                    <x-text-input id="name" class="form-control block mt-1 w-full" type="text" name="name"
+                                        :value="old('name')" required autofocus />
+                                    <x-input-error :messages="$errors->get('name')" class="mt-2" />
+                                </div>
 
-                    <!-- Password -->
-                    <div class="mt-4">
-                        <x-input-label for="password" :value="__('Password')" />
+                                <!-- Email Address -->
+                                <div class="fprm-control mt-4">
+                                    <x-input-label for="email" :value="__('Email')" />
+                                    <x-text-input id="email" class="form-control block mt-1 w-full" type="email" name="email"
+                                        :value="old('email')" required />
+                                    <x-input-error :messages="$errors->get('email')" class="mt-2" />
+                                </div>
 
-                        <x-text-input id="password" class="form-control block mt-1 w-full"
-                                        type="password"
-                                        name="password"
-                                        required autocomplete="new-password" />
+                                <!-- Password -->
+                                <div class="form-group mt-4">
+                                    <x-input-label for="password" :value="__('Password')" />
 
-                        <x-input-error :messages="$errors->get('password')" class="mt-2" />
-                    </div>
+                                    <x-text-input id="password" class="form-control block mt-1 w-full" type="password"
+                                        name="password" required autocomplete="new-password" />
 
-                    <!-- Confirm Password -->
-                    <div class="mt-4">
-                        <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
+                                    <x-input-error :messages="$errors->get('password')" class="mt-2" />
+                                </div>
 
-                        <x-text-input id="password_confirmation" class="form-control block mt-1 w-full"
-                                        type="password"
+                                <!-- Confirm Password -->
+                                <div class="mt-4 form-group">
+                                    <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
+
+                                    <x-text-input id="password_confirmation" class="form-control block mt-1 w-full" type="password"
                                         name="password_confirmation" required />
 
-                        <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
-                    </div>
+                                    <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+                                </div>
 
-                    <div class="flex items-center justify-end mt-4">
-                        {{-- <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('login') }}">
-                            {{ __('Already registered?') }}
-                        </a> --}}
+                                <div class="flex items-center justify-end mt-4">
+                                    {{-- <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                        href="{{ route('login') }}">
+                                        {{ __('Already registered?') }}
+                                    </a> --}}
 
-                        <x-primary-button class="btn btn-primary btn-lg btn-block">
-                            {{ __('Register') }}
-                        </x-primary-button>
+                                    <x-primary-button class="btn btn-primary btn-block w-100">
+                                        {{ __('Register') }}
+                                    </x-primary-button>
+                                </div>
+                                <p class="mt-4 mb-0">Already have an account?<a class="ms-2" href="{{ route('login') }}">Sign in</a></p>
+                            </form>
+                        </div>
                     </div>
-                </form>
-                <div class="mt-5 text-muted text-center">
-                  Already registered? <a href="{{ route('login') }}">Sign In</a>
                 </div>
-              </div>
             </div>
-            <div class="simple-footer">
-              Copyright &copy; Super Maslahah
-            </div>
-          </div>
         </div>
-      </div>
-    </section>
-  </div>
-
-  <!-- General JS Scripts -->
-  <script src="{{ url('stisla/dist') }}/assets/modules/jquery.min.js"></script>
-  <script src="{{ url('stisla/dist') }}/assets/modules/popper.js"></script>
-  <script src="{{ url('stisla/dist') }}/assets/modules/tooltip.js"></script>
-  <script src="{{ url('stisla/dist') }}/assets/modules/bootstrap/js/bootstrap.min.js"></script>
-  <script src="{{ url('stisla/dist') }}/assets/modules/nicescroll/jquery.nicescroll.min.js"></script>
-  <script src="{{ url('stisla/dist') }}/assets/modules/moment.min.js"></script>
-  <script src="{{ url('stisla/dist') }}/assets/js/stisla.js"></script>
-
-  <!-- JS Libraies -->
-  <script src="{{ url('stisla/dist') }}/assets/modules/jquery-pwstrength/jquery.pwstrength.min.js"></script>
-  <script src="{{ url('stisla/dist') }}/assets/modules/jquery-selectric/jquery.selectric.min.js"></script>
-
-  <!-- Page Specific JS File -->
-  <script src="{{ url('stisla/dist') }}/assets/js/page/auth-register.js"></script>
-
-  <!-- Template JS File -->
-  <script src="{{ url('stisla/dist') }}/assets/js/scripts.js"></script>
-  <script src="{{ url('stisla/dist') }}/assets/js/custom.js"></script>
+        <!-- latest jquery-->
+        <script src="{{ url('cuba') }}/assets/js/jquery-3.5.1.min.js"></script>
+        <!-- Bootstrap js-->
+        <script src="{{ url('cuba') }}/assets/js/bootstrap/bootstrap.bundle.min.js"></script>
+        <!-- feather icon js-->
+        <script src="{{ url('cuba') }}/assets/js/icons/feather-icon/feather.min.js"></script>
+        <script src="{{ url('cuba') }}/assets/js/icons/feather-icon/feather-icon.js"></script>
+        <!-- scrollbar js-->
+        <!-- Sidebar jquery-->
+        <script src="{{ url('cuba') }}/assets/js/config.js"></script>
+        <!-- Plugins JS start-->
+        <!-- Plugins JS Ends-->
+        <!-- Theme js-->
+        <script src="{{ url('cuba') }}/assets/js/script.js"></script>
+        <!-- login js-->
+        <!-- Plugin used-->
+    </div>
 </body>
+
 </html>

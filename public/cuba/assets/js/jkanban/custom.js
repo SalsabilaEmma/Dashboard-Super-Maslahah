@@ -1,24 +1,20 @@
-// $.ajaxSetup({
-//     headers: {
-//         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-//     }
-// });
-
 /** Todo */
 function get_todo() {
     return new Promise((resolve) => {
       $.ajax({
         type: "GET",
-        url: "getId-kanban",
+        url: "get-kanban",
         dataType: "json",
         success: function (response) {
           // console.log(response[0].status);
           let arr = [];
             for (let i = 0; i < response.length; i++) {
+                // console.log(response);
                 if (response[i].status == 0) {
               var html = '';
-              html += '<a class="kanban-box" href="#">';
-              html += '<input type="hidden" hidden="" value="'+response[i].status+'"></input>';
+              html += '<a class="kanban-box" href="#" id="'+response[i].id+'">';
+              html += '<input type="hidden" hidden="" name="id" value="'+response[i].id+'"></input>';
+              html += '<input type="hidden" hidden="" name="status" value="'+response[i].status+'"></input>';
               html += '<span class="date">'+response[i].due_date+'</span>';
               if (response[i].priority == 'Low') {
                   html += '<span class="badge badge-success f-right">'+response[i].priority+'</span>';
@@ -38,7 +34,9 @@ function get_todo() {
               html += '</ul>';
               html += '<div class="customers">';
               html += '<ul>';
-              html += '<li><button data-id="'+response[i].id+'" data-status="'+response[i].status+'" data-judul="'+response[i].judul+'" data-priority="'+response[i].priority+'" data-due_date="'+response[i].due_date+'" data-issues="'+response[i].issues+'"  onclick="edit()" class="edit_data btn btn-pill btn-outline-warning btn-xs" data-toggle="modal" data-target="#editdata" type="button" title=""><i class="fa fa-paperclip"></i> Edit</button></li>';
+              html += '<li><button data-id="'+response[i].id+'" data-status="'+response[i].status+'" data-judul="'+response[i].judul+'" data-priority="'+response[i].priority+'" data-due_date="'+response[i].due_date+'" data-issues="'+response[i].issues+'"  onclick="edit()" class="edit_data btn btn-pill btn-outline-warning btn-xs" data-toggle="modal" data-target="#editdata" type="button" title=""><i class="fa fa-paperclip"></i> Edit</button>';
+              html += '<button data-id="'+response[i].id+'" data-status="'+response[i].status+'" data-judul="'+response[i].judul+'" data-priority="'+response[i].priority+'" data-due_date="'+response[i].due_date+'" data-issues="'+response[i].issues+'"  onclick="cancel()" class="cancel_data btn btn-pill btn-outline-light btn-xs" data-bs-toggle="modal" data-bs-target="#canceldata" type="button" title=""><i class="fa fa-times"></i> Cancel</button>';
+              html += '</li>';
               html += '</ul>';
               html += '</div>';
               html += '</div>';
@@ -47,7 +45,7 @@ function get_todo() {
               arr.push(obj);
                 }
             }
-          console.log(arr);
+        //   console.log(arr);
           resolve(arr);
         },
       });
@@ -59,7 +57,7 @@ function get_progres() {
     return new Promise((resolve) => {
       $.ajax({
         type: "GET",
-        url: "getId-kanban",
+        url: "get-kanban",
         dataType: "json",
         success: function (response) {
           // console.log(response[0].status);
@@ -67,8 +65,9 @@ function get_progres() {
             for (let i = 0; i < response.length; i++) {
             if (response[i].status == 1) {
               var html = '';
-              html += '<a class="kanban-box" href="#">';
-              html += '<input type="hidden" hidden="" value="'+response[i].status+'"></input>';
+              html += '<a class="kanban-box" href="#" id="'+response[i].id+'">';
+              html += '<input type="hidden" hidden="" name="id" value="'+response[i].id+'"></input>';
+              html += '<input type="hidden" hidden="" name="status" value="'+response[i].status+'"></input>';
               html += '<span class="date">'+response[i].due_date+'</span>';
               if (response[i].priority == 'Low') {
                   html += '<span class="badge badge-success f-right">'+response[i].priority+'</span>';
@@ -88,7 +87,9 @@ function get_progres() {
               html += '</ul>';
               html += '<div class="customers">';
               html += '<ul>';
-              html += '<li><button data-id="'+response[i].id+'" data-status="'+response[i].status+'" data-judul="'+response[i].judul+'" data-priority="'+response[i].priority+'" data-due_date="'+response[i].due_date+'" data-issues="'+response[i].issues+'"  onclick="edit()" class="edit_data btn btn-pill btn-outline-warning btn-xs" data-toggle="modal" data-target="#editdata" type="button" title=""><i class="fa fa-paperclip"></i> Edit</button></li>';
+              html += '<li><button data-id="'+response[i].id+'" data-status="'+response[i].status+'" data-judul="'+response[i].judul+'" data-priority="'+response[i].priority+'" data-due_date="'+response[i].due_date+'" data-issues="'+response[i].issues+'"  onclick="edit()" class="edit_data btn btn-pill btn-outline-warning btn-xs" data-toggle="modal" data-target="#editdata" type="button" title=""><i class="fa fa-paperclip"></i> Edit</button>';
+              html += '<button data-id="'+response[i].id+'" data-status="'+response[i].status+'" data-judul="'+response[i].judul+'" data-priority="'+response[i].priority+'" data-due_date="'+response[i].due_date+'" data-issues="'+response[i].issues+'"  onclick="cancel()" class="cancel_data btn btn-pill btn-outline-light btn-xs" data-bs-toggle="modal" data-bs-target="#canceldata" type="button" title=""><i class="fa fa-times"></i> Cancel</button>';
+              html += '</li>';
               html += '</ul>';
               html += '</div>';
               html += '</div>';
@@ -97,7 +98,7 @@ function get_progres() {
               arr.push(obj);
                 }
             }
-          console.log(arr);
+        //   console.log(arr);
           resolve(arr);
         },
       });
@@ -109,16 +110,18 @@ function get_done() {
     return new Promise((resolve) => {
       $.ajax({
         type: "GET",
-        url: "getId-kanban",
+        url: "get-kanban",
         dataType: "json",
         success: function (response) {
           // console.log(response[0].status);
           let arr = [];
             for (let i = 0; i < response.length; i++) {
             if (response[i].status == 2) {
+                // console.log(response);
               var html = '';
-              html += '<a class="kanban-box" href="#">';
-              html += '<input type="hidden" hidden="" value="'+response[i].status+'"></input>';
+              html += '<a class="kanban-box" href="#" id="'+response[i].id+'">';
+              html += '<input type="hidden" hidden="" name="id" value="'+response[i].id+'"></input>';
+              html += '<input type="hidden" hidden="" name="status" value="'+response[i].status+'"></input>';
               html += '<span class="date">'+response[i].due_date+'</span>';
               if (response[i].priority == 'Low') {
                   html += '<span class="badge badge-success f-right">'+response[i].priority+'</span>';
@@ -138,7 +141,9 @@ function get_done() {
               html += '</ul>';
               html += '<div class="customers">';
               html += '<ul>';
-              html += '<li><button data-id="'+response[i].id+'" data-status="'+response[i].status+'" data-judul="'+response[i].judul+'" data-priority="'+response[i].priority+'" data-due_date="'+response[i].due_date+'" data-issues="'+response[i].issues+'"  onclick="edit()" class="edit_data btn btn-pill btn-outline-warning btn-xs" data-toggle="modal" data-target="#editdata" type="button" title=""><i class="fa fa-paperclip"></i> Edit</button></li>';
+              html += '<li><button data-id="'+response[i].id+'" data-status="'+response[i].status+'" data-judul="'+response[i].judul+'" data-priority="'+response[i].priority+'" data-due_date="'+response[i].due_date+'" data-issues="'+response[i].issues+'"  onclick="edit()" class="edit_data btn btn-pill btn-outline-warning btn-xs" data-toggle="modal" data-target="#editdata" type="button" title=""><i class="fa fa-paperclip"></i> Edit</button>';
+              html += '<button data-id="'+response[i].id+'" data-status="'+response[i].status+'" data-judul="'+response[i].judul+'" data-priority="'+response[i].priority+'" data-due_date="'+response[i].due_date+'" data-issues="'+response[i].issues+'"  onclick="cancel()" class="cancel_data btn btn-pill btn-outline-light btn-xs" data-bs-toggle="modal" data-bs-target="#canceldata" type="button" title=""><i class="fa fa-times"></i> Cancel</button>';
+              html += '</li>';
               html += '</ul>';
               html += '</div>';
               html += '</div>';
@@ -147,7 +152,7 @@ function get_done() {
               arr.push(obj);
                 }
             }
-          console.log(arr);
+        //   console.log(arr);
           resolve(arr);
         },
       });
@@ -187,7 +192,7 @@ var kanban1 = new jKanban({
 });
 }
 fun_kanban();
-  
+
 /** -------------------- End ---------------------------- */
   var kanban2 = new jKanban({
     element: "#demo2",
@@ -389,7 +394,7 @@ fun_kanban();
       },
     ],
   });
-  
+
   var kanban3 = new jKanban({
     element: "#demo3",
     gutter: "15px",
@@ -590,7 +595,7 @@ fun_kanban();
       },
     ],
   });
-  
+
   var toDoButton = document.getElementById("addToDo");
   toDoButton.addEventListener("click", function () {
     kanban3.addElement("_todo", {
@@ -623,7 +628,7 @@ fun_kanban();
                               `,
     });
   });
-  
+
   var addBoardDefault = document.getElementById("addDefault");
   addBoardDefault.addEventListener("click", function () {
     kanban3.addBoards([
@@ -659,7 +664,7 @@ fun_kanban();
                                   </div></a>
                               `,
           },
-  
+
           {
             title: `
                                  <a class="kanban-box" href="#"><span class="date">24/7/20</span><span class="badge badge-danger f-right">Argent</span>
@@ -693,9 +698,8 @@ fun_kanban();
       },
     ]);
   });
-  
+
   var removeBoard = document.getElementById("removeBoard");
   removeBoard.addEventListener("click", function () {
     kanban3.removeBoard("_done");
   });
-  
