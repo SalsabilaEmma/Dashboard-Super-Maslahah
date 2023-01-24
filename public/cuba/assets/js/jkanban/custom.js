@@ -10,7 +10,7 @@ function get_todo() {
           let arr = [];
             for (let i = 0; i < response.length; i++) {
                 // console.log(response);
-                if (response[i].status == 0) {
+                if (response[i].status == 'To Do') {
               var html = '';
               html += '<a class="kanban-box" href="#" id="'+response[i].id+'">';
               html += '<input type="hidden" hidden="" name="id" value="'+response[i].id+'"></input>';
@@ -26,7 +26,7 @@ function get_todo() {
               html += '<h6>'+response[i].judul+'</h6>';
               // html += '<div class="media"><img class="img-20 me-1 rounded-circle" src="../cuba/assets/images/user/3.jpg" alt="" data-original-title="" title="">';
               html += '<div class="media-body">';
-              html += '<p>'+response[i].issues+'</p>';
+              html += '<p>'+response[i].issues.substring(0,25)+' ...</p>';
               html += '</div>';
               html += '</div>';
               html += '<div class="d-flex mt-3">';
@@ -34,8 +34,9 @@ function get_todo() {
               html += '</ul>';
               html += '<div class="customers">';
               html += '<ul>';
-              html += '<li><button data-id="'+response[i].id+'" data-status="'+response[i].status+'" data-judul="'+response[i].judul+'" data-priority="'+response[i].priority+'" data-due_date="'+response[i].due_date+'" data-issues="'+response[i].issues+'"  onclick="edit()" class="edit_data btn btn-pill btn-outline-warning btn-xs" data-toggle="modal" data-target="#editdata" type="button" title=""><i class="fa fa-paperclip"></i> Edit</button>';
-              html += '<button data-id="'+response[i].id+'" data-status="'+response[i].status+'" data-judul="'+response[i].judul+'" data-priority="'+response[i].priority+'" data-due_date="'+response[i].due_date+'" data-issues="'+response[i].issues+'"  onclick="cancel()" class="cancel_data btn btn-pill btn-outline-light btn-xs" data-bs-toggle="modal" data-bs-target="#canceldata" type="button" title=""><i class="fa fa-times"></i> Cancel</button>';
+              html += '<li><button data-id="'+response[i].id+'" data-status="'+response[i].status+'" data-judul="'+response[i].judul+'" data-priority="'+response[i].priority+'" data-due_date="'+response[i].due_date+'" data-issues="'+response[i].issues+'"  onclick="detail()" class="view_data btn btn-pill btn-outline-info btn-xs" data-toggle="modal" data-target="#viewdata" type="button" title=""><i class="fa fa-eye"></i> Detail</button>';
+              html += '<button data-id="'+response[i].id+'" data-status="'+response[i].status+'" data-judul="'+response[i].judul+'" data-priority="'+response[i].priority+'" data-due_date="'+response[i].due_date+'" data-issues="'+response[i].issues+'"  onclick="edit()" class="edit_data btn btn-pill btn-outline-warning btn-xs" data-toggle="modal" data-target="#editdata" type="button" title=""><i class="fa fa-paperclip"></i> Edit</button>';
+              html += '<button data-id="'+response[i].id+'" data-status="'+response[i].status+'" data-judul="'+response[i].judul+'" data-priority="'+response[i].priority+'" data-due_date="'+response[i].due_date+'" data-issues="'+response[i].issues+'"  onclick="cancel()" class="cancel_data btn btn-pill btn-outline-danger btn-xs" data-bs-toggle="modal" data-bs-target="#canceldata" type="button" title=""><i class="fa fa-trash"></i> Hapus</button>';
               html += '</li>';
               html += '</ul>';
               html += '</div>';
@@ -63,7 +64,7 @@ function get_progres() {
           // console.log(response[0].status);
           let arr = [];
             for (let i = 0; i < response.length; i++) {
-            if (response[i].status == 1) {
+            if (response[i].status == 'In Progress') {
               var html = '';
               html += '<a class="kanban-box" href="#" id="'+response[i].id+'">';
               html += '<input type="hidden" hidden="" name="id" value="'+response[i].id+'"></input>';
@@ -79,7 +80,7 @@ function get_progres() {
               html += '<h6>'+response[i].judul+'</h6>';
               // html += '<div class="media"><img class="img-20 me-1 rounded-circle" src="../cuba/assets/images/user/3.jpg" alt="" data-original-title="" title="">';
               html += '<div class="media-body">';
-              html += '<p>'+response[i].issues+'</p>';
+              html += '<p>'+response[i].issues.substring(0,25)+' ...</p>';
               html += '</div>';
               html += '</div>';
               html += '<div class="d-flex mt-3">';
@@ -87,8 +88,9 @@ function get_progres() {
               html += '</ul>';
               html += '<div class="customers">';
               html += '<ul>';
-              html += '<li><button data-id="'+response[i].id+'" data-status="'+response[i].status+'" data-judul="'+response[i].judul+'" data-priority="'+response[i].priority+'" data-due_date="'+response[i].due_date+'" data-issues="'+response[i].issues+'"  onclick="edit()" class="edit_data btn btn-pill btn-outline-warning btn-xs" data-toggle="modal" data-target="#editdata" type="button" title=""><i class="fa fa-paperclip"></i> Edit</button>';
-              html += '<button data-id="'+response[i].id+'" data-status="'+response[i].status+'" data-judul="'+response[i].judul+'" data-priority="'+response[i].priority+'" data-due_date="'+response[i].due_date+'" data-issues="'+response[i].issues+'"  onclick="cancel()" class="cancel_data btn btn-pill btn-outline-light btn-xs" data-bs-toggle="modal" data-bs-target="#canceldata" type="button" title=""><i class="fa fa-times"></i> Cancel</button>';
+              html += '<li><button data-id="'+response[i].id+'" data-status="'+response[i].status+'" data-judul="'+response[i].judul+'" data-priority="'+response[i].priority+'" data-due_date="'+response[i].due_date+'" data-issues="'+response[i].issues+'"  onclick="detail()" class="view_data btn btn-pill btn-outline-info btn-xs" data-toggle="modal" data-target="#viewdata" type="button" title=""><i class="fa fa-eye"></i> Detail</button>';
+              html += '<button data-id="'+response[i].id+'" data-status="'+response[i].status+'" data-judul="'+response[i].judul+'" data-priority="'+response[i].priority+'" data-due_date="'+response[i].due_date+'" data-issues="'+response[i].issues+'"  onclick="edit()" class="edit_data btn btn-pill btn-outline-warning btn-xs" data-toggle="modal" data-target="#editdata" type="button" title=""><i class="fa fa-paperclip"></i> Edit</button>';
+              html += '<button data-id="'+response[i].id+'" data-status="'+response[i].status+'" data-judul="'+response[i].judul+'" data-priority="'+response[i].priority+'" data-due_date="'+response[i].due_date+'" data-issues="'+response[i].issues+'"  onclick="cancel()" class="cancel_data btn btn-pill btn-outline-danger btn-xs" data-bs-toggle="modal" data-bs-target="#canceldata" type="button" title=""><i class="fa fa-trash"></i> Hapus</button>';
               html += '</li>';
               html += '</ul>';
               html += '</div>';
@@ -116,7 +118,7 @@ function get_done() {
           // console.log(response[0].status);
           let arr = [];
             for (let i = 0; i < response.length; i++) {
-            if (response[i].status == 2) {
+            if (response[i].status == 'Done') {
                 // console.log(response);
               var html = '';
               html += '<a class="kanban-box" href="#" id="'+response[i].id+'">';
@@ -133,7 +135,7 @@ function get_done() {
               html += '<h6>'+response[i].judul+'</h6>';
               // html += '<div class="media"><img class="img-20 me-1 rounded-circle" src="../cuba/assets/images/user/3.jpg" alt="" data-original-title="" title="">';
               html += '<div class="media-body">';
-              html += '<p>'+response[i].issues+'</p>';
+              html += '<p>'+response[i].issues.substring(0,25)+' ...</p>';
               html += '</div>';
               html += '</div>';
               html += '<div class="d-flex mt-3">';
@@ -141,8 +143,9 @@ function get_done() {
               html += '</ul>';
               html += '<div class="customers">';
               html += '<ul>';
-              html += '<li><button data-id="'+response[i].id+'" data-status="'+response[i].status+'" data-judul="'+response[i].judul+'" data-priority="'+response[i].priority+'" data-due_date="'+response[i].due_date+'" data-issues="'+response[i].issues+'"  onclick="edit()" class="edit_data btn btn-pill btn-outline-warning btn-xs" data-toggle="modal" data-target="#editdata" type="button" title=""><i class="fa fa-paperclip"></i> Edit</button>';
-              html += '<button data-id="'+response[i].id+'" data-status="'+response[i].status+'" data-judul="'+response[i].judul+'" data-priority="'+response[i].priority+'" data-due_date="'+response[i].due_date+'" data-issues="'+response[i].issues+'"  onclick="cancel()" class="cancel_data btn btn-pill btn-outline-light btn-xs" data-bs-toggle="modal" data-bs-target="#canceldata" type="button" title=""><i class="fa fa-times"></i> Cancel</button>';
+              html += '<li><button data-id="'+response[i].id+'" data-status="'+response[i].status+'" data-judul="'+response[i].judul+'" data-priority="'+response[i].priority+'" data-due_date="'+response[i].due_date+'" data-issues="'+response[i].issues+'"  onclick="detail()" class="view_data btn btn-pill btn-outline-info btn-xs" data-toggle="modal" data-target="#viewdata" type="button" title=""><i class="fa fa-eye"></i> Detail</button>';
+              html += '<button data-id="'+response[i].id+'" data-status="'+response[i].status+'" data-judul="'+response[i].judul+'" data-priority="'+response[i].priority+'" data-due_date="'+response[i].due_date+'" data-issues="'+response[i].issues+'"  onclick="edit()" class="edit_data btn btn-pill btn-outline-warning btn-xs" data-toggle="modal" data-target="#editdata" type="button" title=""><i class="fa fa-paperclip"></i> Edit</button>';
+              html += '<button data-id="'+response[i].id+'" data-status="'+response[i].status+'" data-judul="'+response[i].judul+'" data-priority="'+response[i].priority+'" data-due_date="'+response[i].due_date+'" data-issues="'+response[i].issues+'"  onclick="cancel()" class="cancel_data btn btn-pill btn-outline-danger btn-xs" data-bs-toggle="modal" data-bs-target="#canceldata" type="button" title=""><i class="fa fa-trash"></i> Hapus</button>';
               html += '</li>';
               html += '</ul>';
               html += '</div>';

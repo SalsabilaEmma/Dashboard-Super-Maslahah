@@ -35,7 +35,7 @@ class KanbanController extends Controller
 
     public function indexKanban()
     {
-        $task = Kanban::all();
+        $task = Kanban::latest()->get();
         return $task->toJson();
     }
 
@@ -119,7 +119,7 @@ class KanbanController extends Controller
     public function cancel(Request $request)
     {
         $post = Kanban::findOrfail($request->id);
-        $cancel = '3';
+        $cancel = 'Cancel';
         $post->status = $cancel;
         $post->save();
 

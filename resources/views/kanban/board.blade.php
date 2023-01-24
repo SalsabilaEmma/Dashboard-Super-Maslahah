@@ -88,7 +88,7 @@
                         <div class="row g3">
                             <div class="col-md-8">
                                 <label class="col-form-label" for="recipient-name">Judul:</label>
-                                <input name="judul" id="todo-input"
+                                <input name="judul" id="input_judul"
                                     class="form-control @error('judul') is-invalid @enderror" type="text"
                                     placeholder="Masukkan Judul">
                                 @error('judul')
@@ -97,22 +97,22 @@
                             </div>
                             <div class="col-md-4">
                                 <label class="col-form-label" for="recipient-name">Status:</label>
-                                <select name="status" class="form-select" id="validationDefault04" required="">
+                                <select name="status" class="form-select" id="input_status" required="">
                                     <option selected="" disabled="" value="">Pilih Status...</option>
-                                    <option value="0">To Do</option>
-                                    <option value="1">In Progress</option>
-                                    <option value="2">Done</option>
+                                    <option value="To Do">To Do</option>
+                                    <option value="In Progress">In Progress</option>
+                                    <option value="Done">Done</option>
                                 </select>
                             </div>
                         </div>
                         <div class="row g3">
                             <div class="col-md-6">
                                 <label class="col-form-label" for="recipient-name">Tanggal Berakhir:</label>
-                                <input name="due_date" id="todo-input" class="form-control" type="date">
+                                <input name="due_date" id="input_duedate" class="form-control" type="date">
                             </div>
                             <div class="col-md-6">
                                 <label class="col-form-label" for="recipient-name">Prioritas:</label>
-                                <select name="priority" class="form-select" id="validationDefault04" required="">
+                                <select name="priority" class="form-select" id="input_priority" required="">
                                     <option selected="" disabled="" value="">Pilih Tingkat Prioritas...</option>
                                     <option>Low</option>
                                     <option>Normal</option>
@@ -123,7 +123,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <label class="col-form-label" for="message-text">Issues:</label>
-                                <textarea name="issues" id="todo-input" class="form-control"></textarea>
+                                <textarea name="issues" id="input_issues" class="form-control"></textarea>
                             </div>
                         </div>
                     </div>
@@ -135,6 +135,55 @@
             </div>
         </div>
     </div>
+
+    <!-- Detail Data -->
+    <div class="modal fade" id="viewdata" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Detail</h5>
+                    <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form id="view-form">
+                    <div class="modal-body">
+                        <div class="row g3">
+                            <input type="hidden" hidden="" name="id" id="id"></input>
+                            <div class="col-md-8">
+                                <label class="col-form-label" for="recipient-name">Judul:</label>
+                                <input name="judul" id="judul" readonly class="form-control" type="text">
+                            </div>
+                            <div class="col-md-4">
+                                <label class="col-form-label" for="recipient-name">Status:</label>
+                                <input name="status" id="status" readonly class="form-control" type="text">
+                            </div>
+                        </div>
+                        <div class="row g3">
+                            <div class="col-md-6">
+                                <label class="col-form-label" for="recipient-name">Tanggal Berakhir:</label>
+                                <input name="due_date" id="due_date" readonly class="form-control" type="date">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="col-form-label" for="recipient-name">Prioritas:</label>
+                                <input name="priority" id="priority" readonly class="form-control" type="text">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label class="col-form-label" for="message-text">Issues:</label>
+                                <textarea style="height: 150px;" name="issues"  readonly id="issues" class=" form-control"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Close</button>
+                        <button class="btn btn-primary" type="submit">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <!-- Edit Data -->
     <div class="modal fade" id="editdata" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
@@ -144,7 +193,7 @@
                     <h5 class="modal-title">Add Issues</h5>
                     <button class="btn-close" type="button" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-                <form action="{{ route('kanban.store') }}" method="POST" id="edit-form" enctype="multipart/form-data">
+                <form action="{{ route('kanban.update') }}" method="POST" id="edit-form" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <div class="modal-body">
                         <div class="row g3">
@@ -162,9 +211,9 @@
                                 <label class="col-form-label" for="recipient-name">Status:</label>
                                 <select name="status" class="form-select" id="status" required="">
                                     <option selected="" disabled="" value="">Pilih Status...</option>
-                                    <option value="0">To Do</option>
-                                    <option value="1">In Progress</option>
-                                    <option value="2">Done</option>
+                                    <option value="To Do">To Do</option>
+                                    <option value="In Progress">In Progress</option>
+                                    <option value="Done">Done</option>
                                 </select>
                             </div>
                         </div>
@@ -214,11 +263,11 @@
                     {{ csrf_field() }}
                     <input type="hidden" hidden="" name="id" id="id"></input>
                     <div class="modal-body">
-                        <p class="text-center">Yakin Akan Dibatalkan?</p>
+                        <p class="text-center">Yakin Akan Dihapus?</p>
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-secondary" type="button" data-bs-dismiss="modal">Close</button>
-                        <button class="btn btn-primary" type="submit">Batalkan</button>
+                        <button class="btn btn-primary" type="submit">Hapus</button>
                     </div>
                 </form>
             </div>
@@ -228,6 +277,20 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <script>
+    // View Data (Detail)
+    function detail() {
+        $(document).on('click', '.view_data', function(e) {
+            $('#viewdata').modal('show');
+            $("#viewdata").find("#id").attr("value", $(this).data('id'));
+            $("#viewdata").find("#status").attr("value", $(this).data('status'));
+            $("#viewdata").find("#due_date").attr("value", $(this).data('due_date'));
+            $("#viewdata").find("#priority").attr("value", $(this).data('priority'));
+            $("#viewdata").find("#judul").attr("value", $(this).data('judul'));
+            // $("#viewdata").find("#issues").attr("value", $(this).data('issues'));
+            $('#issues').text($(this).data('issues'));
+        });
+    }
+
     //Create Data
     $(document).ready(function() {
         $.ajaxSetup({
@@ -254,6 +317,11 @@
                     $("#demo1").children().remove();
                     fun_kanban();
                     //close modal
+                    $("#input_judul").val('');
+                    $("#input_status").val('');
+                    $("#input_duedate").val('');
+                    $("#input_priority").val('');
+                    $("#input_issues").val('');
                     $('#tambahdata').modal('hide');
                 },
                 // error: function(error) {
@@ -274,7 +342,6 @@
             $("#editdata").find("#judul").attr("value", $(this).data('judul'));
             $("#editdata").find("#issues").attr("value", $(this).data('issues'));
         });
-
     }
     $(document).ready(function() {
         $.ajaxSetup({
