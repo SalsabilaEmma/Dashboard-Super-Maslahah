@@ -9,5 +9,10 @@ class Kanban extends Model
 {
     use HasFactory;
     protected $table = 'kanban_board';
-    protected $fillable = ['status','judul','issues','due_date','priority'];
+    protected $fillable = ['idUser','status','judul','issues','due_date','priority'];
+
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User', 'idUser');
+    }
 }

@@ -35,13 +35,15 @@ class KanbanController extends Controller
 
     public function indexKanban()
     {
-        $task = Kanban::latest()->get();
+        $user = auth()->id();
+        $task = Kanban::where('idUser', $user)->latest()->get();
         return $task->toJson();
     }
 
 
     public function Store(Request $request)
     {
+        // dd(auth()->id());
         //define validation rules
         $validator = Validator::make($request->all(), [
             'status' => 'required',
@@ -58,13 +60,14 @@ class KanbanController extends Controller
 
         //create post
         $post = Kanban::create([
+            'idUser' => auth()->id(),
             'status'     => $request->status,
             'judul'   => $request->judul,
             'issues'   => $request->issues,
             'due_date'   => $request->due_date,
             'priority'   => $request->priority,
         ]);
-
+        // dd($post);
         //return response
         return response()->json([
             'success' => true,
@@ -72,15 +75,15 @@ class KanbanController extends Controller
             'data'    => $post
         ]);
     }
-    public function show(Kanban $post)
-    {
-        //return response
-        return response()->json([
-            'success' => true,
-            'message' => 'Detail Data Post',
-            'data'    => $post
-        ]);
-    }
+    // public function show(Kanban $post)
+    // {
+    //     //return response
+    //     return response()->json([
+    //         'success' => true,
+    //         'message' => 'Detail Data Post',
+    //         'data'    => $post
+    //     ]);
+    // }
 
     public function update(Request $request)
     {
@@ -101,6 +104,7 @@ class KanbanController extends Controller
             return response()->json($validator->errors(), 422);
         }
 
+        $post->idUser = auth()->id();
         $post->status = $request->status;
         $post->judul = $request->judul;
         $post->issues = $request->issues;
@@ -119,6 +123,7 @@ class KanbanController extends Controller
     public function cancel(Request $request)
     {
         $post = Kanban::findOrfail($request->id);
+        // $post->idUser = auth()->id();
         $cancel = 'Cancel';
         $post->status = $cancel;
         $post->save();
