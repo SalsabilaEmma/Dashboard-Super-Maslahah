@@ -6,13 +6,13 @@ function get_todo() {
         url: "get-kanban",
         dataType: "json",
         success: function (response) {
-          // console.log(response[0].status);
           let arr = [];
             for (let i = 0; i < response.length; i++) {
                 // console.log(response);
                 if (response[i].status == 'To Do') {
               var html = '';
-              html += '<a class="kanban-box" href="#" id="'+response[i].id+'">';
+            //   html += '<div class="todos">';
+              html += '<a class="kanban-box kanban-card" href="#" id="'+response[i].id+'">';
               html += '<input type="hidden" hidden="" name="id" value="'+response[i].id+'"></input>';
               html += '<input type="hidden" hidden="" name="status" value="'+response[i].status+'"></input>';
               html += '<span class="date">'+response[i].due_date+'</span>';
@@ -42,6 +42,7 @@ function get_todo() {
               html += '</div>';
               html += '</div>';
               html += '</a>';
+            //   html += '</div>';
               let obj = {title:html};
               arr.push(obj);
                 }
@@ -66,7 +67,7 @@ function get_progres() {
             for (let i = 0; i < response.length; i++) {
             if (response[i].status == 'In Progress') {
               var html = '';
-              html += '<a class="kanban-box" href="#" id="'+response[i].id+'">';
+              html += '<a class="kanban-box kanban-card" href="#" id="'+response[i].id+'">';
               html += '<input type="hidden" hidden="" name="id" value="'+response[i].id+'"></input>';
               html += '<input type="hidden" hidden="" name="status" value="'+response[i].status+'"></input>';
               html += '<span class="date">'+response[i].due_date+'</span>';
@@ -121,7 +122,7 @@ function get_done() {
             if (response[i].status == 'Done') {
                 // console.log(response);
               var html = '';
-              html += '<a class="kanban-box" href="#" id="'+response[i].id+'">';
+              html += '<a class="kanban-box kanban-card" href="#" id="'+response[i].id+'">';
               html += '<input type="hidden" hidden="" name="id" value="'+response[i].id+'"></input>';
               html += '<input type="hidden" hidden="" name="status" value="'+response[i].status+'"></input>';
               html += '<span class="date">'+response[i].due_date+'</span>';
@@ -174,13 +175,16 @@ var kanban1 = new jKanban({
     {
         id: "_todo",
         title: "Todo",
+        class: "kanban-column",
         item: await_todo,
+
     },
 
     /** In progress */
     {
         id: "_doing",
         title: "In Progress",
+        class: "kanban-column",
         item: await_progres,
     },
 
@@ -188,6 +192,7 @@ var kanban1 = new jKanban({
     {
         id: "_done",
         title: "Done",
+        class: "kanban-column",
         item: await_done,
     },
 

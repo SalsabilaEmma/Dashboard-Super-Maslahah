@@ -79,38 +79,38 @@ var dragula = require("dragula");
       //set drag with dragula
       if (window.innerWidth > self.options.responsive) {
         //Init Drag Board
-        self.drakeBoard = self
-          .dragula([self.container], {
-            moves: function(el, source, handle, sibling) {
-              if (!self.options.dragBoards) return false;
-              return (
-                handle.classList.contains("kanban-board-header") ||
-                handle.classList.contains("kanban-title-board")
-              );
-            },
-            accepts: function(el, target, source, sibling) {
-              return target.classList.contains("kanban-container");
-            },
-            revertOnSpill: true,
-            direction: "horizontal"
-          })
-          .on("drag", function(el, source) {
-            el.classList.add("is-moving");
-            self.options.dragBoard(el, source);
-            if (typeof el.dragfn === "function") el.dragfn(el, source);
-          })
-          .on("dragend", function(el) {
-            __updateBoardsOrder();
-            el.classList.remove("is-moving");
-            self.options.dragendBoard(el);
-            if (typeof el.dragendfn === "function") el.dragendfn(el);
-          })
-          .on("drop", function(el, target, source, sibling) {
-            el.classList.remove("is-moving");
-            self.options.dropBoard(el, target, source, sibling);
-            if (typeof el.dropfn === "function")
-              el.dropfn(el, target, source, sibling);
-          });
+        // self.drakeBoard = self
+        //   .dragula([self.container], {
+        //     moves: function(el, source, handle, sibling) {
+        //       if (!self.options.dragBoards) return false;
+        //       return (
+        //         handle.classList.contains("kanban-board-header") ||
+        //         handle.classList.contains("kanban-title-board")
+        //       );
+        //     },
+        //     accepts: function(el, target, source, sibling) {
+        //       return target.classList.contains("kanban-container");
+        //     },
+        //     revertOnSpill: true,
+        //     direction: "horizontal"
+        //   })
+        //   .on("drag", function(el, source) {
+        //     el.classList.add("is-moving");
+        //     self.options.dragBoard(el, source);
+        //     if (typeof el.dragfn === "function") el.dragfn(el, source);
+        //   })
+        //   .on("dragend", function(el) {
+        //     __updateBoardsOrder();
+        //     el.classList.remove("is-moving");
+        //     self.options.dragendBoard(el);
+        //     if (typeof el.dragendfn === "function") el.dragendfn(el);
+        //   })
+        //   .on("drop", function(el, target, source, sibling) {
+        //     el.classList.remove("is-moving");
+        //     self.options.dropBoard(el, target, source, sibling);
+        //     if (typeof el.dropfn === "function")
+        //       el.dropfn(el, target, source, sibling);
+        //   });
 
         //Init Drag Item
         self.drake = self
@@ -147,15 +147,17 @@ var dragula = require("dragula");
             if (el !== null && typeof el.dragfn === "function")
               el.dragfn(el, source);
           })
+            //   ------------------------------------------------------------------------------------------------------------ drag end
           .on("dragend", function(el) {
             self.options.dragendEl(el);
             if (el !== null && typeof el.dragendfn === "function")
-              el.dragendfn(el);
+              el.dragendfn(el); // el bawa data div class kanban-item & a kebawah
+            //   console.log(el);
           })
           .on("drop", function(el, target, source, sibling) {
             self.enableAllBoards();
+            var boardJSON = __findBoardJSON(source.parentNode.dataset.id); //isi yg dibawa pas drop (id, title, item)
 
-            var boardJSON = __findBoardJSON(source.parentNode.dataset.id);
             if (boardJSON.dragTo !== undefined) {
               if (
                 boardJSON.dragTo.indexOf(target.parentNode.dataset.id) === -1 &&
@@ -166,6 +168,7 @@ var dragula = require("dragula");
             }
             if (el !== null) {
               var result = self.options.dropEl(el, target, source, sibling);
+
               if (result === false) {
                 self.drake.cancel(true);
               }
@@ -173,6 +176,8 @@ var dragula = require("dragula");
               if (typeof el.dropfn === "function")
                 el.dropfn(el, target, source, sibling);
             }
+            // console.log(boardJSON);
+            dragstatus(el, boardJSON);
           });
       }
     };

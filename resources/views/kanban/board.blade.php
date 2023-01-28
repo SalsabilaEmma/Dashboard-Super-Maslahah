@@ -171,7 +171,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <label class="col-form-label" for="message-text">Issues:</label>
-                                <textarea style="height: 150px;" name="issues"  readonly id="issues" class=" form-control"></textarea>
+                                <textarea style="height: 150px;" name="issues" readonly id="issues" class=" form-control"></textarea>
                             </div>
                         </div>
                     </div>
@@ -236,7 +236,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <label class="col-form-label" for="message-text">Issues:</label>
-                                <input name="issues" id="issues" class="form-control">
+                                <textarea style="height: 120px;" name="issues" id="isu" class=" form-control"></textarea>
                             </div>
                         </div>
                     </div>
@@ -276,6 +276,7 @@
 @endsection
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
 <script>
     // View Data (Detail)
     function detail() {
@@ -340,7 +341,8 @@
             $("#editdata").find("#due_date").attr("value", $(this).data('due_date'));
             $("#editdata").find("#priority").attr("value", $(this).data('priority'));
             $("#editdata").find("#judul").attr("value", $(this).data('judul'));
-            $("#editdata").find("#issues").attr("value", $(this).data('issues'));
+            // $("#editdata").find("#issues").attr("value", $(this).data('issues'));
+            $('#isu').text($(this).data('issues'));
         });
     }
     $(document).ready(function() {
@@ -427,4 +429,44 @@
             });
         });
     });
+
+    // Function Drag Status
+    function dragstatus(el, boardJSON) {
+        /** Ambil Id Value Board Asal */
+        var board = boardJSON.id;
+        /** Ambil Value Issues */
+        var issues = $(el.firstChild).attr('id');
+        /** Ambil Id Board Tujuan*/
+        var parentissues = $(el.firstChild).parent();
+        var boardTujuan = $(parentissues[0].offsetParent).data('id');
+        // console.log(dataId);
+
+        var data = {
+            idBoardAsal: board,
+            idBoardTujuan: boardTujuan,
+            idIssues: issues
+        };
+        // console.log(data);
+
+        /** -------------------------------------------------- */
+        $(document).ready(function() {
+            $.ajax({
+                type: "POST",
+                url: "{{ route('kanban.dragstatus') }}" + '?_token=' + '{{ csrf_token() }}',
+                data: data,
+                dataType: "JSON",
+                success: function(response) {
+                    console.log('ajax success');
+
+                    // Swal.fire({
+                    //     type: 'success',
+                    //     icon: 'success',
+                    //     title: `${response.message}`,
+                    //     showConfirmButton: false,
+                    //     timer: 3000
+                    // });
+                },
+            });
+        });
+    }
 </script>

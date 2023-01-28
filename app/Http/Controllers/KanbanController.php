@@ -104,7 +104,7 @@ class KanbanController extends Controller
             return response()->json($validator->errors(), 422);
         }
 
-        $post->idUser = auth()->id();
+        // $post->idUser = auth()->id();
         $post->status = $request->status;
         $post->judul = $request->judul;
         $post->issues = $request->issues;
@@ -123,7 +123,6 @@ class KanbanController extends Controller
     public function cancel(Request $request)
     {
         $post = Kanban::findOrfail($request->id);
-        // $post->idUser = auth()->id();
         $cancel = 'Cancel';
         $post->status = $cancel;
         $post->save();
@@ -133,6 +132,30 @@ class KanbanController extends Controller
             'success' => true,
             'message' => 'Data Berhasil Dibatalkan!',
             'data'    => $post
+        ]);
+    }
+    public function dragstatus(Request $request)
+    {
+        $dragstatus = Kanban::findOrfail($request->idIssues);
+        $boardAsal = $request->idBoardAsal;
+        $boardTujuan = $request->idBoardTujuan;
+        // dd($request->all());
+        // dd($dragstatus);
+        if ($boardTujuan == "_todo") {
+            $dragstatus->status = "To Do";
+        } elseif ($boardTujuan == "_doing") {
+            $dragstatus->status = "In Progress";
+        } else {
+            $dragstatus->status = "Done";
+        };
+        $dragstatus->save();
+        // dd('bismillah');
+
+        //return response
+        return response()->json([
+            'success' => true,
+            // 'message' => 'Data Berhasil Dibatalkan!',
+            'data'    => $dragstatus
         ]);
     }
 }

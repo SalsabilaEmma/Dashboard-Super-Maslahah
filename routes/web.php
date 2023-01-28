@@ -46,6 +46,8 @@ Route::middleware('auth')->group(function () {
     Route::POST('/kanban-board/show', [KanbanController::class, 'show'])->name('kanban.show');
     Route::POST('/kanban-board/update{id?}', [KanbanController::class, 'update'])->name('kanban.update');
     Route::POST('/kanban-board/cancel{id?}', [KanbanController::class, 'cancel'])->name('kanban.cancel');
+    Route::POST('/kanban-board/dragstatus{id?}', [KanbanController::class, 'dragstatus'])->name('kanban.dragstatus');
+    // Route::POST('/kanban-board/movecard{id?}', [KanbanController::class, 'movecard'])->name('kanban.movecard');
 });
 
 require __DIR__ . '/auth.php';
