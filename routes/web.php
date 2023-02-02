@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ActivationController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\KanbanController;
 use App\Http\Controllers\MpayController;
@@ -21,15 +22,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route::get('/dashboard', function () {
-//     // return view('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
-
 Route::middleware('auth')->group(function () {
     Route::GET('/lalala', [Controller::class, 'stisla'])->name('s');
 
     Route::GET('/dashboard', [Controller::class, 'index'])->name('dashboard');
     // Route::GET('/kanban-board', [KanbanController::class, 'index'])->name('kanban');
+
+    Route::GET('/aktivasi', [ActivationController::class, 'index'])->name('aktivasi');
+    // Route::GET('/aktivasi-data', [ActivationController::class, 'viewData'])->name('viewData');
+    Route::POST('/aktivasi/store', [BannerController::class, 'store'])->name('aktivasi.store');
+    Route::GET('/aktivasi/edit/{id?}', [BannerController::class, 'edit'])->name('aktivasi.edit');
+    Route::POST('/aktivasi/update/{id?}', [BannerController::class, 'update'])->name('aktivasi.update');
+    Route::DELETE('/aktivasi/delete/{id?}', [BannerController::class, 'destroy'])->name('aktivasi.destroy');
 
     /** M-Pay */
     Route::GET('/mpay/rekening', [MpayController::class, 'indexRekening'])->name('rekening');

@@ -26,6 +26,9 @@
                     {{-- <p>Ready to Use Main Menu</p> --}}
                   </div>
                 </li>
+                <li class="sidebar-list">
+                    <a class="sidebar-link sidebar-title link-nav" href="{{ route('aktivasi') }}"><i data-feather="check-circle"> </i><span>Aktivasi</span></a>
+                  </li>
                 <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#"><i data-feather="credit-card"></i><span>M-Pay</span></a>
                   <ul class="sidebar-submenu">
                     <li><a href="{{ route('rekening') }}">Master Rekening</a></li>

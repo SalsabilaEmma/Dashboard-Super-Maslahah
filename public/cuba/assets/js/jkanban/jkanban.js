@@ -193,7 +193,8 @@ var dragula = require("dragula");
 
     this.addElement = function(boardID, element) {
       var board = self.element.querySelector(
-        '[data-id="' + boardID + '"] .kanban-drag'
+        '[data-id="' + boardID + '"] .kanban-drag',
+        // '[class="vertical-scroll scroll-demo"] .kanban-drag'
       );
       var nodeItem = document.createElement("div");
       nodeItem.classList.add("kanban-item");
@@ -305,7 +306,9 @@ var dragula = require("dragula");
         }
         //content board
         var contentBoard = document.createElement("main");
-        contentBoard.classList.add("kanban-drag");
+        contentBoard.classList.add("kanban-drag"); /** Asli */
+        // contentBoard.className += " vertical-scroll scroll-demo";
+        // contentBoard.classList.add("kanban-drag","vertical-scroll","scroll-demo","board");
         if (board.bodyClass !== "" && board.bodyClass !== undefined)
           var bodyClasses = board.bodyClass.split(",");
         else bodyClasses = [];

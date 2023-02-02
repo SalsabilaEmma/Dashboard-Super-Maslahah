@@ -18,21 +18,8 @@ class KanbanController extends Controller
             'task' => Kanban::all(),
         ]);
     }
-    public function storeAsli(Request $request)
-    {
-        $task = $this->validate($request, [
-            'status' => 'required',
-            'judul' => 'required|max:255',
-            'issues' => 'required',
-            'due_date' => 'required',
-            'priority' => 'required'
-        ]);
-        Kanban::create($task);
-        return redirect()->back()->with(['sucess' => 'Data Berhasil Disimpan!']);
-    }
 
-    //ajax
-
+    /** ajax */
     public function indexKanban()
     {
         $user = auth()->id();
@@ -140,14 +127,14 @@ class KanbanController extends Controller
         $boardAsal = $request->idBoardAsal;
         $boardTujuan = $request->idBoardTujuan;
         // dd($request->all());
-        // dd($dragstatus);
+        // dd($boardTujuan);
         if ($boardTujuan == "_todo") {
             $dragstatus->status = "To Do";
         } elseif ($boardTujuan == "_doing") {
             $dragstatus->status = "In Progress";
         } else {
             $dragstatus->status = "Done";
-        };
+        }
         $dragstatus->save();
         // dd('bismillah');
 

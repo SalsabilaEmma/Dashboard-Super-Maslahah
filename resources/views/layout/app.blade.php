@@ -35,6 +35,10 @@
     <link rel="stylesheet" type="text/css" href="{{ url('cuba') }}/assets/css/vendors/datatables.css">
     <link rel="stylesheet" type="text/css" href="{{ url('cuba') }}/assets/css/vendors/animate.css">
     <link rel="stylesheet" type="text/css" href="{{ url('cuba') }}/assets/css/vendors/jkanban.css">
+    <link rel="stylesheet" type="text/css" href="{{ url('cuba') }}/assets/css/vendors/scrollbar.css">
+    <link rel="stylesheet" type="text/css" href="{{ url('cuba') }}/assets/css/vendors/scrollable.css">
+
+    <link rel="stylesheet" type="text/css" href="{{ url('cuba') }}/assets/css/vendors/datatables.css">
     <!-- Plugins css Ends-->
     <!-- Bootstrap css-->
     <link rel="stylesheet" type="text/css" href="{{ url('cuba') }}/assets/css/vendors/bootstrap.css">
@@ -99,31 +103,30 @@
     <script src="{{ url('cuba') }}/assets/js/config.js"></script>
     <!-- Plugins JS start-->
     <script src="{{ url('cuba') }}/assets/js/sidebar-menu.js"></script>
+    {{-- <script src="{{ url('cuba') }}/assets/js/tooltip-init.js"></script> --}}
 
-    <script src="{{ url('cuba') }}/assets/js/chart/chartist/chartist.js"></script>
+    {{-- <script src="{{ url('cuba') }}/assets/js/chart/chartist/chartist.js"></script>
     <script src="{{ url('cuba') }}/assets/js/chart/chartist/chartist-plugin-tooltip.js"></script>
     <script src="{{ url('cuba') }}/assets/js/chart/knob/knob.min.js"></script>
     <script src="{{ url('cuba') }}/assets/js/chart/knob/knob-chart.js"></script>
     <script src="{{ url('cuba') }}/assets/js/chart/apex-chart/apex-chart.js"></script>
-    <script src="{{ url('cuba') }}/assets/js/chart/apex-chart/stock-prices.js"></script>
+    <script src="{{ url('cuba') }}/assets/js/chart/apex-chart/stock-prices.js"></script> --}}
     <script src="{{ url('cuba') }}/assets/js/notify/bootstrap-notify.min.js"></script>
-    {{-- <script src="{{ url('cuba') }}/assets/js/dashboard/default.js"></script> --}}
     <script src="{{ url('cuba') }}/assets/js/notify/index.js"></script>
     <script src="{{ url('cuba') }}/assets/js/datepicker/date-picker/datepicker.js"></script>
     <script src="{{ url('cuba') }}/assets/js/datepicker/date-picker/datepicker.en.js"></script>
     <script src="{{ url('cuba') }}/assets/js/datepicker/date-picker/datepicker.custom.js"></script>
-    {{-- <script src="{{ url('cuba') }}/assets/js/typeahead/handlebars.js"></script>
-    <script src="{{ url('cuba') }}/assets/js/typeahead/typeahead.bundle.js"></script>
-    <script src="{{ url('cuba') }}/assets/js/typeahead/typeahead.custom.js"></script>
-    <script src="{{ url('cuba') }}/assets/js/typeahead-search/handlebars.js"></script>
-    <script src="{{ url('cuba') }}/assets/js/typeahead-search/typeahead-custom.js"></script> --}}
 
     <script src="{{ url('cuba') }}/assets/js/datatable/datatables/jquery.dataTables.min.js"></script>
     <script src="{{ url('cuba') }}/assets/js/datatable/datatables/datatable.custom.js"></script>
     <script src="{{ url('cuba') }}/assets/js/tooltip-init.js"></script>
     <script src="{{ url('cuba') }}/assets/js/jkanban/jkanban.js"></script>
     <script src="{{ url('cuba') }}/assets/js/jkanban/custom.js"></script>
-    {{-- <script src="{{ url('cuba') }}/assets/js/jkanban/todo.js"></script> --}}
+    <script src="{{ url('cuba') }}/assets/js/scrollable/perfect-scrollbar.min.js"></script>
+    <script src="{{ url('cuba') }}/assets/js/scrollable/scrollable-custom.js"></script>
+
+    <script src="{{ url('cuba') }}/assets/js/datatable/datatables/jquery.dataTables.min.js"></script>
+    <script src="{{ url('cuba') }}/assets/js/datatable/datatables/datatable.custom.js"></script>
     <!-- Plugins JS Ends-->
     <!-- Theme js-->
     <script src="{{ url('cuba') }}/assets/js/script.js"></script>

@@ -1,11 +1,17 @@
 @extends('layout.app')
 @section('content')
+    <style>
+        .kanban-drag {
+            overflow-y: scroll;
+            height: 550px;
+        }
+    </style>
     <div class="page-body">
         <div class="container-fluid">
             <div class="page-title">
                 <div class="row">
                     <div class="col-6">
-                        <h3>Kanban Board</h3>
+                        {{-- <h3>Kanban Board</h3> --}}
                     </div>
                     <div class="col-6">
                         <ol class="breadcrumb">
@@ -439,7 +445,7 @@
         /** Ambil Id Board Tujuan*/
         var parentissues = $(el.firstChild).parent();
         var boardTujuan = $(parentissues[0].offsetParent).data('id');
-        // console.log(dataId);
+        // console.log(boardTujuan);
 
         var data = {
             idBoardAsal: board,
@@ -457,7 +463,6 @@
                 dataType: "JSON",
                 success: function(response) {
                     console.log('ajax success');
-
                     // Swal.fire({
                     //     type: 'success',
                     //     icon: 'success',

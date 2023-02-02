@@ -175,7 +175,6 @@ var kanban1 = new jKanban({
     {
         id: "_todo",
         title: "Todo",
-        class: "kanban-column",
         item: await_todo,
 
     },
@@ -184,7 +183,6 @@ var kanban1 = new jKanban({
     {
         id: "_doing",
         title: "In Progress",
-        class: "kanban-column",
         item: await_progres,
     },
 
@@ -192,7 +190,6 @@ var kanban1 = new jKanban({
     {
         id: "_done",
         title: "Done",
-        class: "kanban-column",
         item: await_done,
     },
 
