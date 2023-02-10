@@ -18,10 +18,10 @@ return new class extends Migration
 
             $table->bigIncrements('id');
             $table->string('cif', 500)->nullable();
-            $table->string('nip', 500)->nullable();
-            $table->string('ttl', 500)->nullable();
-            $table->string('noHp', 500)->nullable();
-            $table->string('noKtp', 500)->nullable();
+            // $table->string('nip', 500)->nullable();
+            // $table->string('ttl', 500)->nullable();
+            // $table->string('noHp', 500)->nullable();
+            // $table->string('noKtp', 500)->nullable();
             $table->string('tipeHp', 500)->nullable();
             $table->string('statusAktivasi', 500)->nullable();
             $table->string('kodeUnik', 500)->nullable();
@@ -30,8 +30,9 @@ return new class extends Migration
             $table->string('aksesKpai', 500)->nullable();
             $table->string('aksesKunKer', 500)->nullable();
             $table->string('aksesListPekerjaan', 500)->nullable();
-            // $table->dateTime('datetime');
             // $table->string('userAccess', 500)->nullable();
+            $table->unsignedBigInteger('idPegawai');
+            $table->foreign('idPegawai', 'aktivasi_pegawai_fk')->references('id')->on('pegawais')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }

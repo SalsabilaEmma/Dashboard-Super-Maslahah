@@ -112,11 +112,11 @@
                             </div>
                         </div>
                         <div class="row g3">
-                            <div class="col-md-6">
+                            <div class="col-md-5">
                                 <label class="col-form-label" for="recipient-name">Tanggal Berakhir:</label>
                                 <input name="due_date" id="input_duedate" class="form-control" type="date">
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-5">
                                 <label class="col-form-label" for="recipient-name">Prioritas:</label>
                                 <select name="priority" class="form-select" id="input_priority" required="">
                                     <option selected="" disabled="" value="">Pilih Tingkat Prioritas...</option>
@@ -124,6 +124,10 @@
                                     <option>Normal</option>
                                     <option>Urgent</option>
                                 </select>
+                            </div>
+                            <div class="col-md-2">
+                                <label class="col-form-label" for="recipient-name">Sprint Point:</label>
+                                <input name="sprintpoint" id="input_sprintpoint" class="form-control" type="number">
                             </div>
                         </div>
                         <div class="row">
@@ -165,13 +169,17 @@
                             </div>
                         </div>
                         <div class="row g3">
-                            <div class="col-md-6">
+                            <div class="col-md-5">
                                 <label class="col-form-label" for="recipient-name">Tanggal Berakhir:</label>
                                 <input name="due_date" id="due_date" readonly class="form-control" type="date">
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-5">
                                 <label class="col-form-label" for="recipient-name">Prioritas:</label>
                                 <input name="priority" id="priority" readonly class="form-control" type="text">
+                            </div>
+                            <div class="col-md-2">
+                                <label class="col-form-label" for="recipient-name">Sprint Point:</label>
+                                <input name="sprintpoint" id="sprintpoint" readonly class="form-control" type="text">
                             </div>
                         </div>
                         <div class="row">
@@ -216,7 +224,7 @@
                             <div class="col-md-4">
                                 <label class="col-form-label" for="recipient-name">Status:</label>
                                 <select name="status" class="form-select" id="status" required="">
-                                    <option selected="" disabled="" value="">Pilih Status...</option>
+                                    <option selected hidden value="" id="status">Pilih Status</option>
                                     <option value="To Do">To Do</option>
                                     <option value="In Progress">In Progress</option>
                                     <option value="Done">Done</option>
@@ -224,19 +232,22 @@
                             </div>
                         </div>
                         <div class="row g3">
-                            <div class="col-md-6">
+                            <div class="col-md-5">
                                 <label class="col-form-label" for="recipient-name">Tanggal Berakhir:</label>
                                 <input name="due_date" id="due_date" class="form-control" type="date">
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-5">
                                 <label class="col-form-label" for="recipient-name">Prioritas:</label>
                                 <select name="priority" class="form-select" id="priority" required="">
-                                    <option selected="" disabled="" value="">Pilih Tingkat Prioritas...
-                                    </option>
+                                    <option selected hidden value="" id="priority">Pilih Prioritas</option>
                                     <option>Low</option>
                                     <option>Normal</option>
                                     <option>Urgent</option>
                                 </select>
+                            </div>
+                            <div class="col-md-2">
+                                <label class="col-form-label" for="recipient-name">Sprint Point:</label>
+                                <input name="sprintpoint" id="sprintpoint" class="form-control" type="number">
                             </div>
                         </div>
                         <div class="row">
@@ -293,6 +304,7 @@
             $("#viewdata").find("#due_date").attr("value", $(this).data('due_date'));
             $("#viewdata").find("#priority").attr("value", $(this).data('priority'));
             $("#viewdata").find("#judul").attr("value", $(this).data('judul'));
+            $("#viewdata").find("#sprintpoint").attr("value", $(this).data('sprintpoint'));
             // $("#viewdata").find("#issues").attr("value", $(this).data('issues'));
             $('#issues').text($(this).data('issues'));
         });
@@ -329,6 +341,7 @@
                     $("#input_duedate").val('');
                     $("#input_priority").val('');
                     $("#input_issues").val('');
+                    $("#input_sprintpoint").val('');
                     $('#tambahdata').modal('hide');
                 },
                 // error: function(error) {
@@ -347,6 +360,7 @@
             $("#editdata").find("#due_date").attr("value", $(this).data('due_date'));
             $("#editdata").find("#priority").attr("value", $(this).data('priority'));
             $("#editdata").find("#judul").attr("value", $(this).data('judul'));
+            $("#editdata").find("#sprintpoint").attr("value", $(this).data('sprintpoint'));
             // $("#editdata").find("#issues").attr("value", $(this).data('issues'));
             $('#isu').text($(this).data('issues'));
         });
@@ -397,6 +411,7 @@
             $("#canceldata").find("#due_date").attr("value", $(this).data('due_date'));
             $("#canceldata").find("#priority").attr("value", $(this).data('priority'));
             $("#canceldata").find("#judul").attr("value", $(this).data('judul'));
+            $("#canceldata").find("#sprintpoint").attr("value", $(this).data('sprintpoint'));
             $("#canceldata").find("#issues").attr("value", $(this).data('issues'));
         });
     }

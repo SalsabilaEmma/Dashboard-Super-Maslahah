@@ -1,4 +1,3 @@
-
 <div>
     <div class="logo-wrapper">
         <a href="{{ route('dashboard') }}">
@@ -19,25 +18,41 @@
                     <div class="mobile-back text-end"><span>Back</span><i class="fa fa-angle-right ps-2"
                             aria-hidden="true"></i></div>
                 </li>
-                <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav" href="{{ route('dashboard') }}"><i data-feather="home"> </i><span>Dashboard</span></a></li>
+                <li class="sidebar-list"><a class="sidebar-link sidebar-title link-nav"
+                        href="{{ route('dashboard') }}"><i data-feather="home"> </i><span>Dashboard</span></a></li>
                 <li class="sidebar-main-title">
-                  <div>
-                    <h6>Main Menu</h6>
-                    {{-- <p>Ready to Use Main Menu</p> --}}
-                  </div>
+                    <div>
+                        <h6>Main Menu</h6>
+                        {{-- <p>Ready to Use Main Menu</p> --}}
+                    </div>
                 </li>
                 <li class="sidebar-list">
-                    <a class="sidebar-link sidebar-title link-nav" href="{{ route('aktivasi') }}"><i data-feather="check-circle"> </i><span>Aktivasi</span></a>
-                  </li>
-                <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#"><i data-feather="credit-card"></i><span>M-Pay</span></a>
-                  <ul class="sidebar-submenu">
-                    <li><a href="{{ route('rekening') }}">Master Rekening</a></li>
-                    <li><a href="{{ route('mutasi') }}">Mutasi Simpanan</a></li>
-                  </ul>
+                    <a class="sidebar-link sidebar-title link-nav" href="{{ route('aktivasi') }}"><i
+                            data-feather="check-circle"> </i><span>Aktivasi</span></a>
                 </li>
                 <li class="sidebar-list">
-                    <a class="sidebar-link sidebar-title link-nav" href="{{ route('kanban') }}"><i data-feather="monitor"> </i><span>kanban Board</span></a>
-                  </li>
+                    <a class="sidebar-link sidebar-title link-nav" href="{{ route('pegawai') }}"><i data-feather="user">
+                        </i><span>Pegawai</span></a>
+                </li>
+                <li class="sidebar-list">
+                    <a class="sidebar-link sidebar-title link-nav" href="{{ route('absensi') }}"><i data-feather="list">
+                        </i><span>Absensi</span></a>
+                </li>
+                <li class="sidebar-list"><a class="sidebar-link sidebar-title" href="#"><i
+                            data-feather="credit-card"></i><span>M-Pay</span></a>
+                    <ul class="sidebar-submenu">
+                        <li><a href="{{ route('rekening') }}">Master Rekening</a></li>
+                        <li><a href="{{ route('mutasi') }}">Mutasi Simpanan</a></li>
+                    </ul>
+                </li>
+                <li class="sidebar-list">
+                    <a class="sidebar-link sidebar-title link-nav" href="{{ route('kanban') }}"><i
+                            data-feather="monitor"> </i><span>kanban Board</span></a>
+                </li>
+                <li class="sidebar-list">
+                    <a class="sidebar-link sidebar-title link-nav" href="{{ route('tracking') }}"><i data-feather="map-pin">
+                        </i><span>Tracking</span></a>
+                </li>
             </ul>
         </div>
         <div class="right-arrow" id="right-arrow"><i data-feather="arrow-right"></i></div>

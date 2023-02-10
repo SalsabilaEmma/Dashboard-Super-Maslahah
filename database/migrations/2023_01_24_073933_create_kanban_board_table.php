@@ -20,6 +20,7 @@ return new class extends Migration
             $table->text('issues')->nullable();
             $table->date('due_date')->nullable();
             $table->char('priority')->nullable();
+            $table->char('sprintpoint')->nullable();
             $table->unsignedBigInteger('idUser');
             $table->foreign('idUser')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();

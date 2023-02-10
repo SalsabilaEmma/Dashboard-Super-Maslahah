@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Activation extends Model
+class Absen extends Model
 {
     use HasFactory;
-    protected $table = 'activations';
-    protected $fillable = ['id','idPegawai', 'cif', 'tipeHp', 'statusAktivasi', 'kodeUnik', 'aksesAbsen', 'aksesMpay', 'aksesKpai', 'aksesKunKer', 'aksesListPekerjaan'];
+    protected $table = 'absens';
+    protected $fillable = ['tanggal', 'status','jamMasuk','jamPulang','idPegawai'];
 
     public function pegawai()
     {

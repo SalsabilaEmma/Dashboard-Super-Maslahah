@@ -37,7 +37,8 @@ class KanbanController extends Controller
             'judul' => 'required|max:255',
             'issues' => 'required',
             'due_date' => 'required',
-            'priority' => 'required'
+            'priority' => 'required',
+            'sprintpoint' => 'required'
         ]);
 
         //check if validation fails
@@ -53,6 +54,7 @@ class KanbanController extends Controller
             'issues'   => $request->issues,
             'due_date'   => $request->due_date,
             'priority'   => $request->priority,
+            'sprintpoint'   => $request->sprintpoint,
         ]);
         // dd($post);
         //return response
@@ -74,7 +76,6 @@ class KanbanController extends Controller
 
     public function update(Request $request)
     {
-        // dd($request->all());
         $post = Kanban::findOrfail($request->id);
         // dd($post);
         //define validation rules
@@ -83,7 +84,8 @@ class KanbanController extends Controller
             'judul' => 'required|max:255',
             'issues' => 'required',
             'due_date' => 'required',
-            'priority' => 'required'
+            'priority' => 'required',
+            'sprintpoint' => 'required'
         ]);
 
         //check if validation fails
@@ -97,6 +99,7 @@ class KanbanController extends Controller
         $post->issues = $request->issues;
         $post->due_date = $request->due_date;
         $post->priority = $request->priority;
+        $post->sprintpoint = $request->sprintpoint;
         $post->save();
         // dd($post);
 
@@ -126,8 +129,6 @@ class KanbanController extends Controller
         $dragstatus = Kanban::findOrfail($request->idIssues);
         $boardAsal = $request->idBoardAsal;
         $boardTujuan = $request->idBoardTujuan;
-        // dd($request->all());
-        // dd($boardTujuan);
         if ($boardTujuan == "_todo") {
             $dragstatus->status = "To Do";
         } elseif ($boardTujuan == "_doing") {

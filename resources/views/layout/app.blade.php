@@ -32,6 +32,10 @@
     <link rel="stylesheet" type="text/css" href="{{ url('cuba') }}/assets/css/vendors/animate.css">
     <link rel="stylesheet" type="text/css" href="{{ url('cuba') }}/assets/css/vendors/chartist.css">
     <link rel="stylesheet" type="text/css" href="{{ url('cuba') }}/assets/css/vendors/date-picker.css">
+    <link rel="stylesheet" type="text/css" href="{{ url('cuba') }}/assets/css/vendors/timepicker.css">
+
+    <link rel="stylesheet" type="text/css" href="{{ url('cuba') }}/assets/css/vendors/select2.css">
+
     <link rel="stylesheet" type="text/css" href="{{ url('cuba') }}/assets/css/vendors/datatables.css">
     <link rel="stylesheet" type="text/css" href="{{ url('cuba') }}/assets/css/vendors/animate.css">
     <link rel="stylesheet" type="text/css" href="{{ url('cuba') }}/assets/css/vendors/jkanban.css">
@@ -51,8 +55,10 @@
     @section('css')
     @show
     @yield('css')
+    {{-- <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" /> --}}
 </head>
 {{-- onload="startTime()" --}}
+
 <body>
     <!-- loader starts-->
     <div class="loader-wrapper">
@@ -88,6 +94,8 @@
             @include('layout.footer')
         </div>
     </div>
+    {{-- <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> --}}
+
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.16/dist/sweetalert2.all.min.js"></script>
     <!-- latest jquery-->
     <script src="{{ url('cuba') }}/assets/js/jquery-3.5.1.min.js"></script>
@@ -103,19 +111,18 @@
     <script src="{{ url('cuba') }}/assets/js/config.js"></script>
     <!-- Plugins JS start-->
     <script src="{{ url('cuba') }}/assets/js/sidebar-menu.js"></script>
-    {{-- <script src="{{ url('cuba') }}/assets/js/tooltip-init.js"></script> --}}
 
-    {{-- <script src="{{ url('cuba') }}/assets/js/chart/chartist/chartist.js"></script>
-    <script src="{{ url('cuba') }}/assets/js/chart/chartist/chartist-plugin-tooltip.js"></script>
-    <script src="{{ url('cuba') }}/assets/js/chart/knob/knob.min.js"></script>
-    <script src="{{ url('cuba') }}/assets/js/chart/knob/knob-chart.js"></script>
-    <script src="{{ url('cuba') }}/assets/js/chart/apex-chart/apex-chart.js"></script>
-    <script src="{{ url('cuba') }}/assets/js/chart/apex-chart/stock-prices.js"></script> --}}
     <script src="{{ url('cuba') }}/assets/js/notify/bootstrap-notify.min.js"></script>
     <script src="{{ url('cuba') }}/assets/js/notify/index.js"></script>
     <script src="{{ url('cuba') }}/assets/js/datepicker/date-picker/datepicker.js"></script>
     <script src="{{ url('cuba') }}/assets/js/datepicker/date-picker/datepicker.en.js"></script>
     <script src="{{ url('cuba') }}/assets/js/datepicker/date-picker/datepicker.custom.js"></script>
+    <script src="{{ url('cuba') }}/assets/js/time-picker/jquery-clockpicker.min.js"></script>
+    <script src="{{ url('cuba') }}/assets/js/time-picker/highlight.min.js"></script>
+    <script src="{{ url('cuba') }}/assets/js/time-picker/clockpicker.js"></script>
+
+    <script src="{{ url('cuba') }}/assets/js/select2/select2.full.min.js"></script>
+    <script src="{{ url('cuba') }}/assets/js/select2/select2-custom.js"></script>
 
     <script src="{{ url('cuba') }}/assets/js/datatable/datatables/jquery.dataTables.min.js"></script>
     <script src="{{ url('cuba') }}/assets/js/datatable/datatables/datatable.custom.js"></script>
