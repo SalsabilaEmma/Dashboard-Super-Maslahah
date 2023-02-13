@@ -9,7 +9,7 @@ class Pegawai extends Model
 {
     use HasFactory;
     protected $table = 'pegawais';
-    protected $fillable = ['nip', 'noKtp', 'nama', 'jenisKelamin', 'ttl', 'statusPerkawinan', 'alamat', 'telepon', 'tglMasuk', 'rekeningTabungan', 'penempatan', 'statusPegawai', 'jabatan', 'kantor'];
+    protected $fillable = ['nip', 'noKtp', 'nama', 'jenisKelamin', 'tglLahir', 'statusPerkawinan', 'alamat', 'telepon', 'tglMasuk', 'rekeningTabungan', 'penempatan', 'statusPegawai', 'jabatan', 'kantor'];
 
     public function absen()
     {

@@ -72,7 +72,7 @@
                                                             data-nama="{{ $pegawai->nama }}"
                                                             data-jeniskelamin="{{ $pegawai->jenisKelamin }}"
                                                             data-noKtp="{{ $pegawai->noKtp }}"
-                                                            data-ttl="{{ $pegawai->ttl }}"
+                                                            data-tglLahir="{{ $pegawai->tglLahir }}"
                                                             data-statusperkawinan="{{ $pegawai->statusPerkawinan }}"
                                                             data-alamat="{{ $pegawai->alamat }}"
                                                             data-telepon="{{ $pegawai->telepon }}"
@@ -160,11 +160,11 @@
                             </div>
                             <div class="col-sm-4">
                                 <div class="mb-3">
-                                    <label class="form-label" for="ttl">Tanggal Lahir</label>
-                                    <input class="datepicker-here form-control digits @error('ttl') is-invalid @enderror" type="text" data-language="en" id="ttl" name="ttl" placeholder="Masukkan Tanggal Lahir" required>
-                                    {{-- <input type="date" class="form-control @error('ttl') is-invalid @enderror"
-                                        id="ttl" name="ttl" placeholder="Masukkan Tanggal Lahir" required> --}}
-                                    @error('ttl')
+                                    <label class="form-label" for="tglLahir">Tanggal Lahir</label>
+                                    {{-- <input class="datepicker-here form-control digits @error('tglLahir') is-invalid @enderror" type="text" data-language="en" id="tglLahir" name="tglLahir" placeholder="Masukkan Tanggal Lahir" required> --}}
+                                    <input type="date" class="form-control @error('tglLahir') is-invalid @enderror"
+                                        id="tglLahir" name="tglLahir" placeholder="Masukkan Tanggal Lahir" required>
+                                    @error('tglLahir')
                                         <small>{{ $message }}</small>
                                     @enderror
                                 </div>
@@ -202,7 +202,7 @@
                             <div class="col-sm-6">
                                 <div class="mb-3">
                                     <label class="form-label" for="telepon">Telepon</label>
-                                    <input type="number" class="form-control @error('telepon') is-invalid @enderror"
+                                    <input type="text" class="form-control @error('telepon') is-invalid @enderror"
                                         id="telepon" name="telepon" placeholder="Masukkan Telepon" required>
                                     @error('telepon')
                                         <small>{{ $message }}</small>
@@ -227,9 +227,9 @@
                             <div class="col-sm-6">
                                 <div class="mb-3">
                                     <label class="form-label" for="tglMasuk">Tanggal Masuk</label>
-                                    <input class="datepicker-here form-control digits @error('tglMasuk') is-invalid @enderror" type="text" data-language="en" id="tglMasuk" name="tglMasuk" placeholder="Masukkan Tanggal Masuk" required>
-                                    {{-- <input type="date" class="form-control @error('tglMasuk') is-invalid @enderror"
-                                        id="tglMasuk" name="tglMasuk" placeholder="Masukkan Tanggal Masuk" required> --}}
+                                    {{-- <input class="datepicker-here form-control digits @error('tglMasuk') is-invalid @enderror" type="text" data-language="en" id="tglMasuk" name="tglMasuk" placeholder="Masukkan Tanggal Masuk" required> --}}
+                                    <input type="date" class="form-control @error('tglMasuk') is-invalid @enderror"
+                                        id="tglMasuk" name="tglMasuk" placeholder="Masukkan Tanggal Masuk" required>
                                     @error('tglMasuk')
                                         <small>{{ $message }}</small>
                                     @enderror
@@ -326,13 +326,15 @@
                         <div class="col-sm-6">
                             <div class="mb-3">
                                 <label class="form-label" for="nip">NIP</label>
-                                <input type="text" class="form-control" id="nip" name="nip" required readonly>
+                                <input type="text" class="form-control" id="nip" name="nip" required
+                                    readonly>
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="mb-3">
                                 <label class="form-label" for="noKtp">No KTP</label>
-                                <input type="text" class="form-control" id="noKtp" name="noKtp" required readonly>
+                                <input type="text" class="form-control" id="noKtp" name="noKtp" required
+                                    readonly>
                             </div>
                         </div>
                     </div>
@@ -340,19 +342,22 @@
                         <div class="col-sm-4">
                             <div class="mb-3">
                                 <label class="form-label" for="nama">Nama Pegawai</label>
-                                <input type="text" class="form-control" id="nama" name="nama" required readonly>
+                                <input type="text" class="form-control" id="nama" name="nama" required
+                                    readonly>
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="mb-3">
-                                <label class="form-label" for="ttl">Tanggal Lahir</label>
-                                <input type="text" class="form-control" id="ttl" name="ttl" required readonly>
+                                <label class="form-label" for="tglLahir">Tanggal Lahir</label>
+                                <input type="text" class="form-control" id="tglLahir" name="tglLahir" required
+                                    readonly>
                             </div>
                         </div>
                         <div class="col-sm-4">
                             <div class="mb-3">
                                 <label class="form-label" for="jenisKelamin">Jenis Kelamin</label>
-                                <input type="text" class="form-control" id="jenisKelamin" name="jenisKelamin" value="" required readonly>
+                                <input type="text" class="form-control" id="jenisKelamin" name="jenisKelamin"
+                                    value="" required readonly>
                             </div>
                         </div>
                     </div>
@@ -360,13 +365,15 @@
                         <div class="col-sm-6">
                             <div class="mb-3">
                                 <label class="form-label" for="statusPerkawinan">Status Perkawinan</label>
-                                <input type="text" class="form-control" id="statusPerkawinan" name="statusPerkawinan" required readonly>
+                                <input type="text" class="form-control" id="statusPerkawinan" name="statusPerkawinan"
+                                    required readonly>
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="mb-3">
                                 <label class="form-label" for="telepon">Telepon</label>
-                                <input type="text" class="form-control" id="telepon" name="telepon" required readonly>
+                                <input type="text" class="form-control" id="telepon" name="telepon" required
+                                    readonly>
                             </div>
                         </div>
                     </div>
@@ -374,7 +381,8 @@
                         <div class="col-sm-12">
                             <div class="mb-3">
                                 <label class="form-label" for="alamat">Alamat</label>
-                                <input type="text" class="form-control" id="alamat" name="alamat" required readonly>
+                                <input type="text" class="form-control" id="alamat" name="alamat" required
+                                    readonly>
                             </div>
                         </div>
                     </div>
@@ -383,13 +391,15 @@
                         <div class="col-sm-6">
                             <div class="mb-3">
                                 <label class="form-label" for="tglMasuk">Tanggal Masuk</label>
-                                <input type="text" class="form-control" id="tglMasuk" name="tglMasuk" required readonly>
+                                <input type="text" class="form-control" id="tglMasuk" name="tglMasuk" required
+                                    readonly>
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="mb-3">
                                 <label class="form-label" for="penempatan">Penempatan</label>
-                                <input type="text" class="form-control" id="penempatan" name="penempatan" required readonly>
+                                <input type="text" class="form-control" id="penempatan" name="penempatan" required
+                                    readonly>
                             </div>
                         </div>
                     </div>
@@ -397,13 +407,15 @@
                         <div class="col-sm-6">
                             <div class="mb-3">
                                 <label class="form-label" for="jabatan">Jabatan</label>
-                                <input type="text" class="form-control" id="jabatan" name="jabatan" required readonly>
+                                <input type="text" class="form-control" id="jabatan" name="jabatan" required
+                                    readonly>
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="mb-3">
                                 <label class="form-label" for="kantor">Kantor</label>
-                                <input type="text" class="form-control" id="kantor" name="kantor" required readonly>
+                                <input type="text" class="form-control" id="kantor" name="kantor" required
+                                    readonly>
                             </div>
                         </div>
                     </div>
@@ -411,13 +423,15 @@
                         <div class="col-sm-6">
                             <div class="mb-3">
                                 <label class="form-label" for="statusPegawai">Status Pegawai</label>
-                                <input type="text" class="form-control" id="statusPegawai" name="statusPegawai" required readonly>
+                                <input type="text" class="form-control" id="statusPegawai" name="statusPegawai"
+                                    required readonly>
                             </div>
                         </div>
                         <div class="col-sm-6">
                             <div class="mb-3">
                                 <label class="form-label" for="rekeningTabungan">Rekening Tabungan</label>
-                                <input type="text" class="form-control" id="rekeningTabungan" name="rekeningTabungan" required readonly>
+                                <input type="text" class="form-control" id="rekeningTabungan" name="rekeningTabungan"
+                                    required readonly>
                             </div>
                         </div>
                     </div>
@@ -442,20 +456,25 @@
             $("#lihatdata").find("#id").attr("value", $(this).data('id'));
             $("#lihatdata").find("#nip").attr("value", $(this).data('nip'));
             $("#lihatdata").find("#nama").attr("value", $(this).data('nama'));
-            $("#lihatdata").find("#ttl").attr("value", $(this).data('ttl'));
+            var date = new Date($(this).data('tgllahir'));
+            var formattedDate = date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear();
+            $("#lihatdata").find("#tglLahir").attr("value", formattedDate);
+            // $("#lihatdata").find("#tglLahir").attr("value", $(this).data('tgllahir'));
             $("#lihatdata").find("#jenisKelamin").attr("value", $(this).data('jeniskelamin'));
             $("#lihatdata").find("#noktp").attr("value", $(this).data('noktp'));
             $("#lihatdata").find("#statusPerkawinan").attr("value", $(this).data('statusperkawinan'));
             $("#lihatdata").find("#alamat").attr("value", $(this).data('alamat'));
             $("#lihatdata").find("#telepon").attr("value", $(this).data('telepon'));
-            $("#lihatdata").find("#tglMasuk").attr("value", $(this).data('tglmasuk'));
+            var tglMasuk = new Date($(this).data('tglmasuk'));
+            var formattedTglMasuk = tglMasuk.getDate() + "-" + (tglMasuk.getMonth() + 1) + "-" + tglMasuk.getFullYear();
+            $("#lihatdata").find("#tglMasuk").attr("value", formattedTglMasuk);
+            // $("#lihatdata").find("#tglMasuk").attr("value", $(this).data('tglmasuk'));
             $("#lihatdata").find("#rekeningTabungan").attr("value", $(this).data('rekeningtabungan'));
             $("#lihatdata").find("#penempatan").attr("value", $(this).data('penempatan'));
             $("#lihatdata").find("#statusPegawai").attr("value", $(this).data('statuspegawai'));
             $("#lihatdata").find("#jabatan").attr("value", $(this).data('jabatan'));
             $("#lihatdata").find("#kantor").attr("value", $(this).data('kantor'));
-            // console.log($(this).data('datastatusperkawinan'));
-            // console.log($(this).data());
+
         })
     }
 </script>

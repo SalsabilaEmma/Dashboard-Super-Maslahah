@@ -22,27 +22,29 @@ class AbsenController extends Controller
 
     public function getDataPegawai(Request $request)
     {
-        $nama = $request->input('nama');
-        $pegawai = Pegawai::where('nama', $nama)->first();
+        // dd($request->all());
+        $idPegawai = $request->input('id');
+        $pegawai = Pegawai::where('id', $idPegawai)->first();
+        // dd($pegawai);
         return response()->json($pegawai);
     }
     public function add()
     {
         $data = Absen::latest()->get();
-        $today = Carbon::now()->isoFormat('D-MM-Y');
+        // $today = Carbon::now()->isoFormat('YYYY-MM-DD');
+        $today = Carbon::now();
+        // dd($today);
         $timezone = Carbon::now();
         $timezone->timezone = 'Asia/Jakarta';
         $time = $timezone->toTimeString();
-        // dd($time);
+        // dd($timezone);
         $dataPegawai = Pegawai::latest()->get();
-        return view('absen.add', compact('data', 'dataPegawai', 'today', 'time'));
+        return view('absen.add', compact('data', 'dataPegawai', 'timezone', 'time'));
     }
     public function store(Request $request)
     {
         // dd($request->all());
         $validator = Validator::make($request->all(), [
-            // 'nip' => 'required|numeric',
-            // 'namaPegawai' => 'required',
             'tanggal' => 'required|numeric',
             'status' => 'required',
             'jamMasuk' => 'nullable',
@@ -56,8 +58,6 @@ class AbsenController extends Controller
         $dataAbsen = new Absen;
         // 'idUser' => auth()->id(),
         $dataAbsen->idPegawai = $request->idPegawai;
-        // $dataAbsen->nip = $request->nip;
-        // $dataAbsen->namaPegawai = $request->namaPegawai;
         $dataAbsen->tanggal = $request->tanggal;
         $dataAbsen->status = $request->status;
         if ($dataAbsen->status == "Hadir") {
@@ -82,16 +82,12 @@ class AbsenController extends Controller
         // dd($request->all());
         $dataAbsen = Absen::findOrFail($id);
         $request->validate([
-            'nip' => 'required|numeric',
-            'namaPegawai' => 'required',
             'tanggal' => 'required',
             'status' => 'required',
             'jamMasuk' => 'required|nullable',
             'jamPulang' => 'required|nullable'
         ]);
         $dataAbsen->idPegawai = $request->idPegawai;
-        $dataAbsen->nip = $request->nip;
-        $dataAbsen->namaPegawai = $request->namaPegawai;
         $dataAbsen->tanggal = $request->tanggal;
         $dataAbsen->status = $request->status;
         $dataAbsen->jamMasuk = $request->jamMasuk;

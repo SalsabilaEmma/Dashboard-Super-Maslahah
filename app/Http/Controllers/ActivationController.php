@@ -19,8 +19,8 @@ class ActivationController extends Controller
     }
     public function getDataPegawai(Request $request)
     {
-        $nama = $request->input('nama');
-        $pegawai = Pegawai::where('nama', $nama)->first();
+        $idPegawai = $request->input('id');
+        $pegawai = Pegawai::where('id', $idPegawai)->first();
         // dd($pegawai);
         return response()->json($pegawai);
     }
@@ -36,7 +36,7 @@ class ActivationController extends Controller
         $validator = Validator::make($request->all(), [
             'cif' => 'required|numeric',
             // 'nip' => 'required|numeric',
-            // 'ttl' => 'required',
+            // 'tglLahir' => 'required',
             // 'telepon' => 'required|numeric',
             // 'noKtp' => 'required|numeric',
             'tipeHp' => 'required',
@@ -61,7 +61,7 @@ class ActivationController extends Controller
             'idPegawai' => $request->idPegawai,
             'cif'     => $request->cif,
             // 'nip' => $request->nip,
-            // 'ttl' => $request->ttl,
+            // 'tglLahir' => $request->tglLahir,
             // 'telepon' => $request->telepon,
             // 'noKtp' => $request->noKtp,
             'tipeHp' => $request->tipeHp,
@@ -95,20 +95,19 @@ class ActivationController extends Controller
 
     public function edit($id)
     {
+        $dataPegawai = Pegawai::all();
         $dataAktivasi = Activation::findOrFail($id);
-        // dd($dataAktivasi->pegawai->ttl);
-        return view('aktivasi.edit', compact('dataAktivasi'));
+        // dd($dataPegawai);
+        return view('aktivasi.edit', compact('dataAktivasi','dataPegawai'));
     }
 
     public function update(Request $request, $id)
     {
+        // dd($request->all());
         $dataAktivasi = Activation::findOrFail($id);
         $request->validate([
+            // 'idPegawai' => 'required',
             'cif' => 'required|numeric',
-            'nip' => 'required|numeric',
-            'ttl' => 'required',
-            'telepon' => 'required|numeric',
-            'noKtp' => 'required|numeric',
             'tipeHp' => 'required',
             'statusAktivasi' => 'required',
             'kodeUnik' => 'required',
@@ -118,11 +117,8 @@ class ActivationController extends Controller
             'aksesKunKer' => 'required',
             'aksesListPekerjaan' => 'required',
         ]);
+        $dataAktivasi->idPegawai = $request->idPegawai;
         $dataAktivasi->cif = $request->cif;
-        $dataAktivasi->nip = $request->nip;
-        $dataAktivasi->ttl = $request->ttl;
-        $dataAktivasi->telepon = $request->telepon;
-        $dataAktivasi->noKtp = $request->noKtp;
         $dataAktivasi->tipeHp = $request->tipeHp;
         $dataAktivasi->statusAktivasi = $request->statusAktivasi;
         $dataAktivasi->kodeUnik = $request->kodeUnik;

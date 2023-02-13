@@ -66,10 +66,10 @@
                                     </div>
                                     <div class="col-sm-4">
                                         <div class="mb-3">
-                                            <label class="form-label" for="ttl">Tanggal Lahir</label>
-                                            <input type="date" class="form-control @error('ttl') is-invalid @enderror"
-                                                id="ttl" name="ttl" placeholder="Masukkan Tanggal Lahir" required value="{{ $dataPegawai->ttl }}">
-                                            @error('ttl')
+                                            <label class="form-label" for="tglLahir">Tanggal Lahir</label>
+                                            <input type="date" class="form-control @error('tglLahir') is-invalid @enderror"
+                                                id="tglLahir" name="tglLahir" placeholder="YYYY-MM-DD" required value="{{ $dataPegawai->tglLahir }}">
+                                            @error('tglLahir')
                                                 <small>{{ $message }}</small>
                                             @enderror
                                         </div>
@@ -107,7 +107,7 @@
                                     <div class="col-sm-6">
                                         <div class="mb-3">
                                             <label class="form-label" for="telepon">Telepon</label>
-                                            <input type="number" class="form-control @error('telepon') is-invalid @enderror"
+                                            <input type="text" class="form-control @error('telepon') is-invalid @enderror"
                                                 id="telepon" name="telepon" placeholder="Masukkan Telepon" required value="{{ $dataPegawai->telepon }}">
                                             @error('telepon')
                                                 <small>{{ $message }}</small>
@@ -133,7 +133,7 @@
                                         <div class="mb-3">
                                             <label class="form-label" for="tglMasuk">Tanggal Masuk</label>
                                             <input type="date" class="form-control @error('tglMasuk') is-invalid @enderror"
-                                                id="tglMasuk" name="tglMasuk" placeholder="Masukkan Tanggal Masuk" required value="{{ $dataPegawai->tglMasuk }}">
+                                                id="tglMasuk" name="tglMasuk" placeholder="YYYY-MM-DD" value="{{ $dataPegawai->tglMasuk }}" required >
                                             @error('tglMasuk')
                                                 <small>{{ $message }}</small>
                                             @enderror

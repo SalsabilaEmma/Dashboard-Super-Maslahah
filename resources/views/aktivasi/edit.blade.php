@@ -32,31 +32,51 @@
                                 id="recaptcha-form" enctype="multipart/form-data">
                                 {{ csrf_field() }}
                                 <div class="row">
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-6">
                                         <div class="mb-3">
                                             <label class="form-label" for="cif">CIF</label>
-                                            <input type="text" class="form-control @error('cif') is-invalid @enderror"
+                                            <input type="number" class="form-control @error('cif') is-invalid @enderror"
                                                 id="cif" name="cif" value="{{ $dataAktivasi->cif }}" required>
                                             @error('cif')
                                                 <small>{{ $message }}</small>
                                             @enderror
                                         </div>
                                     </div>
-                                    <div class="col-sm-4">
+                                    <div class="col-sm-6">
                                         <div class="mb-3">
                                             <label class="form-label" for="nip">NIP</label>
                                             <input type="number" class="form-control @error('nip') is-invalid @enderror"
-                                                id="nip" name="nip" value="{{ $dataAktivasi->pegawai->nip }}" required>
+                                                id="nip" name="nip" value="{{ $dataAktivasi->pegawai->nip }}" required readonly>
                                             @error('nip')
                                                 <small>{{ $message }}</small>
                                             @enderror
                                         </div>
                                     </div>
-                                    <div class="col-sm-4">
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="nama">Nama Pegawai</label>
+                                            <select
+                                                class="js-example-disabled-results form-select digits @error('nama') is-invalid @enderror"
+                                                required name="idPegawai" required id="nama">
+                                                <option selected hidden value="{{ $dataAktivasi->pegawai->nama }}" disabled="disabled"> {{ $dataAktivasi->pegawai->nama }} - {{ $dataAktivasi->pegawai->nip }}</option>
+                                                @foreach ($dataPegawai as $pegawai)
+                                                    <option value="{{ $pegawai->id }}">{{ $pegawai->nama }} -
+                                                        {{ $pegawai->nip }}</option>
+                                                @endforeach
+                                            </select>
+                                            @error('nama')
+                                                <small>{{ $message }}</small>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
                                         <div class="mb-3">
                                             <label class="form-label" for="noKtp">No KTP</label>
                                             <input type="number" class="form-control @error('noKtp') is-invalid @enderror"
-                                                id="noKtp" name="noKtp" value="{{ $dataAktivasi->pegawai->noKtp }}" required>
+                                                id="noKtp" name="noKtp" value="{{ $dataAktivasi->pegawai->noKtp }}" required
+                                                readonly>
                                             @error('noKtp')
                                                 <small>{{ $message }}</small>
                                             @enderror
@@ -67,8 +87,9 @@
                                     <div class="col-sm-6">
                                         <div class="mb-3">
                                             <label class="form-label" for="telepon">No HP</label>
-                                            <input type="number" class="form-control @error('telepon') is-invalid @enderror"
-                                                id="telepon" name="telepon" value="{{ $dataAktivasi->pegawai->telepon }}" required>
+                                            <input type="number"
+                                                class="form-control @error('telepon') is-invalid @enderror" id="telepon"
+                                                name="telepon" value="{{ $dataAktivasi->pegawai->telepon }}" required readonly>
                                             @error('telepon')
                                                 <small>{{ $message }}</small>
                                             @enderror
@@ -76,10 +97,15 @@
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="mb-3">
-                                            <label class="form-label" for="tipeHp">Tipe HP</label>
-                                            <input type="text" class="form-control @error('tipeHp') is-invalid @enderror"
-                                                id="tipeHp" name="tipeHp" value="{{ $dataAktivasi->tipeHp }}" required>
-                                            @error('tipeHp')
+                                            <label class="form-label" for="tglLahir">Tanggal Lahir</label>
+                                            {{-- <input
+                                                class="datepicker-here form-control digits @error('tglLahir') is-invalid @enderror"
+                                                type="text" data-language="en" id="tglLahir" name="tglLahir"
+                                                placeholder="Masukkan Tanggal Lahir" required readonly> --}}
+                                            <input type="text"
+                                                class="form-control @error('tglLahir') is-invalid @enderror" id="tglLahir"
+                                                name="tglLahir" readonly value="{{ $dataAktivasi->pegawai->tglLahir }}" required>
+                                            @error('tglLahir')
                                                 <small>{{ $message }}</small>
                                             @enderror
                                         </div>
@@ -88,10 +114,10 @@
                                 <div class="row">
                                     <div class="col-sm-4">
                                         <div class="mb-3">
-                                            <label class="form-label" for="ttl">Tanggal Lahir</label>
-                                            <input type="date" class="form-control @error('ttl') is-invalid @enderror"
-                                                id="ttl" name="ttl" placeholder="" value="{{ $dataAktivasi->pegawai->ttl }}" required>
-                                            @error('ttl')
+                                            <label class="form-label" for="tipeHp">Tipe HP</label>
+                                            <input type="text" class="form-control @error('tipeHp') is-invalid @enderror"
+                                                id="tipeHp" name="tipeHp" value="{{ $dataAktivasi->tipeHp }}" required>
+                                            @error('tipeHp')
                                                 <small>{{ $message }}</small>
                                             @enderror
                                         </div>
@@ -110,11 +136,13 @@
                                     <div class="col-sm-4">
                                         <div class="mb-3">
                                             <label class="form-label" for="statusAktivasi">Status Aktivasi</label>
-                                            {{-- <input type="text" class="form-control" id="statusAktivasi"
-                                            name="statusAktivasi" value="{{ $dataAktivasi->statusAktivasi }}" required> --}}
-                                            <select class="form-select digits @error('statusAktivasi') is-invalid @enderror"
+                                            {{-- <input type="text" class="form-control @error('statusAktivasi') is-invalid @enderror"
+                                                id="statusAktivasi" name="statusAktivasi" placeholder="Masukkan Status Aktivasi"
+                                                required> --}}
+                                            <select
+                                                class="form-select digits @error('statusAktivasi') is-invalid @enderror"
                                                 name="statusAktivasi" id="statusAktivasi">
-                                                <option selected hidden value="">{{ $dataAktivasi->statusAktivasi }}
+                                                <option selected hidden value="{{ $dataAktivasi->statusAktivasi }}">{{ $dataAktivasi->statusAktivasi }}
                                                 </option>
                                                 <option value="Aktif">Aktif</option>
                                                 <option value="Tidak Aktif">Tidak Aktif</option>
@@ -209,3 +237,30 @@
         <!-- Container-fluid Ends-->
     </div>
 @endsection
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#nama').on('change', function() {
+            var id = $(this).val();
+            // console.log(nama);
+            $.ajax({
+                url: "{{ route('getDataPegawai') }}",
+                type: 'GET',
+                data: {
+                    id: id
+                },
+                success: function(data) {
+                    $('#nip').val(data.nip);
+                    $('#noKtp').val(data.noKtp);
+                    $('#telepon').val(data.telepon);
+                    // $('#tglLahir').val(data.tglLahir);
+                    var date = new Date(data.tglLahir);
+                    var formattedDate = date.getDate() + "-" + (date.getMonth() + 1) + "-" +
+                        date.getFullYear();
+                    $('#tglLahir').val(formattedDate);
+                }
+            });
+        });
+    });
+</script>

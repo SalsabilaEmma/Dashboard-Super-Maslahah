@@ -296,7 +296,7 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="mb-3">
-                                <label class="form-label" for="ttl">Status Kehadiran</label>
+                                <label class="form-label" for="status">Status Kehadiran</label>
                                 <input type="text" class="form-control" id="status" name="status" required
                                     readonly>
                             </div>

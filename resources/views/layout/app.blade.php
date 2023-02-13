@@ -55,7 +55,6 @@
     @section('css')
     @show
     @yield('css')
-    {{-- <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" /> --}}
 </head>
 {{-- onload="startTime()" --}}
 
@@ -94,7 +93,6 @@
             @include('layout.footer')
         </div>
     </div>
-    {{-- <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> --}}
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.16/dist/sweetalert2.all.min.js"></script>
     <!-- latest jquery-->
@@ -138,8 +136,9 @@
     <!-- Theme js-->
     <script src="{{ url('cuba') }}/assets/js/script.js"></script>
     {{-- <script src="{{ url('cuba') }}/assets/js/theme-customizer/customizer.js"></script> --}}
-    <!-- login js-->
-    <!-- Plugin used-->
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+        integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
 @show
 @yield('js')
 </body>

@@ -78,7 +78,7 @@
                                                 type="text" data-language="en" id="tanggal" name="tanggal" required
                                                 placeholder="{{ $today->format('d-m-Y') }}"> --}}
                                             <input type="date" class="form-control @error('tanggal') is-invalid @enderror"
-                                                id="tanggal" name="tanggal" placeholder="{{ $today }}" value="{{ $today }}" required>
+                                                id="tanggal" name="tanggal" placeholder="YYYY-MM-DD" value="{{ $timezone }}" required>
                                             @error('tanggal')
                                                 <small>{{ $message }}</small>
                                             @enderror
@@ -210,7 +210,7 @@
 </script>
 <script type='text/javascript'>
     $(window).on('load', function() {
-        // $('#formJam').hide();
+        $('#formJam').hide();
         $("#status").change(function() {
             console.log($("#status option:selected").val());
             if ($("#status option:selected").val() == 'Hadir') {

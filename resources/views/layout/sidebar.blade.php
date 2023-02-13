@@ -27,12 +27,12 @@
                     </div>
                 </li>
                 <li class="sidebar-list">
-                    <a class="sidebar-link sidebar-title link-nav" href="{{ route('aktivasi') }}"><i
-                            data-feather="check-circle"> </i><span>Aktivasi</span></a>
-                </li>
-                <li class="sidebar-list">
                     <a class="sidebar-link sidebar-title link-nav" href="{{ route('pegawai') }}"><i data-feather="user">
                         </i><span>Pegawai</span></a>
+                </li>
+                <li class="sidebar-list">
+                    <a class="sidebar-link sidebar-title link-nav" href="{{ route('aktivasi') }}"><i
+                            data-feather="check-circle"> </i><span>Aktivasi</span></a>
                 </li>
                 <li class="sidebar-list">
                     <a class="sidebar-link sidebar-title link-nav" href="{{ route('absensi') }}"><i data-feather="list">

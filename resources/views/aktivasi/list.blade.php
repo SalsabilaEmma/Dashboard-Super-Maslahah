@@ -88,7 +88,8 @@
                                                         <button type="button" class="view_data detail btn btn-xs"
                                                             data-id="{{ $aktivasi->id }}" data-cif="{{ $aktivasi->cif }}"
                                                             data-nip="{{ $aktivasi->pegawai->nip }}"
-                                                            data-ttl="{{ $aktivasi->pegawai->ttl }}"
+                                                            data-nama="{{ $aktivasi->pegawai->nama }}"
+                                                            data-tglLahir="{{ $aktivasi->pegawai->tglLahir }}"
                                                             data-telepon="{{ $aktivasi->pegawai->telepon }}"
                                                             data-noKtp="{{ $aktivasi->pegawai->noKtp }}"
                                                             data-tipeHp="{{ $aktivasi->tipeHp }}"
@@ -141,6 +142,7 @@
     </div>
 
     <!-- Modal tambah data -->
+    <!--
     <div id="tambahdata" class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog"
         aria-labelledby="myLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
@@ -210,13 +212,13 @@
                         <div class="row">
                             <div class="col-sm-4">
                                 <div class="mb-3">
-                                    <label class="form-label" for="ttl">Tanggal Lahir</label>
-                                    <input class="datepicker-here form-control digits @error('ttl') is-invalid @enderror"
-                                        type="text" data-language="en" id="ttl" name="ttl"
+                                    <label class="form-label" for="tglLahir">Tanggal Lahir</label>
+                                    <input class="datepicker-here form-control digits @error('tglLahir') is-invalid @enderror"
+                                        type="text" data-language="en" id="tglLahir" name="tglLahir"
                                         placeholder="Masukkan Tanggal Lahir" required>
-                                    {{-- <input type="date" class="form-control @error('ttl') is-invalid @enderror"
-                                        id="ttl" name="ttl" placeholder="Masukkan Tanggal Lahir" required> --}}
-                                    @error('ttl')
+                                    {{-- <input type="date" class="form-control @error('tglLahir') is-invalid @enderror"
+                                        id="tglLahir" name="tglLahir" placeholder="Masukkan Tanggal Lahir" required> --}}
+                                    @error('tglLahir')
                                         <small>{{ $message }}</small>
                                     @enderror
                                 </div>
@@ -319,7 +321,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 
     <!-- Modal View Detail data -->
     <div id="lihatdata" class="lihatdata modal fade bd-example-modal-lg" tabindex="-1" role="dialog"
@@ -362,7 +364,15 @@
                                 </div>
                             </div>
                             <div class="row">
-                                <div class="col-sm-6">
+                                <div class="col-sm-4">
+                                    <div class="mb-3">
+                                        <label class="form-label" for="nama">Nama</label>
+                                        <input type="hidden" name="id" id="id">
+                                        <input type="text" class="form-control" readonly id="nama"
+                                            name="nama" placeholder="" required>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4">
                                     <div class="mb-3">
                                         <label class="form-label" for="telepon">No HP</label>
                                         <input type="hidden" name="id" id="id">
@@ -370,7 +380,7 @@
                                             name="telepon" placeholder="Masukkan No HP" required>
                                     </div>
                                 </div>
-                                <div class="col-sm-6">
+                                <div class="col-sm-4">
                                     <div class="mb-3">
                                         <label class="form-label" for="tipeHp">Tipe HP</label>
                                         <input type="hidden" name="id" id="id">
@@ -382,10 +392,10 @@
                             <div class="row">
                                 <div class="col-sm-4">
                                     <div class="mb-3">
-                                        <label class="form-label" for="ttl">Tanggal Lahir</label>
+                                        <label class="form-label" for="tglLahir">Tanggal Lahir</label>
                                         <input type="hidden" name="id" id="id">
-                                        <input type="date" class="form-control" readonly id="ttl"
-                                            name="ttl" placeholder="Masukkan Tanggal Lahir" required>
+                                        <input type="text" class="form-control" readonly id="tglLahir"
+                                            name="tglLahir" placeholder="Masukkan Tanggal Lahir" required>
                                     </div>
                                 </div>
                                 <div class="col-sm-4">
@@ -482,8 +492,12 @@
             $('#lihatdata').modal('show');
             $("#lihatdata").find("#id").attr("value", $(this).data('id'));
             $("#lihatdata").find("#cif").attr("value", $(this).data('cif'));
+            $("#lihatdata").find("#nama").attr("value", $(this).data('nama'));
             $("#lihatdata").find("#nip").attr("value", $(this).data('nip'));
-            $("#lihatdata").find("#ttl").attr("value", $(this).data('ttl'));
+            // $("#lihatdata").find("#tglLahir").attr("value", $(this).data('tglLahir'));
+            var date = new Date($(this).data('tgllahir'));
+            var formattedDate = date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear();
+            $("#lihatdata").find("#tglLahir").attr("value", formattedDate);
             $("#lihatdata").find("#telepon").attr("value", $(this).data('telepon'));
             $("#lihatdata").find("#noktp").attr("value", $(this).data('noktp'));
             $("#lihatdata").find("#tipehp").attr("value", $(this).data('tipehp'));

@@ -96,14 +96,14 @@
                                     </div>
                                     <div class="col-sm-6">
                                         <div class="mb-3">
-                                            <label class="form-label" for="ttl">Tanggal Lahir</label>
+                                            <label class="form-label" for="tglLahir">Tanggal Lahir</label>
                                             <input
-                                                class="datepicker-here form-control digits @error('ttl') is-invalid @enderror"
-                                                type="text" data-language="en" id="ttl" name="ttl"
+                                                class="datepicker-here form-control digits @error('tglLahir') is-invalid @enderror"
+                                                type="text" data-language="en" id="tglLahir" name="tglLahir"
                                                 placeholder="Masukkan Tanggal Lahir" required readonly>
-                                            {{-- <input type="date" class="form-control @error('ttl') is-invalid @enderror"
-                                                id="ttl" name="ttl" placeholder="Masukkan Tanggal Lahir" required> --}}
-                                            @error('ttl')
+                                            {{-- <input type="date" class="form-control @error('tglLahir') is-invalid @enderror"
+                                                id="tglLahir" name="tglLahir" placeholder="Masukkan Tanggal Lahir" required> --}}
+                                            @error('tglLahir')
                                                 <small>{{ $message }}</small>
                                             @enderror
                                         </div>
@@ -252,16 +252,14 @@
                     $('#nip').val(data.nip);
                     $('#noKtp').val(data.noKtp);
                     $('#telepon').val(data.telepon);
-                    $('#ttl').val(data.ttl);
-                    // console.log('alo');
+                    // $('#tglLahir').val(data.tglLahir);
+                    var date = new Date(data.tglLahir);
+                    var formattedDate = date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear();
+                    $('#tglLahir').val(formattedDate);
                 }
             });
         });
     });
-
-    // function hadir() {
-    //     console.log('aiaa');
-    // }
 </script>
 <script type='text/javascript'>
     $(window).on('load', function() {

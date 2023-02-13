@@ -35,8 +35,8 @@
                                     <div class="col-sm-6">
                                         <div class="mb-3">
                                             <label class="form-label" for="nip">NIP</label>
-                                            <input type="text" name="nip" id="nip" required readonly
-                                                placeholder="{{ $dataAbsen->nip }}" class="form-control">
+                                            <input type="number" class="form-control @error('nip') is-invalid @enderror"
+                                                id="nip" name="nip" value="{{ $dataAbsen->pegawai->nip }}" required readonly>
                                             @error('nip')
                                                 <small>{{ $message }}</small>
                                             @enderror
@@ -45,21 +45,14 @@
                                     <div class="col-sm-6">
                                         <div class="mb-3">
                                             <label class="form-label" for="nama">Nama Pegawai</label>
-                                            {{-- <select class="form-select digits @error('nama') is-invalid @enderror"
-                                                data-live-search="true" name="namaPegawai" required id="nama">
-                                                <option selected hidden value=""> -Pilih Nama Pegawai- </option>
-                                                @foreach ($dataPegawai as $pegawai)
-                                                    <option value="{{ $pegawai->nama }}">{{ $pegawai->nama }}</option>
-                                                @endforeach
-                                            </select> --}}
+                                            {{-- nampilin buat edit idPegawai (nama&nip) --}}
                                             <select
                                                 class="js-example-disabled-results form-select digits @error('nama') is-invalid @enderror"
-                                                required name="namaPegawai" required id="nama">
-                                                <option selected hidden value="" disabled="disabled">
-                                                    {{ $dataAbsen->pegawai->nama }}
-                                                </option>
+                                                required name="idPegawai" required id="nama">
+                                                <option selected hidden value="{{ $dataAbsen->pegawai->id }}" disabled="disabled"> {{ $dataAbsen->pegawai->nama }} - {{ $dataAbsen->pegawai->nip }}</option>
                                                 @foreach ($dataPegawai as $pegawai)
-                                                    <option value="{{ $pegawai->nama }}">{{ $pegawai->nama }}</option>
+                                                    <option value="{{ $pegawai->id }}">{{ $pegawai->nama }} -
+                                                        {{ $pegawai->nip }}</option>
                                                 @endforeach
                                             </select>
                                             @error('nama')
@@ -177,7 +170,7 @@
                                     {{-- <button type="submit" class="btn btn-outline-primary m-t-15 waves-effect g-recaptcha"
                                     data-sitekey="{{ env('GOOGLE_RECAPTCHA_SITE_KEY') }}" data-callback='onSubmit'
                                     data-action='submit'>Submit</button> --}}
-                                    <input type="hidden" name="idPegawai" value="{{ $pegawai->id }}">
+                                    
                                     <button type="submit"
                                         class="btn btn-outline-primary m-t-15 waves-effect">Simpan</button>
                                     <button type="button" class="btn btn-outline-dark m-t-15 waves-effect"
@@ -197,13 +190,13 @@
 <script>
     $(document).ready(function() {
         $('#nama').on('change', function() {
-            var nama = $(this).val();
-            // console.log(nama);
+            var id = $(this).val();
+            // console.log(idPegawai);
             $.ajax({
                 url: "{{ route('getDataPegawai') }}",
                 type: 'GET',
                 data: {
-                    nama: nama
+                    id: id,
                 },
                 success: function(data) {
                     $('#nip').val(data.nip);

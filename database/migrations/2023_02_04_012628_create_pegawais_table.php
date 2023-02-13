@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('noKtp');
             $table->string('nama');
             $table->string('jenisKelamin');
-            $table->string('ttl');
+            $table->string('tglLahir');
             $table->string('statusPerkawinan');
             $table->string('alamat');
             $table->string('telepon');
