@@ -4,6 +4,7 @@ use App\Http\Controllers\AbsenController;
 use App\Http\Controllers\ActivationController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\KanbanController;
+use App\Http\Controllers\lokasiController;
 use App\Http\Controllers\MpayController;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\ProfileController;
@@ -26,8 +27,6 @@ Route::get('/', function () {
 });
 
 Route::middleware('auth')->group(function () {
-    Route::GET('/lalala', [Controller::class, 'stisla'])->name('s');
-
     Route::GET('/dashboard', [Controller::class, 'index'])->name('dashboard');
     // Route::GET('/kanban-board', [KanbanController::class, 'index'])->name('kanban');
 
@@ -47,8 +46,9 @@ Route::middleware('auth')->group(function () {
     Route::POST('/pegawai/update/{id?}', [PegawaiController::class, 'update'])->name('pegawai.update');
     Route::DELETE('/pegawai/delete/{id?}', [PegawaiController::class, 'destroy'])->name('pegawai.destroy');
 
+    Route::any('/getDataPegawai', [PegawaiController::class, 'getDataPegawai'])->name('getDataPegawai'); //post
+
     /** Absen */
-    Route::any('/getDataPegawai', [AbsenController::class, 'getDataPegawai'])->name('getDataPegawai'); //post
     Route::GET('/absensi', [AbsenController::class, 'index'])->name('absensi');
     Route::GET('/absensi/add', [AbsenController::class, 'add'])->name('absensi.add');
     Route::POST('/absensi/store', [AbsenController::class, 'store'])->name('absensi.store');
@@ -80,6 +80,12 @@ Route::middleware('auth')->group(function () {
     Route::GET('/tracking/edit/{id?}', [TrackingController::class, 'edit'])->name('tracking.edit');
     Route::POST('/tracking/update/{id?}', [TrackingController::class, 'update'])->name('tracking.update');
     Route::DELETE('/tracking/delete/{id?}', [TrackingController::class, 'destroy'])->name('tracking.destroy');
+
+    /** crud */
+    // Route::GET('/crud', [Controller::class, 'index'])->name('crud');
+    Route::GET('/lokasi', [lokasiController::class, 'index'])->name('lokasi');
+    Route::GET('/data', [lokasiController::class, 'viewData'])->name('viewData');
+    Route::POST('/add', [lokasiController::class, 'store'])->name('add');
 });
 
 require __DIR__ . '/auth.php';

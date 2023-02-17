@@ -13,21 +13,12 @@ class AbsenController extends Controller
 {
     public function index()
     {
-        // $data = Absen::latest()->get();
         $data = Absen::with('pegawai')->get();
-        $dataPegawai = Pegawai::latest()->get();
+        $dataPegawai = Pegawai::all();
         // dd($data);
         return view('absen.list', compact('data', 'dataPegawai'));
     }
 
-    public function getDataPegawai(Request $request)
-    {
-        // dd($request->all());
-        $idPegawai = $request->input('id');
-        $pegawai = Pegawai::where('id', $idPegawai)->first();
-        // dd($pegawai);
-        return response()->json($pegawai);
-    }
     public function add()
     {
         $data = Absen::latest()->get();
@@ -57,7 +48,7 @@ class AbsenController extends Controller
         // }
         $dataAbsen = new Absen;
         // 'idUser' => auth()->id(),
-        $dataAbsen->idPegawai = $request->idPegawai;
+        $dataAbsen->nipPegawai = $request->nipPegawai;
         $dataAbsen->tanggal = $request->tanggal;
         $dataAbsen->status = $request->status;
         if ($dataAbsen->status == "Hadir") {
@@ -87,7 +78,7 @@ class AbsenController extends Controller
             'jamMasuk' => 'required|nullable',
             'jamPulang' => 'required|nullable'
         ]);
-        $dataAbsen->idPegawai = $request->idPegawai;
+        $dataAbsen->nipPegawai = $request->nipPegawai;
         $dataAbsen->tanggal = $request->tanggal;
         $dataAbsen->status = $request->status;
         $dataAbsen->jamMasuk = $request->jamMasuk;

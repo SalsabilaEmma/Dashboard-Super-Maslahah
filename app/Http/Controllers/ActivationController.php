@@ -17,13 +17,6 @@ class ActivationController extends Controller
         $dataPegawai = Pegawai::latest()->get();
         return view('aktivasi.list', compact('data','dataPegawai'));
     }
-    public function getDataPegawai(Request $request)
-    {
-        $idPegawai = $request->input('id');
-        $pegawai = Pegawai::where('id', $idPegawai)->first();
-        // dd($pegawai);
-        return response()->json($pegawai);
-    }
     public function add()
     {
         $dataAktivasi = Activation::get();
@@ -32,13 +25,8 @@ class ActivationController extends Controller
     }
     public function store(Request $request)
     {
-        // dd($request->all());
         $validator = Validator::make($request->all(), [
             'cif' => 'required|numeric',
-            // 'nip' => 'required|numeric',
-            // 'tglLahir' => 'required',
-            // 'telepon' => 'required|numeric',
-            // 'noKtp' => 'required|numeric',
             'tipeHp' => 'required',
             'statusAktivasi' => 'required',
             'kodeUnik' => 'required',
@@ -53,17 +41,11 @@ class ActivationController extends Controller
             // dd(response()->json($validator->errors()));
             return redirect()->route('aktivasi')->with('error', ' Field Must Be a Number');
         }
-        // dd('simpen dah');
         //create data
         $data = Activation::create([
             // 'idUser' => auth()->id(),
-            'id' => $request->id,
-            'idPegawai' => $request->idPegawai,
+            'nipPegawai' => $request->nipPegawai,
             'cif'     => $request->cif,
-            // 'nip' => $request->nip,
-            // 'tglLahir' => $request->tglLahir,
-            // 'telepon' => $request->telepon,
-            // 'noKtp' => $request->noKtp,
             'tipeHp' => $request->tipeHp,
             'statusAktivasi' => $request->statusAktivasi,
             'kodeUnik' => $request->kodeUnik,
@@ -106,7 +88,7 @@ class ActivationController extends Controller
         // dd($request->all());
         $dataAktivasi = Activation::findOrFail($id);
         $request->validate([
-            // 'idPegawai' => 'required',
+            // 'nipPegawai' => 'required',
             'cif' => 'required|numeric',
             'tipeHp' => 'required',
             'statusAktivasi' => 'required',
@@ -117,7 +99,7 @@ class ActivationController extends Controller
             'aksesKunKer' => 'required',
             'aksesListPekerjaan' => 'required',
         ]);
-        $dataAktivasi->idPegawai = $request->idPegawai;
+        $dataAktivasi->nipPegawai = $request->nipPegawai;
         $dataAktivasi->cif = $request->cif;
         $dataAktivasi->tipeHp = $request->tipeHp;
         $dataAktivasi->statusAktivasi = $request->statusAktivasi;

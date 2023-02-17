@@ -36,7 +36,7 @@
                                         <div class="mb-3">
                                             <label class="form-label" for="nip">NIP</label>
                                             <input type="number" class="form-control @error('nip') is-invalid @enderror"
-                                                id="nip" name="nip" value="{{ $dataAbsen->pegawai->nip }}" required readonly>
+                                                id="nip" value="{{ $dataAbsen->pegawai->nip }}" required readonly>
                                             @error('nip')
                                                 <small>{{ $message }}</small>
                                             @enderror
@@ -45,13 +45,12 @@
                                     <div class="col-sm-6">
                                         <div class="mb-3">
                                             <label class="form-label" for="nama">Nama Pegawai</label>
-                                            {{-- nampilin buat edit idPegawai (nama&nip) --}}
                                             <select
                                                 class="js-example-disabled-results form-select digits @error('nama') is-invalid @enderror"
-                                                required name="idPegawai" required id="nama">
-                                                <option selected hidden value="{{ $dataAbsen->pegawai->id }}" disabled="disabled"> {{ $dataAbsen->pegawai->nama }} - {{ $dataAbsen->pegawai->nip }}</option>
+                                                required name="nipPegawai" required id="nama">
+                                                <option selected hidden value="{{ $dataAbsen->pegawai->nip }}" disabled="disabled"> {{ $dataAbsen->pegawai->nama }} - {{ $dataAbsen->pegawai->nip }}</option>
                                                 @foreach ($dataPegawai as $pegawai)
-                                                    <option value="{{ $pegawai->id }}">{{ $pegawai->nama }} -
+                                                    <option value="{{ $pegawai->nip }}">{{ $pegawai->nama }} -
                                                         {{ $pegawai->nip }}</option>
                                                 @endforeach
                                             </select>
@@ -170,7 +169,7 @@
                                     {{-- <button type="submit" class="btn btn-outline-primary m-t-15 waves-effect g-recaptcha"
                                     data-sitekey="{{ env('GOOGLE_RECAPTCHA_SITE_KEY') }}" data-callback='onSubmit'
                                     data-action='submit'>Submit</button> --}}
-                                    
+
                                     <button type="submit"
                                         class="btn btn-outline-primary m-t-15 waves-effect">Simpan</button>
                                     <button type="button" class="btn btn-outline-dark m-t-15 waves-effect"
@@ -190,13 +189,13 @@
 <script>
     $(document).ready(function() {
         $('#nama').on('change', function() {
-            var id = $(this).val();
-            // console.log(idPegawai);
+            var nip = $(this).val();
+            // console.log(nipPegawai);
             $.ajax({
                 url: "{{ route('getDataPegawai') }}",
                 type: 'GET',
                 data: {
-                    id: id,
+                    nip: nip,
                 },
                 success: function(data) {
                     $('#nip').val(data.nip);

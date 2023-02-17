@@ -14,16 +14,18 @@ return new class extends Migration
     public function up()
     {
         Schema::create('pegawais', function (Blueprint $table) {
+            $table->engine = 'MyISAM';
             $table->bigIncrements('id');
-            $table->string('nip');
+            $table->string('nip', 100);
+            $table->index('nip', 'nip_index');
             $table->string('noKtp');
             $table->string('nama');
             $table->string('jenisKelamin');
-            $table->string('tglLahir');
+            $table->date('tglLahir');
             $table->string('statusPerkawinan');
             $table->string('alamat');
             $table->string('telepon');
-            $table->string('tglMasuk')->nullable();
+            $table->date('tglMasuk')->nullable();
             $table->string('rekeningTabungan');
             $table->string('penempatan');
             $table->string('statusPegawai');
@@ -31,6 +33,7 @@ return new class extends Migration
             $table->string('kantor');
             $table->timestamps();
         });
+        // DB::statement('ALTER TABLE pegawais ADD INDEX nip_index (nip);');
     }
 
     /**

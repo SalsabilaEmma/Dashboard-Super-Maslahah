@@ -13,10 +13,10 @@ class Pegawai extends Model
 
     public function absen()
     {
-        return $this->hasMany('App\Models\Absen', 'idPegawai');
+        return $this->hasMany('App\Models\Absen', 'nipPegawai');
     }
     public function aktivasi()
     {
-        return $this->hasMany('App\Models\Activation', 'idPegawai');
+        return $this->hasMany('App\Models\Activation', 'nipPegawai');
     }
 }

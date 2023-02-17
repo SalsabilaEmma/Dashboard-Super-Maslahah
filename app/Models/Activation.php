@@ -9,10 +9,10 @@ class Activation extends Model
 {
     use HasFactory;
     protected $table = 'activations';
-    protected $fillable = ['id','idPegawai', 'cif', 'tipeHp', 'statusAktivasi', 'kodeUnik', 'aksesAbsen', 'aksesMpay', 'aksesKpai', 'aksesKunKer', 'aksesListPekerjaan'];
+    protected $fillable = ['id','nipPegawai', 'cif', 'tipeHp', 'statusAktivasi', 'kodeUnik', 'aksesAbsen', 'aksesMpay', 'aksesKpai', 'aksesKunKer', 'aksesListPekerjaan'];
 
     public function pegawai()
     {
-        return $this->belongsTo('App\Models\Pegawai', 'idPegawai');
+        return $this->belongsTo('App\Models\Pegawai', 'nipPegawai', 'nip');
     }
 }

@@ -56,10 +56,10 @@
                                             </select> --}}
                                             <select
                                                 class="js-example-disabled-results form-select digits @error('nama') is-invalid @enderror"
-                                                required name="namaPegawai" required id="nama">
+                                                required name="nipPegawai" required id="nama">
                                                 <option selected hidden value="" disabled="disabled"> -Pilih Nama Pegawai- </option>
                                                 @foreach ($dataPegawai as $pegawai)
-                                                    <option value="{{ $pegawai->nama }}">{{ $pegawai->nama }} - {{ $pegawai->nip }}</option>
+                                                    <option value="{{ $pegawai->nip }}">{{ $pegawai->nama }} - {{ $pegawai->nip }}</option>
                                                 @endforeach
                                             </select>
                                             @error('nama')
@@ -165,7 +165,7 @@
                                     </div>
                                 </div> --}}
                                 <div class="text-right">
-                                    <input type="hidden" name="idPegawai" value="{{ $pegawai->id }}">
+                                    {{-- <input type="hidden" name="nipPegawai" value="{{ $pegawai->nip }}"> --}}
                                     {{-- <button type="submit" class="btn btn-outline-primary m-t-15 waves-effect g-recaptcha"
                                         data-sitekey="{{ env('GOOGLE_RECAPTCHA_SITE_KEY') }}" data-callback='onSubmit'
                                         data-action='submit'>Submit</button> --}}
@@ -188,13 +188,13 @@
 <script>
     $(document).ready(function() {
         $('#nama').on('change', function() {
-            var nama = $(this).val();
-            // console.log(nama);
+            var nip = $(this).val();
+            // console.log(nip);
             $.ajax({
                 url: "{{ route('getDataPegawai') }}",
                 type: 'GET',
                 data: {
-                    nama: nama
+                    nip: nip
                 },
                 success: function(data) {
                     $('#nip').val(data.nip);

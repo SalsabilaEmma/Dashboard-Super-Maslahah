@@ -246,7 +246,6 @@
                             </div>
                         </div> --}}
                         <div class="text-right">
-                            <input type="hidden" name="idPegawai" value="{{ $pegawai->id }}">
                             {{-- <button type="submit" class="btn btn-outline-primary m-t-15 waves-effect g-recaptcha"
                                 data-sitekey="{{ env('GOOGLE_RECAPTCHA_SITE_KEY') }}" data-callback='onSubmit'
                                 data-action='submit'>Submit</button> --}}

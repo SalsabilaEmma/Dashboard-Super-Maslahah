@@ -8,6 +8,15 @@ use Validator;
 
 class PegawaiController extends Controller
 {
+    public function getDataPegawai(Request $request)
+    {
+        // dd($request->all());
+        $nipPegawai = $request->input('nip');
+        $pegawai = Pegawai::where('nip', $nipPegawai)->first();
+        // dd($pegawai);
+        return response()->json($pegawai);
+    }
+
     public function index()
     {
         // return view('pegawai.list');

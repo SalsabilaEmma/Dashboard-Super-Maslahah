@@ -9,10 +9,10 @@ class Absen extends Model
 {
     use HasFactory;
     protected $table = 'absens';
-    protected $fillable = ['tanggal', 'status','jamMasuk','jamPulang','idPegawai'];
+    protected $fillable = ['tanggal', 'status', 'jamMasuk', 'jamPulang', 'nipPegawai'];
 
     public function pegawai()
     {
-        return $this->belongsTo('App\Models\Pegawai', 'idPegawai');
+        return $this->belongsTo('App\Models\Pegawai', 'nipPegawai', 'nip');
     }
 }

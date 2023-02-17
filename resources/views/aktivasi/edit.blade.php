@@ -59,10 +59,10 @@
                                             <label class="form-label" for="nama">Nama Pegawai</label>
                                             <select
                                                 class="js-example-disabled-results form-select digits @error('nama') is-invalid @enderror"
-                                                required name="idPegawai" required id="nama">
+                                                required name="nipPegawai" required id="nama">
                                                 <option selected hidden value="{{ $dataAktivasi->pegawai->nama }}" disabled="disabled"> {{ $dataAktivasi->pegawai->nama }} - {{ $dataAktivasi->pegawai->nip }}</option>
                                                 @foreach ($dataPegawai as $pegawai)
-                                                    <option value="{{ $pegawai->id }}">{{ $pegawai->nama }} -
+                                                    <option value="{{ $pegawai->nip }}">{{ $pegawai->nama }} -
                                                         {{ $pegawai->nip }}</option>
                                                 @endforeach
                                             </select>
@@ -242,13 +242,13 @@
 <script>
     $(document).ready(function() {
         $('#nama').on('change', function() {
-            var id = $(this).val();
-            // console.log(nama);
+            var nip = $(this).val();
+            // console.log(nip);
             $.ajax({
                 url: "{{ route('getDataPegawai') }}",
                 type: 'GET',
                 data: {
-                    id: id
+                    nip: nip
                 },
                 success: function(data) {
                     $('#nip').val(data.nip);
