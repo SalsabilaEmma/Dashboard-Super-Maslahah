@@ -1,15 +1,16 @@
 @extends('layout.app')
 @section('content')
-<style>
-    .text-center {
-        text-align: center;
-    }
-    #mapid {
-        width: '100%';
-        height: 400px;
-        z-index: 1;
-    }
-</style>
+    <style>
+        .text-center {
+            text-align: center;
+        }
+
+        #mapid {
+            width: '100%';
+            height: 400px;
+            z-index: 1;
+        }
+    </style>
     <div class="page-body">
         <div class="container-fluid">
             <div class="page-title">
@@ -44,3 +45,17 @@
         <!-- Container-fluid Ends-->
     </div>
 @endsection
+{{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+<script>
+    function loadMarkers() {
+        $.ajax({
+            // url: "{{ route('viewMap') }}",
+            url: "{{ route('viewData') }}",
+            success: function(initialMarkers) {
+                const initialMarkers = JSON.parse(initialMarkers);
+                console.log(initialMarkers);
+                // Lanjutkan dengan memproses data di sini, seperti menambahkan marker ke peta
+            }
+        });
+    }
+</script> --}}

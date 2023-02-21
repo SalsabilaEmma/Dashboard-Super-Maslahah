@@ -143,6 +143,7 @@
                 }
             });
             $("#addform").on("submit", function(e) {
+                // console.log('coba');
                 e.preventDefault();
                 $.ajax({
                     type: "POST",
@@ -150,21 +151,15 @@
                     data: $("#addform").serialize(),
                     dataType: "JSON",
                     success: function(response) {
-                        console.log('aa');
+                        console.log('try this');
                         $("#lokasi").val('');
                         $("#long").val('');
                         $("#lat").val('');
-
-                        $("#data-table tbody").children().remove(); //added this line
-
-                        viewdata(); //added this line
-
-                    }, //added this line
-
-                }); //added this line
-
-            }); //added this line
-
-        }); //added this line
+                        $("#data-table tbody").children().remove();
+                        viewdata();
+                    },
+                });
+            });
+        });
     </script>
 @endsection

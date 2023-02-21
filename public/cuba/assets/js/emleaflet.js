@@ -1,4 +1,3 @@
-
 let map, markers = [];
     /* ----------------------------- Initialize Map ----------------------------- */
     function initMap() {
@@ -19,6 +18,31 @@ let map, markers = [];
             .on('dragend', (event) => markerDragEnd(event, index));
     }
     initMap();
+    /* --------------------------- Initialize Markers --------------------------- */
+    // function initMarkers() {
+    //     // const initialMarkers = JSON.parse('<?php echo json_encode($initialMarkers); ?>');
+    //     // const initialMarkers = <?php echo json_encode($initialMarkers); ?>;
+    //     const initialMarkers = JSON.parse('<?php echo json_encode($initialMarkers); ?>');
+    //     console.log(initialMarkers);
+
+    //     for (let index = 0; index < initialMarkers.length; index++) {
+
+    //         const data = initialMarkers[index];
+    //         const marker = generateMarker(data, index);
+    //         marker.addTo(map).bindPopup(`<b>${data.position.lat},  ${data.position.lng}</b>`);
+    //         map.panTo(data.position);
+    //         markers.push(marker)
+    //     }
+    // }
+
+    // function generateMarker(data, index) {
+    //     return L.marker(data.position, {
+    //             draggable: data.draggable
+    //         })
+    //         .on('click', (event) => markerClicked(event, index))
+    //         .on('dragend', (event) => markerDragEnd(event, index));
+    // }
+    // initMap();
     /* ------------------------- Handle Map Click Event ------------------------- */
     function mapClicked($event) {
         // console.log(map);

@@ -79,7 +79,7 @@
                                                             data-jamMasuk="{{ $absensi->jamMasuk }}"
                                                             data-jamPulang="{{ $absensi->jamPulang }}"
                                                             data-long="{{ $absensi->long }}"
-                                                            data-lat="{{ $absensi->lat }}" {{-- data-created_at="{{ $absensi->created_at }}"  --}}
+                                                            data-lat="{{ $absensi->lat }}" data-ket="{{ $absensi->ket }}"
                                                             onclick="detail()" data-toggle="modal" data-target="#lihatdata">
                                                             <a class="view_data btn btn-xs btn-outline-primary"> <i
                                                                     data-feather="info"></i>
@@ -183,7 +183,7 @@
                                         name="status" id="status">
                                         <option selected hidden value=""> -Pilih Status Kehadiran- </option>
                                         <option value="Hadir">Hadir</option>
-                                        <option value="Sakit">Sakit</option>
+                                        <option value="Cuti">Cuti</option>
                                         <option value="Izin">Izin</option>
                                         <option value="Tanpa Keterangan">Tanpa Keterangan</option>
                                     </select>
@@ -315,6 +315,15 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="mb-3">
+                                <label class="form-label" for="ket">Keterangan</label>
+                                <input type="text" class="form-control" id="ket" name="ket" required
+                                    readonly>
+                            </div>
+                        </div>
+                    </div>
                     <hr>
                     <div class="row">
                         <div class="col-sm-6">
@@ -359,6 +368,7 @@
             $("#lihatdata").find("#jamPulang").attr("value", $(this).data('jampulang'));
             $("#lihatdata").find("#long").attr("value", $(this).data('long'));
             $("#lihatdata").find("#lat").attr("value", $(this).data('lat'));
+            $("#lihatdata").find("#ket").attr("value", $(this).data('ket'));
             var tanggal = $(this).data('tanggal');
             var date = new Date(tanggal);
             console.log(date.toLocaleDateString("id-ID"));

@@ -13,7 +13,7 @@ class AbsenController extends Controller
 {
     public function index()
     {
-        $data = Absen::with('pegawai')->get();
+        $data = Absen::with('pegawai')->latest()->get();
         $dataPegawai = Pegawai::all();
         // dd($data);
         return view('absen.list', compact('data', 'dataPegawai'));
@@ -39,9 +39,8 @@ class AbsenController extends Controller
             'tanggal' => 'required|numeric',
             'status' => 'required',
             'jamMasuk' => 'nullable',
-            // 'jamPulang' => 'required|nullable'
+            'ket' => 'nullable',
         ]);
-        // dd($request->all());
         //check if validation fails
         // if ($validator->fails()) {
         //     return response()->json($validator->errors(), 422);
@@ -53,10 +52,13 @@ class AbsenController extends Controller
         $dataAbsen->status = $request->status;
         if ($dataAbsen->status == "Hadir") {
             $dataAbsen->jamMasuk = $request->jamMasuk;
+        } elseif ($dataAbsen->status == "Izin" || $dataAbsen->status == "Tanpa Keterangan") {
+            $dataAbsen->ket = $request->ket;
         } else {
             $dataAbsen->jamMasuk = null;
+            $dataAbsen->ket = null;
         }
-        $dataAbsen->jamPulang = $request->jamPulang;
+        // $dataAbsen->jamPulang = $request->jamPulang;
         // dd($dataAbsen);
         $dataAbsen->save();
         return redirect()->route('absensi')->with('success', 'Data Berhasil Ditambahkan!');

@@ -224,7 +224,7 @@
                             <div class="col-md-4">
                                 <label class="col-form-label" for="recipient-name">Status:</label>
                                 <select name="status" class="form-select" id="status" required="">
-                                    <option selected hidden value="" id="status">Pilih Status</option>
+                                    <option selected hidden value="" id="status" name="status">Pilih Status</option>
                                     <option value="To Do">To Do</option>
                                     <option value="In Progress">In Progress</option>
                                     <option value="Done">Done</option>
@@ -307,6 +307,7 @@
             $("#viewdata").find("#sprintpoint").attr("value", $(this).data('sprintpoint'));
             // $("#viewdata").find("#issues").attr("value", $(this).data('issues'));
             $('#issues').text($(this).data('issues'));
+            console.log($(this).data('status'));
         });
     }
 

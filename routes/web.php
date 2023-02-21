@@ -4,7 +4,7 @@ use App\Http\Controllers\AbsenController;
 use App\Http\Controllers\ActivationController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\KanbanController;
-use App\Http\Controllers\lokasiController;
+// use App\Http\Controllers\TrackingController;
 use App\Http\Controllers\MpayController;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\ProfileController;
@@ -83,9 +83,11 @@ Route::middleware('auth')->group(function () {
 
     /** crud */
     // Route::GET('/crud', [Controller::class, 'index'])->name('crud');
-    Route::GET('/lokasi', [lokasiController::class, 'index'])->name('lokasi');
-    Route::GET('/data', [lokasiController::class, 'viewData'])->name('viewData');
-    Route::POST('/add', [lokasiController::class, 'store'])->name('add');
+    // Route::GET('/lokasi', [TrackingController::class, 'index'])->name('lokasi');
+    Route::GET('/lokasi', [TrackingController::class, 'indexLokasi'])->name('indexLokasi');
+    Route::GET('/data', [TrackingController::class, 'viewData'])->name('viewData');
+    Route::GET('/viewMap', [TrackingController::class, 'viewMap'])->name('viewMap');
+    Route::POST('/add', [TrackingController::class, 'store'])->name('add');
 });
 
 require __DIR__ . '/auth.php';

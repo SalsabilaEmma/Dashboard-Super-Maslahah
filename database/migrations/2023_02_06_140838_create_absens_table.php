@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('status');
             $table->time('jamMasuk')->nullable();
             $table->time('jamPulang')->nullable();
+            $table->string('ket')->nullable();
             $table->string('long')->nullable();
             $table->string('lat')->nullable();
             // $table->unsignedBigInteger('idPegawai');

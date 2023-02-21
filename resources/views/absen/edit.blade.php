@@ -48,7 +48,9 @@
                                             <select
                                                 class="js-example-disabled-results form-select digits @error('nama') is-invalid @enderror"
                                                 required name="nipPegawai" required id="nama">
-                                                <option selected hidden value="{{ $dataAbsen->pegawai->nip }}" disabled="disabled"> {{ $dataAbsen->pegawai->nama }} - {{ $dataAbsen->pegawai->nip }}</option>
+                                                <option selected hidden value="{{ $dataAbsen->pegawai->nip }}"
+                                                    disabled="disabled"> {{ $dataAbsen->pegawai->nama }} -
+                                                    {{ $dataAbsen->pegawai->nip }}</option>
                                                 @foreach ($dataPegawai as $pegawai)
                                                     <option value="{{ $pegawai->nip }}">{{ $pegawai->nama }} -
                                                         {{ $pegawai->nip }}</option>
@@ -71,8 +73,8 @@
                                                 value="{{ date('d/m/Y', strtotime($dataAbsen->tanggal)) }}"> --}}
                                             <input type="date"
                                                 class="form-control @error('tanggal') is-invalid @enderror" id="tanggal"
-                                                name="tanggal" placeholder="{{ $dataAbsen->today }}" value="{{ $dataAbsen->tanggal }}"
-                                                required>
+                                                name="tanggal" placeholder="{{ $dataAbsen->today }}"
+                                                value="{{ $dataAbsen->tanggal }}" required>
                                             @error('tanggal')
                                                 <small>{{ $message }}</small>
                                             @enderror
@@ -81,13 +83,13 @@
                                     <div class="col-sm-6">
                                         <div class="mb-3">
                                             <label class="form-label" for="status">Status Kehadiran</label>
-                                            <input type="text" class="form-control" id="status" name="status" value="{{ $dataAbsen->status }}"
-                                                readonly>
+                                            <input type="text" class="form-control" id="status" name="status"
+                                                value="{{ $dataAbsen->status }}" readonly>
                                             {{-- <select class="form-select digits @error('status') is-invalid @enderror"
                                                 name="status" id="status">
                                                 <option selected hidden value="">{{ $dataAbsen->status }}</option>
                                                 <option value="Hadir">Hadir</option>
-                                                <option value="Sakit">Sakit</option>
+                                                <option value="Cuti">Cuti</option>
                                                 <option value="Izin">Izin</option>
                                                 <option value="Tanpa Keterangan">Tanpa Keterangan</option>
                                             </select>
@@ -98,7 +100,6 @@
                                     </div>
                                 </div>
                                 @if ($dataAbsen->status == 'Hadir')
-                                    {{-- id="formJam" --}}
                                     <div class="row">
                                         <div class="col-sm-6">
                                             <div class="mb-3">
@@ -107,13 +108,13 @@
                                                 data-align="top" data-autoclose="true">
                                                 <input class="form-control" type="text" value="{{ date('H:i', strtotime($dataAbsen->jamMasuk)) }}">
                                                 <span class="input-group-addon">
-                                                    <span class="glyphicon glyphicon-time"></span>
+                                                    <span class="glyphicon glyphicon-time"></span>--}}
                                                 </span>
-                                            </div> --}}
                                                 <input type="time" readonly
                                                     class="form-control @error('jamMasuk') is-invalid @enderror"
                                                     id="jamMasuk" name="jamMasuk"
-                                                    placeholder="{{ date('H:i', strtotime($dataAbsen->jamMasuk)) }}" value="{{ date('H:i', strtotime($dataAbsen->jamMasuk)) }}">
+                                                    placeholder="{{ date('H:i', strtotime($dataAbsen->jamMasuk)) }}"
+                                                    value="{{ date('H:i', strtotime($dataAbsen->jamMasuk)) }}">
                                                 @error('jamMasuk')
                                                     <small>{{ $message }}</small>
                                                 @enderror
@@ -126,9 +127,8 @@
                                                 data-align="top" data-autoclose="true">
                                                 <input class="form-control" type="text" value="{{ date('H:i', strtotime($dataAbsen->jamPulang)) }}">
                                                 <span class="input-group-addon">
-                                                    <span class="glyphicon glyphicon-time"></span>
+                                                    <span class="glyphicon glyphicon-time"></span> --}}
                                                 </span>
-                                            </div> --}}
                                                 <input type="time"
                                                     class="form-control @error('jamPulang') is-invalid @enderror"
                                                     id="jamPulang" name="jamPulang"
@@ -139,6 +139,22 @@
                                             </div>
                                         </div>
                                     </div>
+                                @elseif ($dataAbsen->status == 'Izin' || $dataAbsen->status == 'Tanpa Keterangan')
+                                <div class="row">
+                                    <div class="col-sm-12">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="ket">Keterangan</label>
+                                            <input type="text" readonly
+                                                class="form-control @error('ket') is-invalid @enderror"
+                                                id="ket" name="ket"
+                                                placeholder="{{ $dataAbsen->ket }}"
+                                                value="{{ $dataAbsen->ket }}">
+                                            @error('ket')
+                                                <small>{{ $message }}</small>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </div>
                                 @endif
 
                                 {{-- <hr>

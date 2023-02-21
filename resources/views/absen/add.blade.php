@@ -57,9 +57,11 @@
                                             <select
                                                 class="js-example-disabled-results form-select digits @error('nama') is-invalid @enderror"
                                                 required name="nipPegawai" required id="nama">
-                                                <option selected hidden value="" disabled="disabled"> -Pilih Nama Pegawai- </option>
+                                                <option selected hidden value="" disabled="disabled"> -Pilih Nama
+                                                    Pegawai- </option>
                                                 @foreach ($dataPegawai as $pegawai)
-                                                    <option value="{{ $pegawai->nip }}">{{ $pegawai->nama }} - {{ $pegawai->nip }}</option>
+                                                    <option value="{{ $pegawai->nip }}">{{ $pegawai->nama }} -
+                                                        {{ $pegawai->nip }}</option>
                                                 @endforeach
                                             </select>
                                             @error('nama')
@@ -77,8 +79,10 @@
                                                 class="datepicker-here form-control digits @error('tanggal') is-invalid @enderror"
                                                 type="text" data-language="en" id="tanggal" name="tanggal" required
                                                 placeholder="{{ $today->format('d-m-Y') }}"> --}}
-                                            <input type="date" class="form-control @error('tanggal') is-invalid @enderror"
-                                                id="tanggal" name="tanggal" placeholder="YYYY-MM-DD" value="{{ $timezone }}" required>
+                                            <input type="date"
+                                                class="form-control @error('tanggal') is-invalid @enderror" id="tanggal"
+                                                name="tanggal" placeholder="YYYY-MM-DD" value="{{ $timezone }}"
+                                                required>
                                             @error('tanggal')
                                                 <small>{{ $message }}</small>
                                             @enderror
@@ -91,7 +95,7 @@
                                                 name="status" id="status">
                                                 <option selected hidden value=""> -Pilih Status Kehadiran- </option>
                                                 <option value="Hadir">Hadir</option>
-                                                <option value="Sakit">Sakit</option>
+                                                <option value="Cuti">Cuti</option>
                                                 <option value="Izin">Izin</option>
                                                 <option value="Tanpa Keterangan">Tanpa Keterangan</option>
                                             </select>
@@ -101,46 +105,57 @@
                                         </div>
                                     </div>
                                 </div>
-                                {{-- <div class="jamHidden" id="jamHidden"> --}}
-                                    <div class="row" id="formJam">
-                                        <div class="col-sm-6">
-                                            <div class="mb-3">
-                                                <label class="form-label" for="jamMasuk">Jam Masuk</label>
-                                                {{-- <div class="input-group clockpicker pull-center" data-placement="bottom"
+                                <div class="row" id="formJam">
+                                    <div class="col-sm-6">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="jamMasuk">Jam Masuk</label>
+                                            {{-- <div class="input-group clockpicker pull-center" data-placement="bottom"
                                                     data-align="top" data-autoclose="true">
                                                     <input class="form-control" type="text" value="" id="jamMasuk"
                                                         name="jamMasuk" placeholder="Masukkan Jam Masuk"><span
                                                         class="input-group-addon"><span
                                                             class="glyphicon glyphicon-time"></span></span>
                                                 </div> --}}
-                                                <input type="time" class="form-control @error('jamMasuk') is-invalid @enderror"
-                                                    id="jamMasuk" name="jamMasuk" placeholder="{{ $time }}" value="{{ $time }}">
-                                                @error('jamMasuk')
-                                                    <small>{{ $message }}</small>
-                                                @enderror
-                                            </div>
+                                            <input type="time"
+                                                class="form-control @error('jamMasuk') is-invalid @enderror" id="jamMasuk"
+                                                name="jamMasuk" placeholder="{{ $time }}"
+                                                value="{{ $time }}">
+                                            @error('jamMasuk')
+                                                <small>{{ $message }}</small>
+                                            @enderror
                                         </div>
-                                        <div class="col-sm-6">
-                                            <div class="mb-3">
-                                                <label class="form-label" for="jamPulang">Jam Pulang</label>
-                                                {{-- <div class="input-group clockpicker pull-center" data-placement="bottom"
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="jamPulang">Jam Pulang</label>
+                                            {{-- <div class="input-group clockpicker pull-center" data-placement="bottom"
                                                     data-align="top" data-autoclose="true">
                                                     <input class="form-control" type="text" value="" id="jamPulang"
                                                         name="jamPulang" placeholder="Masukkan Jam Pulang"><span
                                                         class="input-group-addon"><span
                                                             class="glyphicon glyphicon-time"></span></span>
                                                 </div> --}}
-                                                <input type="time"
-                                                    class="form-control @error('jamPulang') is-invalid @enderror" id="jamPulang"
-                                                    name="jamPulang" placeholder="Masukkan Jam Pulang" readonly>
-                                                @error('jamPulang')
-                                                    <small>{{ $message }}</small>
-                                                @enderror
-                                            </div>
+                                            <input type="time"
+                                                class="form-control @error('jamPulang') is-invalid @enderror" id="jamPulang"
+                                                name="jamPulang" placeholder="Masukkan Jam Pulang" readonly>
+                                            @error('jamPulang')
+                                                <small>{{ $message }}</small>
+                                            @enderror
                                         </div>
                                     </div>
-                                {{-- </div> --}}
-
+                                </div>
+                                <div class="row" id="formKet">
+                                    <div class="col-sm-12">
+                                        <div class="mb-3">
+                                            <label class="form-label" for="ket">Keterangan</label>
+                                            <input type="text" class="form-control @error('ket') is-invalid @enderror"
+                                                id="ket" name="ket" placeholder="Masukkan Alasan / Keterangan">
+                                            @error('ket')
+                                                <small>{{ $message }}</small>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </div>
                                 {{-- <hr>
                                 <div class="row">
                                     <div class="col-sm-6">
@@ -203,21 +218,31 @@
             });
         });
     });
-
-    // function hadir() {
-    //     console.log('aiaa');
-    // }
 </script>
 <script type='text/javascript'>
     $(window).on('load', function() {
         $('#formJam').hide();
         $("#status").change(function() {
-            console.log($("#status option:selected").val());
+            // console.log($("#status option:selected").val());
             if ($("#status option:selected").val() == 'Hadir') {
                 $('#formJam').prop('hidden', false);
                 $('#formJam').show();
             } else {
                 $('#formJam').prop('hidden', 'true');
+            }
+        });
+    });
+
+    // Keterangan
+    $(window).on('load', function() {
+        $('#formKet').hide();
+        $("#status").change(function() {
+            // console.log($("#status option:selected").val());
+            if ($("#status option:selected").val() == 'Izin' || $("#status option:selected").val() == 'Tanpa Keterangan') {
+                $('#formKet').prop('hidden', false);
+                $('#formKet').show();
+            } else {
+                $('#formKet').prop('hidden', 'true');
             }
         });
     });

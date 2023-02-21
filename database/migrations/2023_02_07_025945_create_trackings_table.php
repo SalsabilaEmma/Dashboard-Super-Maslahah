@@ -17,6 +17,7 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->string('long')->nullable();
             $table->string('lat')->nullable();
+            $table->string('lokasi')->nullable();
             $table->timestamps();
         });
     }

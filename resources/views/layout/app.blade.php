@@ -10,7 +10,7 @@
     <meta name="keywords"
         content="admin template, Cuba admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="pixelstrap">
-    <meta name="csrf-token" content="{{ csrf_token() }}" />
+    <meta name="csrf-token" content="{{ csrf_token() }}"/>
     <link rel="icon" href="{{ url('cuba') }}/assets/images/favicon.png" type="image/x-icon">
     <link rel="shortcut icon" href="{{ url('cuba') }}/assets/images/favicon.png" type="image/x-icon">
     <title>Super Maslahah - Dashboard</title>
@@ -140,72 +140,9 @@
     <script src="{{ url('cuba') }}/assets/js/script.js"></script>
     {{-- <script src="{{ url('cuba') }}/assets/js/theme-customizer/customizer.js"></script> --}}
 
-
-    <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js" crossorigin=''></script>
+    <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js" crossorigin=""></script>
     <script src="https://unpkg.com/leaflet-control-geocoder@2.4.0/dist/Control.Geocoder.js"></script>
     <script src="{{ url('cuba') }}/assets/js/emleaflet.js"></script>
-    {{-- <script>
-        let map, markers = [];
-        /* ----------------------------- Initialize Map ----------------------------- */
-        function initMap() {
-            map = L.map('mapid', {
-                center: {
-                    lat: -7.6369953598456375,
-                    lng: 111.54262959498016,
-                },
-                zoom: 15
-            });
-
-            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                // zoom: 19,
-                attribution: '© OpenStreetMap'
-            }).addTo(map);
-
-            map.on('click', mapClicked);
-            initMarkers();
-        }
-        initMap();
-
-        /* --------------------------- Initialize Markers --------------------------- */
-        function initMarkers() {
-            const initialMarkers = <?php echo json_encode($initialMarkers); ?>;
-
-            for (let index = 0; index < initialMarkers.length; index++) {
-
-                const data = initialMarkers[index];
-                const marker = generateMarker(data, index);
-                marker.addTo(map).bindPopup(`<b>${data.position.lat},  ${data.position.lng}</b>`);
-                map.panTo(data.position);
-                markers.push(marker)
-            }
-        }
-
-        function generateMarker(data, index) {
-            return L.marker(data.position, {
-                    draggable: data.draggable
-                })
-                .on('click', (event) => markerClicked(event, index))
-                .on('dragend', (event) => markerDragEnd(event, index));
-        }
-
-        /* ------------------------- Handle Map Click Event ------------------------- */
-        function mapClicked($event) {
-            console.log(map);
-            console.log($event.latlng.lat, $event.latlng.lng);
-        }
-
-        /* ------------------------ Handle Marker Click Event ----------------------- */
-        function markerClicked($event, index) {
-            console.log(map);
-            console.log($event.latlng.lat, $event.latlng.lng);
-        }
-
-        /* ----------------------- Handle Marker DragEnd Event ---------------------- */
-        function markerDragEnd($event, index) {
-            console.log(map);
-            console.log($event.target.getLatLng());
-        }
-    </script> --}}
 
 @show
 @yield('js')

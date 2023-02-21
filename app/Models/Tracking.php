@@ -9,5 +9,5 @@ class Tracking extends Model
 {
     use HasFactory;
     protected $table = 'trackings';
-    protected $fillable = ['long', 'lat'];
+    protected $fillable = ['long', 'lat', 'lokasi'];
 }
