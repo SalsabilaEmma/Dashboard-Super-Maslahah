@@ -1,7 +1,11 @@
 @extends('layout.app')
 @section('content')
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
-        integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
+<script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js" crossorigin=""></script>
+<script src="https://unpkg.com/leaflet-control-geocoder@2.4.0/dist/Control.Geocoder.js"></script>
+<script src="{{ url('cuba') }}/assets/js/emleaflet.js"></script>
     <style>
         .text-center {
             text-align: center;
@@ -38,7 +42,7 @@
                             <h5 class="mb-3">Tracking</h5>
                         </div>
                         <div class="card-body">
-                            <div id="mapid"></div>
+                            <div id="map"></div>
                         </div>
                     </div>
                 </div>
@@ -46,21 +50,26 @@
         </div>
         <!-- Container-fluid Ends-->
     </div>
-    <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js" crossorigin=""></script>
-    <script src="https://unpkg.com/leaflet-control-geocoder@2.4.0/dist/Control.Geocoder.js"></script>
-    <script src="{{ url('cuba') }}/assets/js/emleaflet.js"></script>
 @endsection
 {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <script>
-    function loadMarkers() {
-        $.ajax({
-            // url: "{{ route('viewMap') }}",
-            url: "{{ route('viewData') }}",
-            success: function(initialMarkers) {
-                const initialMarkers = JSON.parse(initialMarkers);
-                console.log(initialMarkers);
-                // Lanjutkan dengan memproses data di sini, seperti menambahkan marker ke peta
-            }
+    function initMap() {
+        var center = {
+            lat: -6.21462,
+            lng: 106.84513
+        }; // koordinat Jakarta
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 14,
+            center: center
+        });
+
+        var marker = new google.maps.Marker({
+            position: center,
+            map: map,
+            title: 'Jakarta'
         });
     }
-</script> --}}
+</script>
+<script
+    src="https://maps.googleapis.com/maps/api/js?key={{ config('google-maps.key') }}&libraries=places&callback=initMap"
+    async defer></script> --}}

@@ -7,7 +7,7 @@ let map, markers = [];
             attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
         }).addTo(map);
         map.on('click', mapClicked);
-        initMarkers();
+        // initMarkers();
     }
 
     function generateMarker(data, index) {

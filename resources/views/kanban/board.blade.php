@@ -1,5 +1,11 @@
 @extends('layout.app')
 @section('content')
+
+<link rel="stylesheet" type="text/css" href="{{ url('cuba') }}/assets/css/vendors/jkanban.css">
+<script src="{{ url('cuba') }}/assets/js/jkanban/jkanban.js"></script>
+<script src="{{ url('cuba') }}/assets/js/jkanban/custom.js"></script>
+<script src="{{ url('cuba') }}/assets/js/scrollable/perfect-scrollbar.min.js"></script>
+<script src="{{ url('cuba') }}/assets/js/scrollable/scrollable-custom.js"></script>
     <style>
         .kanban-drag {
             overflow-y: scroll;
@@ -224,7 +230,7 @@
                             <div class="col-md-4">
                                 <label class="col-form-label" for="recipient-name">Status:</label>
                                 <select name="status" class="form-select" id="status" required="">
-                                    <option selected hidden value="" id="status" name="status">Pilih Status</option>
+                                    <option selected hidden value="" id="status" name="status"></option>
                                     <option value="To Do">To Do</option>
                                     <option value="In Progress">In Progress</option>
                                     <option value="Done">Done</option>
@@ -293,7 +299,6 @@
 @endsection
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-
 <script>
     // View Data (Detail)
     function detail() {
@@ -383,7 +388,6 @@
 
                     $("#demo1").children().remove();
                     fun_kanban();
-                    // console.log('dah lewat proses update');
 
                     //close modal
                     $('#editdata').modal('hide');
@@ -478,14 +482,16 @@
                 data: data,
                 dataType: "JSON",
                 success: function(response) {
-                    console.log('ajax success');
-                    // Swal.fire({
-                    //     type: 'success',
-                    //     icon: 'success',
-                    //     title: `${response.message}`,
-                    //     showConfirmButton: false,
-                    //     timer: 3000
-                    // });
+                    var new_status = response.data['status'];
+                    console.log(new_status);
+
+                    // Perbarui data status issues pada kanban
+                    $(el).data('status', new_status);
+                    // Perbarui data status pada modal edit
+                    var modalEdit = $('#editdata');
+                    var statusEl = modalEdit.find('[name=status]');
+                    statusEl.data('value', new_status);
+                    statusEl.val(new_status);
                 },
             });
         });

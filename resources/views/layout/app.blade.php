@@ -35,13 +35,13 @@
     <link rel="stylesheet" type="text/css" href="{{ url('cuba') }}/assets/css/vendors/date-picker.css">
     <link rel="stylesheet" type="text/css" href="{{ url('cuba') }}/assets/css/vendors/timepicker.css">
 
+    <link rel="stylesheet" type="text/css" href="{{ url('cuba') }}/assets/css/vendors/animate.css">
+    <link rel="stylesheet" type="text/css" href="{{ url('cuba') }}/assets/css/vendors/scrollbar.css">
+    <link rel="stylesheet" type="text/css" href="{{ url('cuba') }}/assets/css/vendors/scrollable.css">
+
     <link rel="stylesheet" type="text/css" href="{{ url('cuba') }}/assets/css/vendors/select2.css">
 
     <link rel="stylesheet" type="text/css" href="{{ url('cuba') }}/assets/css/vendors/datatables.css">
-    <link rel="stylesheet" type="text/css" href="{{ url('cuba') }}/assets/css/vendors/animate.css">
-    <link rel="stylesheet" type="text/css" href="{{ url('cuba') }}/assets/css/vendors/jkanban.css">
-    <link rel="stylesheet" type="text/css" href="{{ url('cuba') }}/assets/css/vendors/scrollbar.css">
-    <link rel="stylesheet" type="text/css" href="{{ url('cuba') }}/assets/css/vendors/scrollable.css">
 
     <link rel="stylesheet" type="text/css" href="{{ url('cuba') }}/assets/css/vendors/datatables.css">
     <!-- Plugins css Ends-->
@@ -53,8 +53,6 @@
     <!-- Responsive css-->
     <link rel="stylesheet" type="text/css" href="{{ url('cuba') }}/assets/css/responsive.css">
 
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
-        integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
     @section('css')
     @show
     @yield('css')
@@ -115,12 +113,12 @@
 
     <script src="{{ url('cuba') }}/assets/js/notify/bootstrap-notify.min.js"></script>
     <script src="{{ url('cuba') }}/assets/js/notify/index.js"></script>
-    <script src="{{ url('cuba') }}/assets/js/datepicker/date-picker/datepicker.js"></script>
+    {{-- <script src="{{ url('cuba') }}/assets/js/datepicker/date-picker/datepicker.js"></script>
     <script src="{{ url('cuba') }}/assets/js/datepicker/date-picker/datepicker.en.js"></script>
     <script src="{{ url('cuba') }}/assets/js/datepicker/date-picker/datepicker.custom.js"></script>
     <script src="{{ url('cuba') }}/assets/js/time-picker/jquery-clockpicker.min.js"></script>
     <script src="{{ url('cuba') }}/assets/js/time-picker/highlight.min.js"></script>
-    <script src="{{ url('cuba') }}/assets/js/time-picker/clockpicker.js"></script>
+    <script src="{{ url('cuba') }}/assets/js/time-picker/clockpicker.js"></script> --}}
 
     <script src="{{ url('cuba') }}/assets/js/select2/select2.full.min.js"></script>
     <script src="{{ url('cuba') }}/assets/js/select2/select2-custom.js"></script>
@@ -128,10 +126,6 @@
     <script src="{{ url('cuba') }}/assets/js/datatable/datatables/jquery.dataTables.min.js"></script>
     <script src="{{ url('cuba') }}/assets/js/datatable/datatables/datatable.custom.js"></script>
     <script src="{{ url('cuba') }}/assets/js/tooltip-init.js"></script>
-    <script src="{{ url('cuba') }}/assets/js/jkanban/jkanban.js"></script>
-    <script src="{{ url('cuba') }}/assets/js/jkanban/custom.js"></script>
-    <script src="{{ url('cuba') }}/assets/js/scrollable/perfect-scrollbar.min.js"></script>
-    <script src="{{ url('cuba') }}/assets/js/scrollable/scrollable-custom.js"></script>
 
     <script src="{{ url('cuba') }}/assets/js/datatable/datatables/jquery.dataTables.min.js"></script>
     <script src="{{ url('cuba') }}/assets/js/datatable/datatables/datatable.custom.js"></script>
@@ -139,10 +133,12 @@
     <!-- Theme js-->
     <script src="{{ url('cuba') }}/assets/js/script.js"></script>
     {{-- <script src="{{ url('cuba') }}/assets/js/theme-customizer/customizer.js"></script> --}}
-
-    <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js" crossorigin=""></script>
-    <script src="https://unpkg.com/leaflet-control-geocoder@2.4.0/dist/Control.Geocoder.js"></script>
-    <script src="{{ url('cuba') }}/assets/js/emleaflet.js"></script>
+    {{-- <script src="https://cdn.jsdelivr.net/npm/lazyload@2.0.0-rc.2/lazyload.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('img').lazyload();
+        });
+    </script> --}}
 
 @show
 @yield('js')

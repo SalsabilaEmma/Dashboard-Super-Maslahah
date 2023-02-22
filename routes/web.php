@@ -11,6 +11,8 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TrackingController;
 use Illuminate\Support\Facades\Route;
 
+use Alexpechkarev\GoogleMaps\GoogleMaps;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -88,6 +90,11 @@ Route::middleware('auth')->group(function () {
     Route::GET('/data', [TrackingController::class, 'viewData'])->name('viewData');
     Route::GET('/viewMap', [TrackingController::class, 'viewMap'])->name('viewMap');
     Route::POST('/add', [TrackingController::class, 'store'])->name('add');
+    Route::get('/map', function () {
+        $googleMaps = new GoogleMaps(config('google-maps.key'));
+        $map = $googleMaps->load('map');
+        return view('map', compact('map'));
+    });
 });
 
 require __DIR__ . '/auth.php';

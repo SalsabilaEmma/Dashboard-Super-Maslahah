@@ -136,8 +136,8 @@ class KanbanController extends Controller
         } else {
             $dragstatus->status = "Done";
         }
+        // dd($dragstatus->status);
         $dragstatus->save();
-        // dd('bismillah');
 
         //return response
         return response()->json([
