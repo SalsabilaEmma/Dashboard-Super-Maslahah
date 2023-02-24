@@ -1,11 +1,10 @@
 @extends('layout.app')
 @section('content')
-
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
-integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
-<script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js" crossorigin=""></script>
-<script src="https://unpkg.com/leaflet-control-geocoder@2.4.0/dist/Control.Geocoder.js"></script>
-<script src="{{ url('cuba') }}/assets/js/emleaflet.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+        integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js" crossorigin=""></script>
+    <script src="https://unpkg.com/leaflet-control-geocoder@2.4.0/dist/Control.Geocoder.js"></script>
+    <script src="{{ url('cuba') }}/assets/js/emleaflet.js"></script>
     <style>
         .text-center {
             text-align: center;
@@ -51,25 +50,24 @@ integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" /
         <!-- Container-fluid Ends-->
     </div>
 @endsection
-{{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-<script>
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script type="text/javascript">
     function initMap() {
-        var center = {
-            lat: -6.21462,
-            lng: 106.84513
-        }; // koordinat Jakarta
-        var map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 14,
-            center: center
+        const myLatLng = {
+            lat: -7.636990156366658,
+            lng: 111.54263021667786
+        };
+        const map = new google.maps.Map(document.getElementById("map"), {
+            zoom: 5,
+            center: myLatLng,
         });
 
-        var marker = new google.maps.Marker({
-            position: center,
-            map: map,
-            title: 'Jakarta'
+        new google.maps.Marker({
+            position: myLatLng,
+            map,
+            title: "Hello Ciki!",
         });
     }
+    window.initMap = initMap;
 </script>
-<script
-    src="https://maps.googleapis.com/maps/api/js?key={{ config('google-maps.key') }}&libraries=places&callback=initMap"
-    async defer></script> --}}
+<script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyDxG9Dawl673C8S7HibOsT0oZx0T0dkSOo&callback=initMap"></script>

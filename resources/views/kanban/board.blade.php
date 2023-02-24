@@ -312,7 +312,6 @@
             $("#viewdata").find("#sprintpoint").attr("value", $(this).data('sprintpoint'));
             // $("#viewdata").find("#issues").attr("value", $(this).data('issues'));
             $('#issues').text($(this).data('issues'));
-            console.log($(this).data('status'));
         });
     }
 
@@ -363,12 +362,14 @@
             $('#editdata').modal('show');
             $("#editdata").find("#id").attr("value", $(this).data('id'));
             $("#editdata").find("#status").attr("value", $(this).data('status'));
+            // $("#editdata").find("#status").attr("value", $(this).data('status'));
             $("#editdata").find("#due_date").attr("value", $(this).data('due_date'));
             $("#editdata").find("#priority").attr("value", $(this).data('priority'));
             $("#editdata").find("#judul").attr("value", $(this).data('judul'));
             $("#editdata").find("#sprintpoint").attr("value", $(this).data('sprintpoint'));
             // $("#editdata").find("#issues").attr("value", $(this).data('issues'));
             $('#isu').text($(this).data('issues'));
+            console.log($(this).data('status'));
         });
     }
     $(document).ready(function() {
@@ -491,6 +492,9 @@
                     var modalEdit = $('#editdata');
                     var statusEl = modalEdit.find('[name=status]');
                     statusEl.data('value', new_status);
+                    // var modalView = $('#viewdata');
+                    // var statusEl = modalView.find('[name=status]');
+                    // statusEl.data('value', new_status);
                     statusEl.val(new_status);
                 },
             });

@@ -113,12 +113,6 @@
 
     <script src="{{ url('cuba') }}/assets/js/notify/bootstrap-notify.min.js"></script>
     <script src="{{ url('cuba') }}/assets/js/notify/index.js"></script>
-    {{-- <script src="{{ url('cuba') }}/assets/js/datepicker/date-picker/datepicker.js"></script>
-    <script src="{{ url('cuba') }}/assets/js/datepicker/date-picker/datepicker.en.js"></script>
-    <script src="{{ url('cuba') }}/assets/js/datepicker/date-picker/datepicker.custom.js"></script>
-    <script src="{{ url('cuba') }}/assets/js/time-picker/jquery-clockpicker.min.js"></script>
-    <script src="{{ url('cuba') }}/assets/js/time-picker/highlight.min.js"></script>
-    <script src="{{ url('cuba') }}/assets/js/time-picker/clockpicker.js"></script> --}}
 
     <script src="{{ url('cuba') }}/assets/js/select2/select2.full.min.js"></script>
     <script src="{{ url('cuba') }}/assets/js/select2/select2-custom.js"></script>
