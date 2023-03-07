@@ -16,9 +16,8 @@ class Controller extends BaseController
         // return view('dashboard');
         return view('index');
     }
-    public function stisla()
+    public function indexSuper()
     {
-        return view('dashboard');
-        // return view('index');
+        return view('index');
     }
 }

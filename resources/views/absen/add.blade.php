@@ -238,7 +238,7 @@
         $('#formKet').hide();
         $("#status").change(function() {
             // console.log($("#status option:selected").val());
-            if ($("#status option:selected").val() == 'Izin' || $("#status option:selected").val() == 'Tanpa Keterangan') {
+            if ($("#status option:selected").val() == 'Izin' || $("#status option:selected").val() == 'Tanpa Keterangan' || $("#status option:selected").val() == 'Cuti') {
                 $('#formKet').prop('hidden', false);
                 $('#formKet').show();
             } else {

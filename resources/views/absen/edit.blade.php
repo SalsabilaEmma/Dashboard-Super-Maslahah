@@ -108,7 +108,7 @@
                                                 data-align="top" data-autoclose="true">
                                                 <input class="form-control" type="text" value="{{ date('H:i', strtotime($dataAbsen->jamMasuk)) }}">
                                                 <span class="input-group-addon">
-                                                    <span class="glyphicon glyphicon-time"></span>--}}
+                                                    <span class="glyphicon glyphicon-time"></span> --}}
                                                 </span>
                                                 <input type="time" readonly
                                                     class="form-control @error('jamMasuk') is-invalid @enderror"
@@ -139,22 +139,21 @@
                                             </div>
                                         </div>
                                     </div>
-                                @elseif ($dataAbsen->status == 'Izin' || $dataAbsen->status == 'Tanpa Keterangan')
-                                <div class="row">
-                                    <div class="col-sm-12">
-                                        <div class="mb-3">
-                                            <label class="form-label" for="ket">Keterangan</label>
-                                            <input type="text" readonly
-                                                class="form-control @error('ket') is-invalid @enderror"
-                                                id="ket" name="ket"
-                                                placeholder="{{ $dataAbsen->ket }}"
-                                                value="{{ $dataAbsen->ket }}">
-                                            @error('ket')
-                                                <small>{{ $message }}</small>
-                                            @enderror
+                                @else
+                                    <div class="row">
+                                        <div class="col-sm-12">
+                                            <div class="mb-3">
+                                                <label class="form-label" for="ket">Keterangan</label>
+                                                <input type="text"
+                                                    class="form-control @error('ket') is-invalid @enderror" id="ket"
+                                                    name="ket" placeholder="{{ $dataAbsen->ket }}"
+                                                    value="{{ $dataAbsen->ket }}">
+                                                @error('ket')
+                                                    <small>{{ $message }}</small>
+                                                @enderror
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
                                 @endif
 
                                 {{-- <hr>

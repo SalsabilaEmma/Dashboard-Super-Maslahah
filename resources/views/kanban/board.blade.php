@@ -1,11 +1,11 @@
 @extends('layout.app')
 @section('content')
 
-<link rel="stylesheet" type="text/css" href="{{ url('cuba') }}/assets/css/vendors/jkanban.css">
-<script src="{{ url('cuba') }}/assets/js/jkanban/jkanban.js"></script>
-<script src="{{ url('cuba') }}/assets/js/jkanban/custom.js"></script>
-<script src="{{ url('cuba') }}/assets/js/scrollable/perfect-scrollbar.min.js"></script>
-<script src="{{ url('cuba') }}/assets/js/scrollable/scrollable-custom.js"></script>
+<link rel="stylesheet" type="text/css" href="{{ url('public/cuba') }}/assets/css/vendors/jkanban.css">
+<script src="{{ url('public/cuba') }}/assets/js/jkanban/jkanban.js"></script>
+<script src="{{ url('public/cuba') }}/assets/js/jkanban/custom.js"></script>
+<script src="{{ url('public/cuba') }}/assets/js/scrollable/perfect-scrollbar.min.js"></script>
+<script src="{{ url('public/cuba') }}/assets/js/scrollable/scrollable-custom.js"></script>
     <style>
         .kanban-drag {
             overflow-y: scroll;

@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 
 use Alexpechkarev\GoogleMaps\GoogleMaps;
 use App\Http\Controllers\GoogleController;
+use App\Http\Controllers\UserSumaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,13 +26,12 @@ use App\Http\Controllers\GoogleController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
-Route::middleware('auth')->group(function () {
+Route::middleware('auth', 'admin')->group(function () {
     Route::GET('/dashboard', [Controller::class, 'index'])->name('dashboard');
-    // Route::GET('/kanban-board', [KanbanController::class, 'index'])->name('kanban');
 
     /** Aktivasi */
     Route::GET('/aktivasi', [ActivationController::class, 'index'])->name('aktivasi');
@@ -85,18 +85,16 @@ Route::middleware('auth')->group(function () {
     Route::DELETE('/tracking/delete/{id?}', [TrackingController::class, 'destroy'])->name('tracking.destroy');
 
     /** crud */
-    // Route::GET('/crud', [Controller::class, 'index'])->name('crud');
-    // Route::GET('/lokasi', [TrackingController::class, 'index'])->name('lokasi');
     Route::GET('/lokasi', [TrackingController::class, 'indexLokasi'])->name('indexLokasi');
     Route::GET('/data', [TrackingController::class, 'viewData'])->name('viewData');
     Route::GET('/viewMap', [TrackingController::class, 'viewMap'])->name('viewMap');
     Route::POST('/add', [TrackingController::class, 'store'])->name('add');
-    // Route::get('/map', function () {
-    //     $googleMaps = new GoogleMaps(config('google-maps.key'));
-    //     $map = $googleMaps->load('map');
-    //     return view('map', compact('map'));
-    // });
     Route::get('/google-autocomplete', [GoogleController::class, 'index']);
 });
 
+Route::middleware('auth', 'superAdmin')->group(function () {
+    Route::GET('/dashboard', [Controller::class, 'index'])->name('dashboard');
+    /** M-Pay */
+    Route::GET('/user-suma', [UserSumaController::class, 'index'])->name('user.suma');
+});
 require __DIR__ . '/auth.php';

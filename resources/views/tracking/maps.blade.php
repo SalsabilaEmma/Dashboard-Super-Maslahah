@@ -48,7 +48,7 @@
     </div>
     <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js" crossorigin=""></script>
     <script src="https://unpkg.com/leaflet-control-geocoder@2.4.0/dist/Control.Geocoder.js"></script>
-    <script src="{{ url('cuba') }}/assets/js/emleaflet.js"></script>
+    <script src="{{ url('public/cuba') }}/assets/js/emleaflet.js"></script>
 @endsection
 {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <script>

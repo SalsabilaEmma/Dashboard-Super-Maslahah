@@ -1,6 +1,6 @@
 <div class="page-header">
     <div class="header-wrapper row m-0">
-        <form class="form-inline search-full col" action="#" method="get">
+        <!-- <form class="form-inline search-full col" action="#" method="get">
             <div class="form-group w-100">
                 <div class="Typeahead Typeahead--twitterUsers">
                     <div class="u-posRelative">
@@ -12,15 +12,15 @@
                     <div class="Typeahead-menu"></div>
                 </div>
             </div>
-        </form>
+        </form> -->
         <div class="header-logo-wrapper col-auto p-0">
             <div class="logo-wrapper"><a href="index.html"><img class="img-fluid"
-                        src="{{ url('cuba') }}/assets/images/logo/logo.png" alt=""></a></div>
+                        src="{{ url('public/cuba') }}/assets/images/logo/logo.png" alt=""></a></div>
             <div class="toggle-sidebar"><i class="status_toggle middle sidebar-toggle" data-feather="align-center"></i>
             </div>
         </div>
         <div class="left-header col horizontal-wrapper ps-0">
-            <ul class="horizontal-menu">
+            <!-- <ul class="horizontal-menu">
                 <li class="mega-menu outside"><a class="nav-link" href="#!"><i
                             data-feather="layers"></i><span>Bonus Ui</span></a>
                     <div class="mega-menu-container nav-submenu menu-to-be-close header-mega">
@@ -142,11 +142,11 @@
                                     data-feather="zap"></i><span>Social App </span></a></li>
                     </ul>
                 </li>
-            </ul>
+            </ul> -->
         </div>
         <div class="nav-right col-8 pull-right right-header p-0">
             <ul class="nav-menus">
-                <li class="language-nav">
+                <!-- <li class="language-nav">
                     <div class="translate_wrapper">
                         <div class="current_lang">
                             <div class="lang"><i class="flag-icon flag-icon-us"></i><span class="lang-txt">EN
@@ -192,7 +192,7 @@
                             <li><a class="f-w-700" href="#">Check all</a></li>
                         </ul>
                     </div>
-                </li>
+                </li> -->
                 {{-- <li class="onhover-dropdown">
                     <div class="notification-box"><i data-feather="star"></i></div>
                     <div class="onhover-show-div bookmark-flip">
@@ -253,7 +253,7 @@
                         <ul>
                             <li>
                                 <div class="media"><img class="img-fluid b-r-5 me-3 img-60"
-                                        src="{{ url('cuba') }}/assets/images/other-images/cart-img.jpg" alt="">
+                                        src="{{ url('public/cuba') }}/assets/images/other-images/cart-img.jpg" alt="">
                                     <div class="media-body"><span>Furniture Chair for Home</span>
                                         <div class="qty-box">
                                             <div class="input-group"><span class="input-group-prepend">
@@ -273,7 +273,7 @@
                             </li>
                             <li>
                                 <div class="media"><img class="img-fluid b-r-5 me-3 img-60"
-                                        src="{{ url('cuba') }}/assets/images/other-images/cart-img.jpg" alt="">
+                                        src="{{ url('public/cuba') }}/assets/images/other-images/cart-img.jpg" alt="">
                                     <div class="media-body"><span>Furniture Chair for Home</span>
                                         <div class="qty-box">
                                             <div class="input-group"><span class="input-group-prepend">
@@ -306,7 +306,7 @@
                         <ul class="py-0">
                             <li>
                                 <div class="media"><img class="img-fluid b-r-5 me-2"
-                                        src="{{ url('cuba') }}/assets/images/user/1.jpg" alt="">
+                                        src="{{ url('public/cuba') }}/assets/images/user/1.jpg" alt="">
                                     <div class="media-body">
                                         <h6>Teressa</h6>
                                         <p>Reference site about Lorem Ipsum, give information on its origins.</p>
@@ -316,7 +316,7 @@
                             </li>
                             <li>
                                 <div class="media"><img class="img-fluid b-r-5 me-2"
-                                        src="{{ url('cuba') }}/assets/images/user/2.jpg" alt="">
+                                        src="{{ url('public/cuba') }}/assets/images/user/2.jpg" alt="">
                                     <div class="media-body">
                                         <h6>Kori Thomas</h6>
                                         <p>Lorem Ipsum is simply dummy give information on its origins....</p>
@@ -326,7 +326,7 @@
                             </li>
                             <li>
                                 <div class="media"><img class="img-fluid b-r-5 me-2"
-                                        src="{{ url('cuba') }}/assets/images/user/14.png" alt="">
+                                        src="{{ url('public/cuba') }}/assets/images/user/14.png" alt="">
                                     <div class="media-body">
                                         <h6>Ain Chavez</h6>
                                         <p>Lorem Ipsum is simply dummy...</p>
@@ -342,18 +342,16 @@
                             data-feather="maximize"></i></a></li>
                 <li class="profile-nav onhover-dropdown p-0 me-0">
                     <div class="media profile-media"><img class="b-r-10"
-                            src="{{ url('cuba') }}/assets/images/dashboard/profile.jpg" alt="">
+                            src="{{ url('public/cuba') }}/assets/images/dashboard/profile.jpg" alt="">
                         <div class="media-body"><span>{{ Auth::user()->name }}</span>
                             <p class="mb-0 font-roboto"> - <i class="middle fa fa-angle-down"></i></p>
                         </div>
                     </div>
                     <ul class="profile-dropdown onhover-show-div">
                         <li><a href="#"><i data-feather="user"></i><span>Account </span></a></li>
-                        <li><a href="#"><i data-feather="mail"></i><span>Inbox</span></a></li>
-                        <li><a href="#"><i data-feather="file-text"></i><span>Taskboard</span></a></li>
-                        <li><a href="#"><i data-feather="settings"></i><span>Settings</span></a></li>
+                        <li><a href="{{ route('aktivasi') }}"><i data-feather="check-circle"></i><span>Aktivasi</span></a></li>
+                        <li><a href="{{ route('kanban') }}"><i data-feather="file-text"></i><span>Kanban</span></a></li>
                         <li> <a href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();"><i data-feather="log-out"></i>Logout</a>
-
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                 @csrf
                             </form>

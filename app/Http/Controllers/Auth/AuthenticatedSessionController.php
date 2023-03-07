@@ -12,6 +12,15 @@ use Illuminate\View\View;
 
 class AuthenticatedSessionController extends Controller
 {
+
+    protected $redirectTo = '/dashboard';
+    protected function redirectTo()
+    {
+        if (auth()->user()->role == 'Admin') {
+            return '/dashboard';
+        }
+        return '/';
+    }
     /**
      * Display the login view.
      */
@@ -29,7 +38,12 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(RouteServiceProvider::HOME);
+        // return redirect()->intended(RouteServiceProvider::HOME);
+        if (Auth::user()->role == 'Admin') {
+            return redirect()->intended(route('dashboard'));
+        } elseif (Auth::user()->role == 'Super Admin') {
+            return redirect()->intended(route('user.suma'));
+        }
     }
 
     /**

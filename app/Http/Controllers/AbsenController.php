@@ -52,14 +52,13 @@ class AbsenController extends Controller
         $dataAbsen->status = $request->status;
         if ($dataAbsen->status == "Hadir") {
             $dataAbsen->jamMasuk = $request->jamMasuk;
-        } elseif ($dataAbsen->status == "Izin" || $dataAbsen->status == "Tanpa Keterangan") {
-            $dataAbsen->ket = $request->ket;
         } else {
-            $dataAbsen->jamMasuk = null;
-            $dataAbsen->ket = null;
+            $dataAbsen->ket = $request->ket;
         }
-        // $dataAbsen->jamPulang = $request->jamPulang;
-        // dd($dataAbsen);
+        // else {
+        //     $dataAbsen->jamMasuk = null;
+        //     $dataAbsen->ket = null;
+        // }
         $dataAbsen->save();
         return redirect()->route('absensi')->with('success', 'Data Berhasil Ditambahkan!');
     }
