@@ -10,8 +10,8 @@
     <meta name="keywords"
         content="admin template, Cuba admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="pixelstrap">
-    <link rel="icon" href="{{ url('public/cuba') }}/assets/images/favicon.png" type="image/x-icon">
-    <link rel="shortcut icon" href="{{ url('public/cuba') }}/assets/images/favicon.png" type="image/x-icon">
+    <link rel="icon" href="{{ url('public/img') }}/logo-suma-2.png" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ url('public/img') }}/logo-suma-2.png" type="image/x-icon">
     <title>Registrasi &mdash; Dashboard Maslahah</title>
     <!-- Google font-->
     <link href="https://fonts.googleapis.com/css?family=Rubik:400,400i,500,500i,700,700i&amp;display=swap"
@@ -45,10 +45,13 @@
             <div class="col-12 p-0">
                 <div class="login-card">
                     <div>
-                        <div><a class="logo" href="index.html"><img class="img-fluid for-light"
-                                    src="{{ url('public/cuba') }}/assets/images/logo/login.png" alt="looginpage"><img
-                                    class="img-fluid for-dark"
-                                    src="{{ url('public/cuba') }}/assets/images/logo/logo_dark.png" alt="looginpage"></a>
+                        <div><a class="logo" href="index.html">
+                                <img class="img-fluid for-light"
+                                    src="{{ url('public') }}/img/logo-suma-1-transparant.png" style="height: 50px"
+                                    alt="looginpage">
+                                <img class="img-fluid for-dark"
+                                    src="{{ url('public') }}/img/logo-suma-1-transparant.png" style="height: 50px"
+                                    alt="looginpage"></a>
                         </div>
                         <div class="login-main">
                             <form class="theme-form" method="POST" action="{{ route('register') }}">
@@ -59,8 +62,8 @@
                                 <!-- Name -->
                                 <div class="form-group">
                                     <x-input-label for="name" :value="__('Name')" />
-                                    <x-text-input id="name" class="form-control block mt-1 w-full" type="text" name="name"
-                                        :value="old('name')" required autofocus />
+                                    <x-text-input id="name" class="form-control block mt-1 w-full" type="text"
+                                        name="name" :value="old('name')" required autofocus />
                                     <x-input-error :messages="$errors->get('name')" class="mt-2" />
                                 </div>
 
@@ -68,16 +71,16 @@
                                     <div class="col-sm-5">
                                         <div class="form-group">
                                             <x-input-label for="nip" :value="__('NIP')" />
-                                            <x-text-input id="nip" class="form-control block mt-1 w-full" type="text" name="nip"
-                                                :value="old('nip')" required autofocus />
+                                            <x-text-input id="nip" class="form-control block mt-1 w-full"
+                                                type="text" name="nip" :value="old('nip')" required autofocus />
                                             <x-input-error :messages="$errors->get('nip')" class="mt-2" />
                                         </div>
                                     </div>
                                     <div class="col-7">
                                         <div class="form-group">
                                             <x-input-label for="telepon" :value="__('Telepon')" />
-                                            <x-text-input id="telepon" class="form-control block mt-1 w-full" type="text" name="telepon"
-                                                :value="old('telepon')" required autofocus />
+                                            <x-text-input id="telepon" class="form-control block mt-1 w-full"
+                                                type="text" name="telepon" :value="old('telepon')" required autofocus />
                                             <x-input-error :messages="$errors->get('telepon')" class="mt-2" />
                                         </div>
                                     </div>
@@ -86,8 +89,8 @@
                                 <!-- Email Address -->
                                 <div class="fprm-control mt-4">
                                     <x-input-label for="email" :value="__('Email')" />
-                                    <x-text-input id="email" class="form-control block mt-1 w-full" type="email" name="email"
-                                        :value="old('email')" required />
+                                    <x-text-input id="email" class="form-control block mt-1 w-full" type="email"
+                                        name="email" :value="old('email')" required />
                                     <x-input-error :messages="$errors->get('email')" class="mt-2" />
                                 </div>
 
@@ -95,8 +98,8 @@
                                 <div class="form-group mt-4">
                                     <x-input-label for="password" :value="__('Password')" />
 
-                                    <x-text-input id="password" class="form-control block mt-1 w-full" type="password"
-                                        name="password" required autocomplete="new-password" />
+                                    <x-text-input id="password" class="form-control block mt-1 w-full"
+                                        type="password" name="password" required autocomplete="new-password" />
 
                                     <x-input-error :messages="$errors->get('password')" class="mt-2" />
                                 </div>
@@ -105,8 +108,8 @@
                                 <div class="mt-4 form-group">
                                     <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
 
-                                    <x-text-input id="password_confirmation" class="form-control block mt-1 w-full" type="password"
-                                        name="password_confirmation" required />
+                                    <x-text-input id="password_confirmation" class="form-control block mt-1 w-full"
+                                        type="password" name="password_confirmation" required />
 
                                     <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
                                 </div>
@@ -121,7 +124,8 @@
                                         {{ __('Register') }}
                                     </x-primary-button>
                                 </div>
-                                <p class="mt-4 mb-0">Already have an account?<a class="ms-2" href="{{ route('login') }}">Sign in</a></p>
+                                <p class="mt-4 mb-0">Already have an account?<a class="ms-2"
+                                        href="{{ route('login') }}">Sign in</a></p>
                             </form>
                         </div>
                     </div>

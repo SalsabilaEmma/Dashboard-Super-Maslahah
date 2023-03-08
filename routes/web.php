@@ -29,8 +29,12 @@ use App\Http\Controllers\UserSumaController;
 // Route::get('/', function () {
 //     return view('welcome');
 // });
+// , 'admin'
+Route::get('/view-captcha', [RecaptchaController::class, 'index'])->name('view_captcha');
+Route::get('/get-captcha', [RecaptchaController::class, 'get_recaptcha'])->name('get_captcha');
+Route::post('/cek-captcha', [RecaptchaController::class, 'cek_recaptcha'])->name('cek_captcha');
 
-Route::middleware('auth', 'admin')->group(function () {
+Route::middleware('auth')->group(function () {
     Route::GET('/dashboard', [Controller::class, 'index'])->name('dashboard');
 
     /** Aktivasi */
@@ -92,9 +96,9 @@ Route::middleware('auth', 'admin')->group(function () {
     Route::get('/google-autocomplete', [GoogleController::class, 'index']);
 });
 
-Route::middleware('auth', 'superAdmin')->group(function () {
-    Route::GET('/dashboard', [Controller::class, 'index'])->name('dashboard');
-    /** M-Pay */
-    Route::GET('/user-suma', [UserSumaController::class, 'index'])->name('user.suma');
-});
+// Route::middleware('auth', 'superAdmin')->group(function () {
+//     Route::GET('/dashboard', [Controller::class, 'index'])->name('dashboard');
+//     /** M-Pay */
+//     Route::GET('/user-suma', [UserSumaController::class, 'index'])->name('user.suma');
+// });
 require __DIR__ . '/auth.php';

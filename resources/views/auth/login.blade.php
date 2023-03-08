@@ -10,8 +10,8 @@
     <meta name="keywords"
         content="admin template, Cuba admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="pixelstrap">
-    <link rel="icon" href="{{ url('public/cuba') }}/assets/images/favicon.png" type="image/x-icon">
-    <link rel="shortcut icon" href="{{ url('public/cuba') }}/assets/images/favicon.png" type="image/x-icon">
+    <link rel="icon" href="{{ url('public/img') }}/logo-suma-2.png" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ url('public/img') }}/logo-suma-2.png" type="image/x-icon">
     <title>Login &mdash; Dashboard Maslahah</title>
     <!-- Google font-->
     <link href="https://fonts.googleapis.com/css?family=Rubik:400,400i,500,500i,700,700i&amp;display=swap"
@@ -42,19 +42,21 @@
     <!-- login page start-->
     <div class="container-fluid">
         <div class="row">
-            <div class="col-xl-7"><img class="bg-img-cover bg-center"
-                    src="{{ url('public/cuba') }}/assets/images/login/2.jpg" alt="looginpage"></div>
-            <div class="col-xl-5 p-0">
+            <div class="col-xl-6"><img class="bg-img-cover bg-center"
+                    style="width:10px; height: auto; object-fit: cover;" src="{{ url('public/img') }}/desain.png"
+                    alt="looginpage"></div>
+            <div class="col-xl-6 p-0">
                 <div class="login-card">
                     <div>
-                        <div><a class="logo text-start" href="index.html"><img class="img-fluid for-light"
-                                    src="{{ url('public/cuba') }}/assets/images/logo/login.png" alt="looginpage"><img
-                                    class="img-fluid for-dark"
-                                    src="{{ url('public/cuba') }}/assets/images/logo/logo_dark.png" alt="looginpage"></a>
+                        <div><a class="logo text-start" href="">
+                                <img class="bg-img-cover bg-center"
+                                    src="{{ url('public/img') }}/logo-suma-1-transparant.png" alt="looginpage">
+                                <img class="img-fluid for-dark"
+                                    src="{{ url('public/img') }}/logo-suma-1-transparant.png" alt="looginpage">
+                            </a>
                         </div>
                         <div class="login-main">
                             <x-auth-session-status class="mb-4" :status="session('status')" />
-
                             <form class="theme-form" method="POST" action="{{ route('login') }}">
                                 @csrf
                                 <h4>Sign in to account</h4>
@@ -92,7 +94,8 @@
                                         <h5>klik angka <span id="rc"></span></h5>
                                     </div>
                                 </div>
-                                <div class="row sm-gutters">
+                                <div class="row sm-gutters" style="padding-left: 25px">
+                                    <input type="hidden" name="captcha" id="c-captcha">
                                     <div class="col-2" style="margin-left:1px;margin-right:1px;">
                                         <canvas class="cv" style="border:1px solid #747672;" width="50"
                                             height="50" id="canvas_0" data-canvas="0"></canvas>
@@ -134,33 +137,6 @@
                                 <p class="mt-4 mb-0 text-center">Don't have account?<a class="ms-2"
                                         href="{{ route('register') }}">Create Account</a></p>
                             </form>
-                            {{-- <form class="theme-form">
-                  <h4>Sign in to account</h4>
-                  <p>Enter your email & password to login</p>
-                  <div class="form-group">
-                    <label class="col-form-label">Email Address</label>
-                    <input class="form-control" type="email" required="" placeholder="Test@gmail.com">
-                  </div>
-                  <div class="form-group">
-                    <label class="col-form-label">Password</label>
-                    <div class="form-input position-relative">
-                      <input class="form-control" type="password" name="login[password]" required="" placeholder="*********">
-                      <div class="show-hide"><span class="show">                         </span></div>
-                    </div>
-                  </div>
-                  <div class="form-group mb-0">
-                    <div class="checkbox p-0">
-                      <input id="checkbox1" type="checkbox">
-                      <label class="text-muted" for="checkbox1">Remember password</label>
-                    </div>
-                    <button class="btn btn-primary btn-block w-100" type="submit">Sign in</button>
-                  </div>
-                  <h6 class="text-muted mt-4 or">Or Sign in with</h6>
-                  <div class="social mt-4">
-                    <div class="btn-showcase"><a class="btn btn-light" href="https://www.linkedin.com/login" target="_blank"><i class="txt-linkedin" data-feather="linkedin"></i> LinkedIn </a><a class="btn btn-light" href="https://twitter.com/login?lang=en" target="_blank"><i class="txt-twitter" data-feather="twitter"></i>twitter</a><a class="btn btn-light" href="https://www.facebook.com/" target="_blank"><i class="txt-fb" data-feather="facebook"></i>facebook</a></div>
-                  </div>
-                  <p class="mt-4 mb-0 text-center">Don't have account?<a class="ms-2" href="sign-up.html">Create Account</a></p>
-                </form> --}}
                         </div>
                     </div>
                 </div>
@@ -183,8 +159,42 @@
         <!-- login js-->
         <!-- Plugin used-->
 
+        <link rel="stylesheet" type="text/css"
+            href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+        @if (Session::has('error'))
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
+                integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
+                crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            <script>
+                toastr['error']("{{ session('error') }}", 'Error !', {
+                    closeButton: true,
+                    tapToDismiss: false,
+                    timeOut: 5000,
+                });
+            </script>
+        @endif
+
+        @if (Session::has('success'))
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"
+                integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw=="
+                crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+            <script>
+                toastr['success']("{{ session('success') }}", 'Sukses !', {
+                    closeButton: true,
+                    tapToDismiss: false,
+                    timeOut: 5000,
+                });
+            </script>
+        @endif
+
         <script>
             $(document).ready(function(e) {
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                    }
+                });
                 get_recaptcha();
                 $('#re_recapt').click(function(e) {
                     get_recaptcha();
@@ -196,7 +206,7 @@
                     $.ajax({
                         type: "post",
                         // url: "http://localhost:8000/check_captcha",
-                        url: '{{ route('check') }}',
+                        url: '{{ route('cek_captcha') }}',
                         data: {
                             _token: "{{ csrf_token() }}",
                             recaptcha: recapt_val
@@ -262,7 +272,9 @@
 
             $(document).on('click', '.cv', function() {
                 $('canvas[class="cv active"]').attr('class', 'cv').css('border', '1px solid #747672');
-                $(this).css('border', '1px solid red').attr('class', 'cv active');
+                $(this).css('border', '4px solid #EB4747').attr('class', 'cv active');
+                $('#c-captcha').val($(this).data('canvas'));
+                console.log($(this).data('canvas'));
             });
         </script>
     </div>

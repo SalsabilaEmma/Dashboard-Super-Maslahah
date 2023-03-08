@@ -50,7 +50,7 @@ class RecaptchaController extends Controller
     {
         $recaptcha_index = $request->input('recaptcha');
         $sess_index = session::get('data_recapt');
-        dd($recaptcha_index);
+        // dd($recaptcha_index);
         if ($recaptcha_index == $sess_index) {
             return "berhasil recaptcha";
         }

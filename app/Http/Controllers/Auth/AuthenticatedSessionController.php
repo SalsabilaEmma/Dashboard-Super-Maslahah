@@ -9,6 +9,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
+use Session;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -34,16 +35,19 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
-        $request->authenticate();
-
-        $request->session()->regenerate();
-
-        // return redirect()->intended(RouteServiceProvider::HOME);
-        if (Auth::user()->role == 'Admin') {
-            return redirect()->intended(route('dashboard'));
-        } elseif (Auth::user()->role == 'Super Admin') {
-            return redirect()->intended(route('user.suma'));
+        $captcha = $request->captcha;
+        $sess_index = Session::get('data_recapt');
+        if ($captcha == $sess_index) {
+            $request->authenticate();
+            $request->session()->regenerate();
+            return redirect()->intended(RouteServiceProvider::HOME);
         }
+        return redirect()->back()->with('error', 'Captcha Salah!');
+        // if (Auth::user()->role == 'Admin') {
+        //     return redirect()->intended(route('dashboard'));
+        // } elseif (Auth::user()->role == 'Super Admin') {
+        //     return redirect()->intended(route('user.suma'));
+        // }
     }
 
     /**

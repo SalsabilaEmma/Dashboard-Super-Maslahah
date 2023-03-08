@@ -1,8 +1,8 @@
 <div>
     <div class="logo-wrapper">
         <a href="{{ route('dashboard') }}">
-            <img class="img-fluid for-light" src="{{ url('public/cuba') }}/assets/images/logo/logo.png" alt="">
-            <img class="img-fluid for-dark" src="{{ url('public/cuba') }}/assets/images/logo/logo_dark.png" alt="">
+            <img class="img-fluid for-light bg-center" src="{{ url('public/img') }}/logo-suma-1-transparant.png" style="width: 125px" alt="">
+            <img class="img-fluid for-dark" src="{{ url('public/img') }}/logo-suma-1-transparant.png" alt="">
         </a>
         <div class="back-btn"><i class="fa fa-angle-left"></i></div>
         <div class="toggle-sidebar"><i class="status_toggle middle sidebar-toggle" data-feather="grid"> </i></div>

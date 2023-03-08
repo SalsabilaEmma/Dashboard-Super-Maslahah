@@ -11,8 +11,8 @@
         content="admin template, Cuba admin template, dashboard template, flat admin template, responsive admin template, web app">
     <meta name="author" content="pixelstrap">
     <meta name="csrf-token" content="{{ csrf_token() }}"/>
-    <link rel="icon" href="{{ url('public/cuba') }}/assets/images/favicon.png" type="image/x-icon">
-    <link rel="shortcut icon" href="{{ url('public/cuba') }}/assets/images/favicon.png" type="image/x-icon">
+    <link rel="icon" href="{{ url('public/img') }}/logo-suma-2.png" type="image/x-icon">
+    <link rel="shortcut icon" href="{{ url('public/img') }}/logo-suma-2.png" type="image/x-icon">
     <title>Super Maslahah - Dashboard</title>
     <!-- Google font-->
     <link href="https://fonts.googleapis.com/css?family=Rubik:400,400i,500,500i,700,700i&amp;display=swap"
