@@ -10327,6 +10327,7 @@
             /**
      * 
      *
+     * @method static string|null getContentTypeFormat()
      * @see \Illuminate\Http\Request
      */ 
         class Request {
@@ -10702,12 +10703,12 @@
          * Clones a request and overrides some of its parameters.
          *
          * @return static 
-         * @param array|null $query The GET parameters
-         * @param array|null $request The POST parameters
-         * @param array|null $attributes The request attributes (parameters parsed from the PATH_INFO, ...)
-         * @param array|null $cookies The COOKIE parameters
-         * @param array|null $files The FILES parameters
-         * @param array|null $server The SERVER parameters
+         * @param array $query The GET parameters
+         * @param array $request The POST parameters
+         * @param array $attributes The request attributes (parameters parsed from the PATH_INFO, ...)
+         * @param array $cookies The COOKIE parameters
+         * @param array $files The FILES parameters
+         * @param array $server The SERVER parameters
          * @static 
          */ 
         public static function duplicate($query = null, $request = null, $attributes = null, $cookies = null, $files = null, $server = null)
@@ -10733,7 +10734,6 @@
                     /**
          * Gets the Session.
          *
-         * @throws SessionNotFoundException When session is not set properly
          * @static 
          */ 
         public static function getSession()
@@ -11033,7 +11033,6 @@
                     /**
          * Gets the list of trusted proxies.
          *
-         * @return string[] 
          * @static 
          */ 
         public static function getTrustedProxies()
@@ -11065,7 +11064,6 @@
                     /**
          * Gets the list of trusted host patterns.
          *
-         * @return string[] 
          * @static 
          */ 
         public static function getTrustedHosts()
@@ -11480,7 +11478,6 @@
                     /**
          * Gets the mime types associated with the format.
          *
-         * @return string[] 
          * @static 
          */ 
         public static function getMimeTypes($format)
@@ -11500,7 +11497,7 @@
                     /**
          * Associates a format with mime types.
          *
-         * @param string|string[] $mimeTypes The associated mime types (the preferred one must be the first as it will be used as the content type)
+         * @param string|array $mimeTypes The associated mime types (the preferred one must be the first as it will be used as the content type)
          * @static 
          */ 
         public static function setFormat($format, $mimeTypes)
@@ -11536,26 +11533,14 @@
                         return $instance->setRequestFormat($format);
         }
                     /**
-         * Gets the usual name of the format associated with the request's media type (provided in the Content-Type header).
+         * Gets the format associated with the request.
          *
-         * @deprecated since Symfony 6.2, use getContentTypeFormat() instead
          * @static 
          */ 
         public static function getContentType()
         {            //Method inherited from \Symfony\Component\HttpFoundation\Request         
                         /** @var \Illuminate\Http\Request $instance */
                         return $instance->getContentType();
-        }
-                    /**
-         * Gets the usual name of the format associated with the request's media type (provided in the Content-Type header).
-         *
-         * @see Request::$formats
-         * @static 
-         */ 
-        public static function getContentTypeFormat()
-        {            //Method inherited from \Symfony\Component\HttpFoundation\Request         
-                        /** @var \Illuminate\Http\Request $instance */
-                        return $instance->getContentTypeFormat();
         }
                     /**
          * Sets the default locale.
@@ -11661,7 +11646,6 @@
          *
          * @param bool $asResource If true, a resource will be returned
          * @return string|resource 
-         * @psalm-return ($asResource is true ? resource : string)
          * @static 
          */ 
         public static function getContent($asResource = false)
@@ -11718,7 +11702,6 @@
                     /**
          * Gets a list of languages acceptable by the client browser ordered in the user browser preferences.
          *
-         * @return string[] 
          * @static 
          */ 
         public static function getLanguages()
@@ -11729,7 +11712,6 @@
                     /**
          * Gets a list of charsets acceptable by the client browser in preferable order.
          *
-         * @return string[] 
          * @static 
          */ 
         public static function getCharsets()
@@ -11740,7 +11722,6 @@
                     /**
          * Gets a list of encodings acceptable by the client browser in preferable order.
          *
-         * @return string[] 
          * @static 
          */ 
         public static function getEncodings()
@@ -11751,7 +11732,6 @@
                     /**
          * Gets a list of content types acceptable by the client browser in preferable order.
          *
-         * @return string[] 
          * @static 
          */ 
         public static function getAcceptableContentTypes()
@@ -17701,7 +17681,71 @@
      
 }
 
-        namespace GoogleMaps\Facade { 
+        namespace Intervention\Image\Facades { 
+            /**
+     * 
+     *
+     */ 
+        class Image {
+                    /**
+         * Overrides configuration settings
+         *
+         * @param array $config
+         * @return self 
+         * @static 
+         */ 
+        public static function configure($config = [])
+        {
+                        /** @var \Intervention\Image\ImageManager $instance */
+                        return $instance->configure($config);
+        }
+                    /**
+         * Initiates an Image instance from different input types
+         *
+         * @param mixed $data
+         * @return \Intervention\Image\Image 
+         * @static 
+         */ 
+        public static function make($data)
+        {
+                        /** @var \Intervention\Image\ImageManager $instance */
+                        return $instance->make($data);
+        }
+                    /**
+         * Creates an empty image canvas
+         *
+         * @param int $width
+         * @param int $height
+         * @param mixed $background
+         * @return \Intervention\Image\Image 
+         * @static 
+         */ 
+        public static function canvas($width, $height, $background = null)
+        {
+                        /** @var \Intervention\Image\ImageManager $instance */
+                        return $instance->canvas($width, $height, $background);
+        }
+                    /**
+         * Create new cached image and run callback
+         * (requires additional package intervention/imagecache)
+         *
+         * @param \Closure $callback
+         * @param int $lifetime
+         * @param boolean $returnObj
+         * @return \Image 
+         * @static 
+         */ 
+        public static function cache($callback, $lifetime = null, $returnObj = false)
+        {
+                        /** @var \Intervention\Image\ImageManager $instance */
+                        return $instance->cache($callback, $lifetime, $returnObj);
+        }
+         
+    }
+     
+}
+
+    namespace GoogleMaps\Facade { 
             /**
      * 
      *
@@ -18366,70 +18410,6 @@
         {            //Method inherited from \DebugBar\DebugBar         
                         /** @var \Barryvdh\Debugbar\LaravelDebugbar $instance */
                         return $instance->offsetUnset($key);
-        }
-         
-    }
-     
-}
-
-    namespace Intervention\Image\Facades { 
-            /**
-     * 
-     *
-     */ 
-        class Image {
-                    /**
-         * Overrides configuration settings
-         *
-         * @param array $config
-         * @return self 
-         * @static 
-         */ 
-        public static function configure($config = [])
-        {
-                        /** @var \Intervention\Image\ImageManager $instance */
-                        return $instance->configure($config);
-        }
-                    /**
-         * Initiates an Image instance from different input types
-         *
-         * @param mixed $data
-         * @return \Intervention\Image\Image 
-         * @static 
-         */ 
-        public static function make($data)
-        {
-                        /** @var \Intervention\Image\ImageManager $instance */
-                        return $instance->make($data);
-        }
-                    /**
-         * Creates an empty image canvas
-         *
-         * @param int $width
-         * @param int $height
-         * @param mixed $background
-         * @return \Intervention\Image\Image 
-         * @static 
-         */ 
-        public static function canvas($width, $height, $background = null)
-        {
-                        /** @var \Intervention\Image\ImageManager $instance */
-                        return $instance->canvas($width, $height, $background);
-        }
-                    /**
-         * Create new cached image and run callback
-         * (requires additional package intervention/imagecache)
-         *
-         * @param \Closure $callback
-         * @param int $lifetime
-         * @param boolean $returnObj
-         * @return \Image 
-         * @static 
-         */ 
-        public static function cache($callback, $lifetime = null, $returnObj = false)
-        {
-                        /** @var \Intervention\Image\ImageManager $instance */
-                        return $instance->cache($callback, $lifetime, $returnObj);
         }
          
     }
@@ -22728,9 +22708,9 @@ namespace  {
             class Validator extends \Illuminate\Support\Facades\Validator {}
             class View extends \Illuminate\Support\Facades\View {}
             class Vite extends \Illuminate\Support\Facades\Vite {}
+            class Image extends \Intervention\Image\Facades\Image {}
             class GoogleMaps extends \GoogleMaps\Facade\GoogleMapsFacade {}
             class Debugbar extends \Barryvdh\Debugbar\Facades\Debugbar {}
-            class Image extends \Intervention\Image\Facades\Image {}
             class Flare extends \Spatie\LaravelIgnition\Facades\Flare {}
      
 }
