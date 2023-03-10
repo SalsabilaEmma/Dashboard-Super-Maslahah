@@ -14,15 +14,22 @@ class RoleMiddleware
      * @param  \Closure(\Illuminate\Http\Request): (\Illuminate\Http\Response|\Illuminate\Http\RedirectResponse)  $next
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
-    public function handle(Request $request, Closure $next, $role)
+    public function handle(Request $request, Closure $next)
     {
-        if ($role == 'admin' && auth()->user()->role != 1) {
-            abort(code: 403);
+        if (auth()->user()->role == 'Admin') {
+            return redirect('/user-suma')->with('error', 'You do not have permission to access this page.');
         }
 
-        if ($role == 'superAdmin' && auth()->user()->role != 2) {
-            abort(code: 403);
-        }
         return $next($request);
+
+        /** Lama */
+        // if ($role == 'admin' && auth()->user()->role != 1) {
+        //     abort(code: 403);
+        // }
+
+        // if ($role == 'superAdmin' && auth()->user()->role != 2) {
+        //     abort(code: 403);
+        // }
+        // return $next($request);
     }
 }

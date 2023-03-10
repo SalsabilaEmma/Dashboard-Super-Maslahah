@@ -12,6 +12,7 @@ use App\Http\Controllers\TrackingController;
 use Illuminate\Support\Facades\Route;
 
 use Alexpechkarev\GoogleMaps\GoogleMaps;
+use App\Http\Controllers\BannerController;
 use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\UserSumaController;
 
@@ -37,14 +38,12 @@ Route::post('/cek-captcha', [RecaptchaController::class, 'cek_recaptcha'])->name
 Route::middleware('auth')->group(function () {
     Route::GET('/dashboard', [Controller::class, 'index'])->name('dashboard');
 
-    /** Aktivasi */
-    Route::GET('/aktivasi', [ActivationController::class, 'index'])->name('aktivasi');
-    Route::GET('/aktivasi/add', [ActivationController::class, 'add'])->name('aktivasi.add');
-    Route::POST('/aktivasi/store', [ActivationController::class, 'store'])->name('aktivasi.store');
-    Route::POST('/aktivasi/storeStatus/{id?}', [ActivationController::class, 'storeStatus'])->name('aktivasi.storeStatus');
-    Route::GET('/aktivasi/edit/{id?}', [ActivationController::class, 'edit'])->name('aktivasi.edit');
-    Route::POST('/aktivasi/update/{id?}', [ActivationController::class, 'update'])->name('aktivasi.update');
-    Route::DELETE('/aktivasi/delete/{id?}', [ActivationController::class, 'destroy'])->name('aktivasi.destroy');
+    /** Banner */
+    Route::GET('/banner', [BannerController::class, 'index'])->name('banner');
+    Route::POST('/banner/store', [BannerController::class, 'store'])->name('banner.store');
+    Route::GET('/banner/edit/{id?}', [BannerController::class, 'edit'])->name('banner.edit');
+    Route::POST('/banner/update/{id?}', [BannerController::class, 'update'])->name('banner.update');
+    Route::DELETE('/banner/delete/{id?}', [BannerController::class, 'destroy'])->name('banner.destroy');
 
     /** Pegawai */
     Route::GET('/pegawai', [PegawaiController::class, 'index'])->name('pegawai');
@@ -54,6 +53,15 @@ Route::middleware('auth')->group(function () {
     Route::DELETE('/pegawai/delete/{id?}', [PegawaiController::class, 'destroy'])->name('pegawai.destroy');
 
     Route::any('/getDataPegawai', [PegawaiController::class, 'getDataPegawai'])->name('getDataPegawai'); //post
+
+    /** Aktivasi */
+    Route::GET('/aktivasi', [ActivationController::class, 'index'])->name('aktivasi');
+    Route::GET('/aktivasi/add', [ActivationController::class, 'add'])->name('aktivasi.add');
+    Route::POST('/aktivasi/store', [ActivationController::class, 'store'])->name('aktivasi.store');
+    Route::POST('/aktivasi/storeStatus/{id?}', [ActivationController::class, 'storeStatus'])->name('aktivasi.storeStatus');
+    Route::GET('/aktivasi/edit/{id?}', [ActivationController::class, 'edit'])->name('aktivasi.edit');
+    Route::POST('/aktivasi/update/{id?}', [ActivationController::class, 'update'])->name('aktivasi.update');
+    Route::DELETE('/aktivasi/delete/{id?}', [ActivationController::class, 'destroy'])->name('aktivasi.destroy');
 
     /** Absen */
     Route::GET('/absensi', [AbsenController::class, 'index'])->name('absensi');
@@ -94,11 +102,16 @@ Route::middleware('auth')->group(function () {
     Route::GET('/viewMap', [TrackingController::class, 'viewMap'])->name('viewMap');
     Route::POST('/add', [TrackingController::class, 'store'])->name('add');
     Route::get('/google-autocomplete', [GoogleController::class, 'index']);
+
+
+    Route::middleware('auth', 'role')->group(function () {
+        /** User Maslahah */
+        Route::GET('/user-suma', [UserSumaController::class, 'index'])->name('user.suma');
+        Route::POST('/userSuma/store', [UserSumaController::class, 'store'])->name('userSuma.store');
+        Route::GET('/userSuma/edit/{id?}', [UserSumaController::class, 'edit'])->name('userSuma.edit');
+        Route::POST('/userSuma/update/{id?}', [UserSumaController::class, 'update'])->name('userSuma.update');
+        Route::DELETE('/userSuma/delete/{id?}', [UserSumaController::class, 'destroy'])->name('userSuma.destroy');
+    });
 });
 
-// Route::middleware('auth', 'superAdmin')->group(function () {
-//     Route::GET('/dashboard', [Controller::class, 'index'])->name('dashboard');
-//     /** M-Pay */
-//     Route::GET('/user-suma', [UserSumaController::class, 'index'])->name('user.suma');
-// });
 require __DIR__ . '/auth.php';

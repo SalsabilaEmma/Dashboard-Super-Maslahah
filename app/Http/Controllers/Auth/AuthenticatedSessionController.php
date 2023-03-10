@@ -18,7 +18,10 @@ class AuthenticatedSessionController extends Controller
     protected function redirectTo()
     {
         if (auth()->user()->role == 'Admin') {
-            return '/dashboard';
+            if (auth()->user()->status == '1') {
+                // return '/dashboard';
+                return route('dashboard');
+            }
         }
         return '/';
     }
@@ -43,6 +46,7 @@ class AuthenticatedSessionController extends Controller
             return redirect()->intended(RouteServiceProvider::HOME);
         }
         return redirect()->back()->with('error', 'Captcha Salah!');
+
         // if (Auth::user()->role == 'Admin') {
         //     return redirect()->intended(route('dashboard'));
         // } elseif (Auth::user()->role == 'Super Admin') {
