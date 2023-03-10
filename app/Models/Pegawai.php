@@ -9,8 +9,12 @@ class Pegawai extends Model
 {
     use HasFactory;
     protected $table = 'pegawais';
-    protected $fillable = ['nip', 'noKtp', 'nama', 'jenisKelamin', 'tglLahir', 'statusPerkawinan', 'alamat', 'telepon', 'tglMasuk', 'rekeningTabungan', 'penempatan', 'statusPegawai', 'jabatan', 'kantor'];
+    protected $fillable = ['nipPegawai', 'noKtp', 'nama', 'jenisKelamin', 'tglLahir', 'statusPerkawinan', 'alamat', 'telepon', 'tglMasuk', 'rekeningTabungan', 'penempatan', 'statusPegawai', 'jabatan', 'kantor'];
 
+    public function user()
+    {
+        return $this->hasOne('App\Models\User', 'nipPegawai');
+    }
     public function absen()
     {
         return $this->hasMany('App\Models\Absen', 'nipPegawai');

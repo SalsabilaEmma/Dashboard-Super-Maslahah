@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('pegawais', function (Blueprint $table) {
             $table->engine = 'MyISAM';
-            $table->bigIncrements('id');
+            $table->id();
             $table->string('nip', 100);
             $table->index('nip', 'nip_index');
             $table->string('noKtp');

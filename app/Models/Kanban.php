@@ -11,8 +11,9 @@ class Kanban extends Model
     protected $table = 'kanban_board';
     protected $fillable = ['idUser','status','judul','issues','due_date','priority','sprintpoint'];
 
-    public function user()
-    {
-        return $this->belongsTo('App\Models\User', 'idUser');
-    }
+    // 'idUser',
+     public function user()
+     {
+         return $this->belongsTo('App\Models\User', 'idUser');
+     }
 }

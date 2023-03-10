@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('kanban_board', function (Blueprint $table) {
             $table->increments('id');
+            //$table->char('nip')->nullable();
             $table->char('status')->nullable();
             $table->char('judul')->nullable();
             $table->text('issues')->nullable();

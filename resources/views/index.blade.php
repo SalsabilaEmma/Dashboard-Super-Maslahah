@@ -27,7 +27,7 @@
                             <div class="media static-top-widget">
                                 <div class="media-body">
                                     <h6 class="font-roboto">Total Karyawan</h6>
-                                    <h4 class="mb-0 counter">45631</h4>
+                                    <h4 class="mb-0 counter">{{ $totalPegawai }}</h4>
                                 </div>
                                 <svg class="fill-danger" width="41" height="46" viewBox="0 0 41 46"
                                     xmlns="http://www.w3.org/2000/svg">
@@ -51,7 +51,8 @@
                             <div class="media static-top-widget">
                                 <div class="media-body">
                                     <h6 class="font-roboto">Absensi Harian</h6>
-                                    <h4 class="mb-0 counter">50</h4>
+                                    <h6 class="font-roboto">{{ date('d-m-Y', strtotime($today)) }}</h6>
+                                    <h4 class="mb-0 counter">{{ $totalAbsensi }}</h4>
                                 </div>
                                 <svg class="fill-primary" width="41" height="46" viewBox="0 0 41 46"
                                     xmlns="http://www.w3.org/2000/svg">

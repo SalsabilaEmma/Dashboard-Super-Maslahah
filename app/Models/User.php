@@ -21,10 +21,11 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
-        'nip',
+        'nipPegawai',
         'telepon',
         'email',
         'password',
+
     ];
 
     /**
@@ -45,6 +46,10 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    public function pegawai()
+    {
+        return $this->belongsTo('App\Models\Pegawai', 'nipPegawai', 'nip');
+    }
 
     public function kanban()
     {

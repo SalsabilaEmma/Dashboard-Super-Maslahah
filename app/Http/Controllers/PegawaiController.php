@@ -10,7 +10,7 @@ class PegawaiController extends Controller
 {
     public function getDataPegawai(Request $request)
     {
-        // dd($request->all());
+        dd($request->all());
         $nipPegawai = $request->input('nip');
         $pegawai = Pegawai::where('nip', $nipPegawai)->first();
         // dd($pegawai);
@@ -19,17 +19,19 @@ class PegawaiController extends Controller
 
     public function index()
     {
-        // return view('pegawai.list');
-
-        return view('pegawai.list', [
-            'data' => Pegawai::latest()->get(),
-        ]);
+        $data = Pegawai::latest()->get();
+        return view('pegawai.list', compact('data'));
     }
 
     public function viewData()
     {
         $data = Pegawai::latest()->get();
+        // $totalPegawai = Pegawai::get()->count();
         return $data->toJson();
+        // return response()->json([
+        //     'data' => $data,
+        //     'totalPegawai' => $totalPegawai,
+        // ]);
     }
 
     public function store(Request $request)

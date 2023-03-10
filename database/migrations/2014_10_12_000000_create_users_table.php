@@ -18,8 +18,9 @@ return new class extends Migration
             $table->string('name');
 
             // Tambahan
-            $table->enum('role', ['Admin', 'Super Admin'])->nullable()->default(['Admin']);
-            $table->enum('status', ['0', '1'])->nullable()->default(['1']);
+            $table->enum('role', ['Admin', 'Super Admin'])->nullable()->default('Admin');
+            $table->enum('status', ['0', '1'])->nullable()->default('1');
+            // $table->unsignedBigInteger('nipPegawai', 100);
             $table->string('nip', 100);
             $table->string('telepon');
             // End Tambahan
