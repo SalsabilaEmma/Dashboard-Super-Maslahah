@@ -6,8 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
-        content="Cuba admin is super flexible, powerful, clean &amp; modern responsive bootstrap 5 admin template with unlimited possibilities.">
-    <meta name="keywords" content="Login Dashboard BPR Super Maslahah">
+        content="Login Dashboard Super Maslahah">
+    <meta name="keywords" content="Login Dashboard Super Maslahah">
     <meta name="author" content="pixelstrap">
     <link rel="icon" href="{{ url('public/img') }}/logo-suma-2.png" type="image/x-icon">
     <link rel="shortcut icon" href="{{ url('public/img') }}/logo-suma-2.png" type="image/x-icon">
@@ -60,6 +60,12 @@
                                 @csrf
                                 <h4>Sign in to account</h4>
                                 <p>Enter your email & password to login</p>
+                                {{-- <div class="form-group">
+                                    <x-input-label for="nip" :value="__('NIP')" />
+                                    <x-text-input id="nip" class="form-control block mt-1 w-full" type="nip"
+                                        name="nip" :value="old('nip')" required autofocus />
+                                    <x-input-error :messages="$errors->get('nip')" class="form-control mt-2" />
+                                </div> --}}
                                 <!-- Email Address -->
                                 <div class="form-group">
                                     <x-input-label for="email" :value="__('Email')" />

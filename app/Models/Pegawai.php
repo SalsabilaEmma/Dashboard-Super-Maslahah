@@ -4,17 +4,22 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Pegawai extends Model
 {
     use HasFactory;
     protected $table = 'pegawais';
-    protected $fillable = ['nipPegawai', 'noKtp', 'nama', 'jenisKelamin', 'tglLahir', 'statusPerkawinan', 'alamat', 'telepon', 'tglMasuk', 'rekeningTabungan', 'penempatan', 'statusPegawai', 'jabatan', 'kantor'];
+    protected $fillable = ['nip', 'noKtp', 'nama', 'jenisKelamin', 'tglLahir', 'statusPerkawinan', 'alamat', 'telepon', 'tglMasuk', 'rekeningTabungan', 'penempatan', 'statusPegawai', 'jabatan', 'kantor'];
 
-    public function user()
+    public function user(): BelongsTo
     {
-        return $this->hasOne('App\Models\User', 'nipPegawai');
+        return $this->belongsTo(User::class, 'nip', 'nip');
     }
+    public function kanban(): HasMany
+    {
+        return $this->hasMany(Kanban::class, 'nip', 'nip');
+    }    
     public function absen()
     {
         return $this->hasMany('App\Models\Absen', 'nipPegawai');

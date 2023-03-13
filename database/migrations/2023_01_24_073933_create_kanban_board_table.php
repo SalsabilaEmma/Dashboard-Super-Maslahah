@@ -14,16 +14,20 @@ return new class extends Migration
     public function up()
     {
         Schema::create('kanban_board', function (Blueprint $table) {
+            $table->engine = 'MyISAM';
             $table->increments('id');
-            //$table->char('nip')->nullable();
-            $table->char('status')->nullable();
-            $table->char('judul')->nullable();
+            $table->string('nip',50)->nullable();
+            $table->char('status',100)->nullable();
+            $table->char('judul',255)->nullable();
             $table->text('issues')->nullable();
+            $table->date('tanggal')->nullable();
             $table->date('due_date')->nullable();
-            $table->char('priority')->nullable();
-            $table->char('sprintpoint')->nullable();
-            $table->unsignedBigInteger('idUser');
-            $table->foreign('idUser')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
+            $table->char('priority',25)->nullable();
+            $table->char('sprintpoint',25)->nullable();
+            $table->string('userRequest',100)->nullable();
+            $table->string('namaUserRequest',100)->nullable();
+            // $table->unsignedBigInteger('idUser');
+            // $table->foreign('idUser')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
             $table->timestamps();
         });
     }

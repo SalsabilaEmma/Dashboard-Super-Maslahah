@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kanban;
+use App\Models\Pegawai;
 use Illuminate\Http\Request;
 // use Validator;
 use Illuminate\Support\Facades\Validator;
@@ -12,8 +13,6 @@ class KanbanController extends Controller
     /**  User Side -------------------------------------------------------------------------------------------------- */
     public function index()
     {
-        // $issues = Kanban::all();
-        // dd($issues);
         return view('kanban.board', [
             'task' => Kanban::all(),
         ]);
@@ -22,15 +21,17 @@ class KanbanController extends Controller
     /** ajax */
     public function indexKanban()
     {
-        $user = auth()->id();
-        $task = Kanban::where('idUser', $user)->latest()->get();
+        $userNip = auth()->user()->nip;
+        $task = Kanban::whereHas('pegawai', function($query) use ($userNip) {
+            $query->where('nip', $userNip);
+        })->get();
+        // dd($task);
         return $task->toJson();
     }
 
 
     public function Store(Request $request)
     {
-        // dd(auth()->id());
         //define validation rules
         $validator = Validator::make($request->all(), [
             'status' => 'required',
@@ -48,13 +49,13 @@ class KanbanController extends Controller
 
         //create post
         $post = Kanban::create([
-            'idUser' => auth()->id(),
-            'status'     => $request->status,
-            'judul'   => $request->judul,
-            'issues'   => $request->issues,
-            'due_date'   => $request->due_date,
-            'priority'   => $request->priority,
-            'sprintpoint'   => $request->sprintpoint,
+            'nip'         => auth()->user()->nip,
+            'status'      => $request->status,
+            'judul'       => $request->judul,
+            'issues'      => $request->issues,
+            'due_date'    => $request->due_date,
+            'priority'    => $request->priority,
+            'sprintpoint' => $request->sprintpoint,
         ]);
         // dd($post);
         //return response
@@ -64,15 +65,6 @@ class KanbanController extends Controller
             'data'    => $post
         ]);
     }
-    // public function show(Kanban $post)
-    // {
-    //     //return response
-    //     return response()->json([
-    //         'success' => true,
-    //         'message' => 'Detail Data Post',
-    //         'data'    => $post
-    //     ]);
-    // }
 
     public function update(Request $request)
     {

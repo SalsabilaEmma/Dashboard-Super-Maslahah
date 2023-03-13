@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Absen;
 use App\Models\Pegawai;
+use App\Models\User;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -21,10 +22,13 @@ class Controller extends BaseController
         $totalPegawai = Pegawai::all()->count();
         $today = Carbon::today();
         $totalAbsensi = Absen::whereDate('tanggal', $today)->count();
-        return view('index', compact('time', 'totalPegawai','today','totalAbsensi'));
+
+        $data = User::with('pegawai')->get();
+        // return $data;
+        return view('index', compact('time', 'totalPegawai', 'today', 'totalAbsensi'));
     }
-    public function indexSuper()
-    {
-        return view('index');
-    }
+    // public function indexSuper()
+    // {
+    //     return view('index');
+    // }
 }

@@ -14,8 +14,9 @@ class AbsenController extends Controller
     public function index()
     {
         $data = Absen::with('pegawai')->latest()->get();
+        // $data = Absen::latest()->get();
         $dataPegawai = Pegawai::all();
-        // dd($data);
+        // dd($dataPegawai);
         return view('absen.list', compact('data', 'dataPegawai'));
     }
 
@@ -34,7 +35,7 @@ class AbsenController extends Controller
     }
     public function store(Request $request)
     {
-        // dd($request->all());
+        dd($request->all());
         $validator = Validator::make($request->all(), [
             'tanggal' => 'required|numeric',
             'status' => 'required',
@@ -46,8 +47,10 @@ class AbsenController extends Controller
         //     return response()->json($validator->errors(), 422);
         // }
         $dataAbsen = new Absen;
-        // 'idUser' => auth()->id(),
-        $dataAbsen->nipPegawai = $request->nipPegawai;
+        // $dataAbsen->nip = auth()->user()->nip;
+        // $dataAbsen->namaPegawai = auth()->user()->name;
+        $dataAbsen->nip = $request->nip;
+        $dataAbsen->namaPegawai = $request->nama;
         $dataAbsen->tanggal = $request->tanggal;
         $dataAbsen->status = $request->status;
         if ($dataAbsen->status == "Hadir") {

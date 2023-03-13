@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -21,7 +22,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
-        'nipPegawai',
+        'nip',
         'telepon',
         'email',
         'password',
@@ -46,13 +47,13 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    public function pegawai()
+    public function pegawai(): HasOne
     {
-        return $this->belongsTo('App\Models\Pegawai', 'nipPegawai', 'nip');
+        return $this->hasOne(Pegawai::class, 'nip', 'nip');
     }
 
-    public function kanban()
-    {
-        return $this->hasMany('App\Models\Kanban', 'idUser');
-    }
+    // public function kanban()
+    // {
+    //     return $this->hasMany('App\Models\Kanban', 'idUser');
+    // }
 }

@@ -53,7 +53,7 @@
                                     <tbody>
                                         <!-- Isi tabel -->
                                         @foreach ($data as $userSuma)
-                                            @if ($userSuma->role == 'Admin')
+                                            {{-- @if ($userSuma->role == 'Admin') --}}
                                                 <tr class="text-center">
                                                     <td class="text-center">{{ $loop->iteration }}</td>
                                                     <td>{{ $userSuma->name }}</td>
@@ -89,7 +89,7 @@
                                                         </form>
                                                     </td>
                                                 </tr>
-                                            @endif
+                                            {{-- @endif --}}
                                         @endforeach
                                     </tbody>
                                 </table>

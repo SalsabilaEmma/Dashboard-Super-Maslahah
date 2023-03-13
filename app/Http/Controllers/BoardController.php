@@ -16,7 +16,7 @@ class BoardController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function indexs($user_id)
-    {
+    { 
         //  fetch all boards based on current user id
         $boards = Board::all()->where('user_id', $user_id);
 

@@ -15,14 +15,14 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name',50);
 
             // Tambahan
-            $table->enum('role', ['Admin', 'Super Admin'])->nullable()->default('Admin');
-            $table->enum('status', ['0', '1'])->nullable()->default('1');
+            $table->enum('role', ['Admin', 'Super Admin'])->default('Admin');
+            $table->enum('status', ['0', '1'])->default(1);
             // $table->unsignedBigInteger('nipPegawai', 100);
-            $table->string('nip', 100);
-            $table->string('telepon');
+            $table->string('nip',20)->nullable();
+            $table->string('telepon',20)->nullable();
             // End Tambahan
 
             $table->string('email')->unique();

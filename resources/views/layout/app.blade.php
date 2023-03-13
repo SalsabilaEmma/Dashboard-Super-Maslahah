@@ -6,9 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
-        content="Cuba admin is super flexible, powerful, clean &amp; modern responsive bootstrap 5 admin template with unlimited possibilities.">
+        content="Dashboard Super Maslahah">
     <meta name="keywords"
-        content="Dashboard BPR Super Maslahah">
+        content="Dashboard Super Maslahah">
     <meta name="author" content="pixelstrap">
     <meta name="csrf-token" content="{{ csrf_token() }}"/>
     <link rel="icon" href="{{ url('public/img') }}/logo-suma-2.png" type="image/x-icon">

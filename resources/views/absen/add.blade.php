@@ -45,18 +45,9 @@
                                     <div class="col-sm-6">
                                         <div class="mb-3">
                                             <label class="form-label" for="nama">Nama Pegawai</label>
-                                            {{-- <input type="text" class="form-control @error('nama') is-invalid @enderror"
-                                                id="nama" name="nama" placeholder="Masukkan Nama Pegawai" required> --}}
-                                            {{-- <select class="form-select digits @error('nama') is-invalid @enderror"
-                                                data-live-search="true" name="namaPegawai" required id="nama">
-                                                <option selected hidden value=""> -Pilih Nama Pegawai- </option>
-                                                @foreach ($dataPegawai as $pegawai)
-                                                    <option value="{{ $pegawai->nama }}">{{ $pegawai->nama }}</option>
-                                                @endforeach
-                                            </select> --}}
                                             <select
                                                 class="js-example-disabled-results form-select digits @error('nama') is-invalid @enderror"
-                                                required name="nipPegawai" required id="nama">
+                                                required name="nama" required id="nama">
                                                 <option selected hidden value="" disabled="disabled"> -Pilih Nama
                                                     Pegawai- </option>
                                                 @foreach ($dataPegawai as $pegawai)

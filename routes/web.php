@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 use Alexpechkarev\GoogleMaps\GoogleMaps;
 use App\Http\Controllers\BannerController;
 use App\Http\Controllers\GoogleController;
+use App\Http\Controllers\TugasPegawaiController;
 use App\Http\Controllers\UserSumaController;
 
 /*
@@ -37,31 +38,6 @@ Route::post('/cek-captcha', [RecaptchaController::class, 'cek_recaptcha'])->name
 
 Route::middleware('auth')->group(function () {
     Route::GET('/dashboard', [Controller::class, 'index'])->name('dashboard');
-
-    /** Banner */
-    Route::GET('/banner', [BannerController::class, 'index'])->name('banner');
-    Route::POST('/banner/store', [BannerController::class, 'store'])->name('banner.store');
-    Route::GET('/banner/edit/{id?}', [BannerController::class, 'edit'])->name('banner.edit');
-    Route::POST('/banner/update/{id?}', [BannerController::class, 'update'])->name('banner.update');
-    Route::DELETE('/banner/delete/{id?}', [BannerController::class, 'destroy'])->name('banner.destroy');
-
-    /** Pegawai */
-    Route::GET('/pegawai', [PegawaiController::class, 'index'])->name('pegawai');
-    Route::POST('/pegawai/store', [PegawaiController::class, 'store'])->name('pegawai.store');
-    Route::GET('/pegawai/edit/{id?}', [PegawaiController::class, 'edit'])->name('pegawai.edit');
-    Route::POST('/pegawai/update/{id?}', [PegawaiController::class, 'update'])->name('pegawai.update');
-    Route::DELETE('/pegawai/delete/{id?}', [PegawaiController::class, 'destroy'])->name('pegawai.destroy');
-
-    Route::any('/getDataPegawai', [PegawaiController::class, 'getDataPegawai'])->name('getDataPegawai'); //post
-
-    /** Aktivasi */
-    Route::GET('/aktivasi', [ActivationController::class, 'index'])->name('aktivasi');
-    Route::GET('/aktivasi/add', [ActivationController::class, 'add'])->name('aktivasi.add');
-    Route::POST('/aktivasi/store', [ActivationController::class, 'store'])->name('aktivasi.store');
-    Route::POST('/aktivasi/storeStatus/{id?}', [ActivationController::class, 'storeStatus'])->name('aktivasi.storeStatus');
-    Route::GET('/aktivasi/edit/{id?}', [ActivationController::class, 'edit'])->name('aktivasi.edit');
-    Route::POST('/aktivasi/update/{id?}', [ActivationController::class, 'update'])->name('aktivasi.update');
-    Route::DELETE('/aktivasi/delete/{id?}', [ActivationController::class, 'destroy'])->name('aktivasi.destroy');
 
     /** Absen */
     Route::GET('/absensi', [AbsenController::class, 'index'])->name('absensi');
@@ -89,28 +65,61 @@ Route::middleware('auth')->group(function () {
     Route::POST('/kanban-board/dragstatus{id?}', [KanbanController::class, 'dragstatus'])->name('kanban.dragstatus');
     // Route::POST('/kanban-board/movecard{id?}', [KanbanController::class, 'movecard'])->name('kanban.movecard');
 
-    /** Tracking */
-    Route::GET('/tracking', [TrackingController::class, 'index'])->name('tracking');
-    Route::POST('/tracking/store', [TrackingController::class, 'store'])->name('tracking.store');
-    Route::GET('/tracking/edit/{id?}', [TrackingController::class, 'edit'])->name('tracking.edit');
-    Route::POST('/tracking/update/{id?}', [TrackingController::class, 'update'])->name('tracking.update');
-    Route::DELETE('/tracking/delete/{id?}', [TrackingController::class, 'destroy'])->name('tracking.destroy');
-
-    /** crud */
-    Route::GET('/lokasi', [TrackingController::class, 'indexLokasi'])->name('indexLokasi');
-    Route::GET('/data', [TrackingController::class, 'viewData'])->name('viewData');
-    Route::GET('/viewMap', [TrackingController::class, 'viewMap'])->name('viewMap');
-    Route::POST('/add', [TrackingController::class, 'store'])->name('add');
-    Route::get('/google-autocomplete', [GoogleController::class, 'index']);
-
-
     Route::middleware('auth', 'role')->group(function () {
+        /** Banner */
+        Route::GET('/banner', [BannerController::class, 'index'])->name('banner');
+        Route::POST('/banner/store', [BannerController::class, 'store'])->name('banner.store');
+        Route::GET('/banner/edit/{id?}', [BannerController::class, 'edit'])->name('banner.edit');
+        Route::POST('/banner/update/{id?}', [BannerController::class, 'update'])->name('banner.update');
+        Route::DELETE('/banner/delete/{id?}', [BannerController::class, 'destroy'])->name('banner.destroy');
+
+        /** Pegawai */
+        Route::GET('/pegawai', [PegawaiController::class, 'index'])->name('pegawai');
+        Route::POST('/pegawai/store', [PegawaiController::class, 'store'])->name('pegawai.store');
+        Route::GET('/pegawai/edit/{id?}', [PegawaiController::class, 'edit'])->name('pegawai.edit');
+        Route::POST('/pegawai/update/{id?}', [PegawaiController::class, 'update'])->name('pegawai.update');
+        Route::DELETE('/pegawai/delete/{id?}', [PegawaiController::class, 'destroy'])->name('pegawai.destroy');
+
+        Route::any('/getDataPegawai', [PegawaiController::class, 'getDataPegawai'])->name('getDataPegawai'); //post
+        Route::any('/getDataPegawai2', [PegawaiController::class, 'getDataPegawai2'])->name('getDataPegawai2'); //post
+
+        /** Aktivasi */
+        Route::GET('/aktivasi', [ActivationController::class, 'index'])->name('aktivasi');
+        Route::GET('/aktivasi/add', [ActivationController::class, 'add'])->name('aktivasi.add');
+        Route::POST('/aktivasi/store', [ActivationController::class, 'store'])->name('aktivasi.store');
+        Route::POST('/aktivasi/storeStatus/{id?}', [ActivationController::class, 'storeStatus'])->name('aktivasi.storeStatus');
+        Route::GET('/aktivasi/edit/{id?}', [ActivationController::class, 'edit'])->name('aktivasi.edit');
+        Route::POST('/aktivasi/update/{id?}', [ActivationController::class, 'update'])->name('aktivasi.update');
+        Route::DELETE('/aktivasi/delete/{id?}', [ActivationController::class, 'destroy'])->name('aktivasi.destroy');
+
         /** User Maslahah */
         Route::GET('/user-suma', [UserSumaController::class, 'index'])->name('user.suma');
         Route::POST('/userSuma/store', [UserSumaController::class, 'store'])->name('userSuma.store');
         Route::GET('/userSuma/edit/{id?}', [UserSumaController::class, 'edit'])->name('userSuma.edit');
         Route::POST('/userSuma/update/{id?}', [UserSumaController::class, 'update'])->name('userSuma.update');
         Route::DELETE('/userSuma/delete/{id?}', [UserSumaController::class, 'destroy'])->name('userSuma.destroy');
+
+        /** Tugas Pegawai */
+        Route::GET('/tugas-pegawai', [TugasPegawaiController::class, 'index'])->name('tugasPegawai.list');
+        Route::GET('/tugas-pegawai/add', [TugasPegawaiController::class, 'add'])->name('tugasPegawai.add');
+        Route::POST('/tugasPegawai/store', [TugasPegawaiController::class, 'store'])->name('tugasPegawai.store');
+        Route::GET('/tugasPegawai/edit/{id?}', [TugasPegawaiController::class, 'edit'])->name('tugasPegawai.edit');
+        Route::POST('/tugasPegawai/update/{id?}', [TugasPegawaiController::class, 'update'])->name('tugasPegawai.update');
+        Route::DELETE('/tugasPegawai/delete/{id?}', [TugasPegawaiController::class, 'destroy'])->name('tugasPegawai.destroy');
+
+        /** Tracking */
+        Route::GET('/tracking', [TrackingController::class, 'index'])->name('tracking');
+        Route::POST('/tracking/store', [TrackingController::class, 'store'])->name('tracking.store');
+        Route::GET('/tracking/edit/{id?}', [TrackingController::class, 'edit'])->name('tracking.edit');
+        Route::POST('/tracking/update/{id?}', [TrackingController::class, 'update'])->name('tracking.update');
+        Route::DELETE('/tracking/delete/{id?}', [TrackingController::class, 'destroy'])->name('tracking.destroy');
+
+        /** crud */
+        Route::GET('/lokasi', [TrackingController::class, 'indexLokasi'])->name('indexLokasi');
+        Route::GET('/data', [TrackingController::class, 'viewData'])->name('viewData');
+        Route::GET('/viewMap', [TrackingController::class, 'viewMap'])->name('viewMap');
+        Route::POST('/add', [TrackingController::class, 'store'])->name('add');
+        Route::get('/google-autocomplete', [GoogleController::class, 'index']);
     });
 });
 

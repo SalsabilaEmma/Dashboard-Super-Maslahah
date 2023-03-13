@@ -10,9 +10,23 @@ class PegawaiController extends Controller
 {
     public function getDataPegawai(Request $request)
     {
-        dd($request->all());
         $nipPegawai = $request->input('nip');
         $pegawai = Pegawai::where('nip', $nipPegawai)->first();
+        // dd($pegawai);
+        return response()->json($pegawai);
+    }
+    // public function getDataPegawai(Request $request)
+    // {
+    //     $nama = $request->input('nama');
+    //     $pegawai = Pegawai::where('nama', $nama)->first();
+    //     dd($pegawai);
+    //     return response()->json($pegawai);
+    // }
+    public function getDataPegawai2(Request $request)
+    {
+        $userRequest = $request->input('nip');
+        dd($userRequest);
+        $pegawai = Pegawai::where('nama', $userRequest)->first();
         // dd($pegawai);
         return response()->json($pegawai);
     }
@@ -56,7 +70,7 @@ class PegawaiController extends Controller
         //check if validation fails
         if ($validator->fails()) {
             // dd(response()->json($validator->errors()));
-            return redirect()->route('pegawai')->with('error','Gagal Menyimpan Data');
+            return redirect()->route('pegawai')->with('error', 'Gagal Menyimpan Data');
         }
         // dd('simpen dah');
         //create data
