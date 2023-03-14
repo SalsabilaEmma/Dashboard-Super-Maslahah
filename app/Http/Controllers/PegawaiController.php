@@ -10,18 +10,10 @@ class PegawaiController extends Controller
 {
     public function getDataPegawai(Request $request)
     {
-        $nipPegawai = $request->input('nip');
-        $pegawai = Pegawai::where('nip', $nipPegawai)->first();
-        // dd($pegawai);
+        $nip = $request->input('nip');
+        $pegawai = Pegawai::where('nip', $nip)->first();
         return response()->json($pegawai);
     }
-    // public function getDataPegawai(Request $request)
-    // {
-    //     $nama = $request->input('nama');
-    //     $pegawai = Pegawai::where('nama', $nama)->first();
-    //     dd($pegawai);
-    //     return response()->json($pegawai);
-    // }
     public function getDataPegawai2(Request $request)
     {
         $userRequest = $request->input('nip');

@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Pegawai extends Model
 {
@@ -19,10 +20,10 @@ class Pegawai extends Model
     public function kanban(): HasMany
     {
         return $this->hasMany(Kanban::class, 'nip', 'nip');
-    }    
-    public function absen()
+    }
+    public function absen(): HasMany
     {
-        return $this->hasMany('App\Models\Absen', 'nipPegawai');
+        return $this->hasMany('App\Models\Absen', 'nip');
     }
     public function aktivasi()
     {

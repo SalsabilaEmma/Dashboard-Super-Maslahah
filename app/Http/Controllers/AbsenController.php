@@ -14,43 +14,40 @@ class AbsenController extends Controller
     public function index()
     {
         $data = Absen::with('pegawai')->latest()->get();
-        // $data = Absen::latest()->get();
         $dataPegawai = Pegawai::all();
-        // dd($dataPegawai);
         return view('absen.list', compact('data', 'dataPegawai'));
     }
 
     public function add()
     {
         $data = Absen::latest()->get();
-        // $today = Carbon::now()->isoFormat('YYYY-MM-DD');
         $today = Carbon::now();
-        // dd($today);
         $timezone = Carbon::now();
         $timezone->timezone = 'Asia/Jakarta';
         $time = $timezone->toTimeString();
-        // dd($timezone);
         $dataPegawai = Pegawai::latest()->get();
         return view('absen.add', compact('data', 'dataPegawai', 'timezone', 'time'));
     }
     public function store(Request $request)
     {
-        dd($request->all());
+        // dd($request->all());
         $validator = Validator::make($request->all(), [
+            'nip' => 'required',
+            'namaPegawai' => 'required',
             'tanggal' => 'required|numeric',
             'status' => 'required',
             'jamMasuk' => 'nullable',
             'ket' => 'nullable',
         ]);
+        $pegawai = Pegawai::where('nip',$request->nip)->firstOrFail();
         //check if validation fails
         // if ($validator->fails()) {
         //     return response()->json($validator->errors(), 422);
         // }
+        // dd($pegawai);
         $dataAbsen = new Absen;
-        // $dataAbsen->nip = auth()->user()->nip;
-        // $dataAbsen->namaPegawai = auth()->user()->name;
-        $dataAbsen->nip = $request->nip;
-        $dataAbsen->namaPegawai = $request->nama;
+        $dataAbsen->nip = $pegawai->nip;
+        $dataAbsen->namaPegawai = $pegawai->nama;
         $dataAbsen->tanggal = $request->tanggal;
         $dataAbsen->status = $request->status;
         if ($dataAbsen->status == "Hadir") {
@@ -58,10 +55,6 @@ class AbsenController extends Controller
         } else {
             $dataAbsen->ket = $request->ket;
         }
-        // else {
-        //     $dataAbsen->jamMasuk = null;
-        //     $dataAbsen->ket = null;
-        // }
         $dataAbsen->save();
         return redirect()->route('absensi')->with('success', 'Data Berhasil Ditambahkan!');
     }
@@ -77,12 +70,15 @@ class AbsenController extends Controller
         // dd($request->all());
         $dataAbsen = Absen::findOrFail($id);
         $request->validate([
+            'nip' => 'required',
+            'namaPegawai' => 'required',
             'tanggal' => 'required',
             'status' => 'required',
             'jamMasuk' => 'required|nullable',
             'jamPulang' => 'required|nullable'
         ]);
-        $dataAbsen->nipPegawai = $request->nipPegawai;
+        $dataAbsen->nip = $request->nip;
+        $dataAbsen->namaPegawai = $request->namaPegawai;
         $dataAbsen->tanggal = $request->tanggal;
         $dataAbsen->status = $request->status;
         $dataAbsen->jamMasuk = $request->jamMasuk;

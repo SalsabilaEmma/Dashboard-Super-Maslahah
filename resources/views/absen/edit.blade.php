@@ -45,15 +45,15 @@
                                     <div class="col-sm-6">
                                         <div class="mb-3">
                                             <label class="form-label" for="nama">Nama Pegawai</label>
+                                            <input type="hidden" name="namaPegawai" id="pegawaiNama"
+                                                value="{{ $dataAbsen->pegawai->nip }}">
                                             <select
                                                 class="js-example-disabled-results form-select digits @error('nama') is-invalid @enderror"
-                                                required name="nipPegawai" required id="nama">
-                                                <option selected hidden value="{{ $dataAbsen->pegawai->nip }}"
-                                                    disabled="disabled"> {{ $dataAbsen->pegawai->nama }} -
-                                                    {{ $dataAbsen->pegawai->nip }}</option>
+                                                required name="nip" required id="pegawai">
+                                                <option selected hidden value="{{ $dataAbsen->pegawai->nama }}"
+                                                    disabled="disabled"> {{ $dataAbsen->pegawai->nama }}</option>
                                                 @foreach ($dataPegawai as $pegawai)
-                                                    <option value="{{ $pegawai->nip }}">{{ $pegawai->nama }} -
-                                                        {{ $pegawai->nip }}</option>
+                                                    <option value="{{ $pegawai->nip }}">{{ $pegawai->nama }}</option>
                                                 @endforeach
                                             </select>
                                             @error('nama')
@@ -203,20 +203,12 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
 <script>
     $(document).ready(function() {
-        $('#nama').on('change', function() {
+        $('#pegawai').on('change', function() {
             var nip = $(this).val();
-            // console.log(nipPegawai);
-            $.ajax({
-                url: "{{ route('getDataPegawai') }}",
-                type: 'GET',
-                data: {
-                    nip: nip,
-                },
-                success: function(data) {
-                    $('#nip').val(data.nip);
-                    // console.log('alo');
-                }
-            });
+            $('#nip').val(nip);
+
+            var namaPegawai = $('#pegawai option:selected').text();
+            $('#pegawaiNama').val(namaPegawai);
         });
     });
 </script>
